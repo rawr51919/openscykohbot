@@ -170,9 +170,6 @@ class Rate extends commando.Command {
             case '@everyone':
             message.channel.send('OW! A PING!')
             break
-            case '@OpenScykohBot':
-            message.channel.send('OW! A PI... wait a minute... You maniac!')
-            break
             case '<@468615764643938314>':
             message.channel.send('OW! A PING!')
             break
