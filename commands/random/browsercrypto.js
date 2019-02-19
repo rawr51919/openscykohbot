@@ -13,7 +13,7 @@ class BCRNG extends commando.Command {
     async run(message, args) {
         let number=args.split(/ +/)
         let numbers=/^[0-9]+$/
-        if (!numbers.test(number[0]) || !numbers.test(number[1]) || !numbers.test(number[2])){
+        if (!numbers.test(number[0]) || !numbers.test(number[1]) || (!numbers.test(number[2]) && number[2])){
             message.channel.send('Syntax error. You must specify numbers in this command.')
         }
         if (number.length>=4){
@@ -29,12 +29,12 @@ class BCRNG extends commando.Command {
         }else if (message.content.match(/^&bcrng ([0-9]*) ([0-9]*)+\b/) && !number[2]){
             message.reply('your generated number is '+random.integer(number[0],number[1])+'.')
         }else if (message.content.match(/^&bcrng ([0-9]*) ([0-9]*) ([0-9]*)+\b/)){
-            var numbers=[]
+            var numberarray=[]
             var numbertotal=0
             for (var i=1;i<=number[0];i++){
                 rollnumbers.push(random.integer(number[1],number[2]))
-                message.reply('your generated number #'+i+' is '+numbers[i-1]+'.')
-                numbertotal=numbertotal+numbers[i-1]
+                message.reply('your generated number #'+i+' is '+numberarray[i-1]+'.')
+                numbertotal=numbertotal+numberarray[i-1]
             }
             message.reply('the sum of the generated numbers is '+numbertotal+'.')
         }
