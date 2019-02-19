@@ -1,5 +1,4 @@
 const commando = require('discord.js-commando')
-const bot = require('../../index')
 class Fonts extends commando.Command {
 	constructor(client) {
 		super(client, {
@@ -12,7 +11,7 @@ class Fonts extends commando.Command {
     async run(message,args){
         let params
         if (message.guild.commandPrefix==null || message.guild.commandPrefix==undefined){
-            params = message.content.split(/ +/).slice(bot.commandPrefix.length)
+            params = message.content.split(/ +/).slice(this.bot.commandPrefix.length)
         }else{
             params = message.content.split(/ +/).slice(message.guild.commandPrefix.length)
         }

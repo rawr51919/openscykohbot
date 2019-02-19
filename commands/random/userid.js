@@ -1,5 +1,4 @@
 const commando = require('discord.js-commando')
-const bot = require('../../index')
 class UserIDs extends commando.Command {
 	constructor(client) {
 		super(client, {
@@ -12,7 +11,7 @@ class UserIDs extends commando.Command {
     async run(message,args){
         let params
         if (message.guild.commandPrefix==null || message.guild.commandPrefix==undefined){
-            params = message.content.split(/ +/).slice(bot.commandPrefix.length)
+            params = message.content.split(/ +/).slice(this.bot.commandPrefix.length)
         }else{
             params = message.content.split(/ +/).slice(message.guild.commandPrefix.length)
         }
@@ -22,7 +21,7 @@ class UserIDs extends commando.Command {
             return
         }else if (/^#?[\d]{19}$/i.test(params[0])){
             id = /^#?([\d]{19})$/i.exec(params[0])[1].toLowerCase()
-            if (bot.fetchUser(id)){
+            if (this.bot.fetchUser(id)){
                 message.channel.send('Found user: <@'+id+'>.')
                 return
             }else{
@@ -31,7 +30,7 @@ class UserIDs extends commando.Command {
             }
         }else if (/^#?[\d]{18}$/i.test(params[0])){
             id = /^#?([\d]{18})$/i.exec(params[0])[1].toLowerCase()
-            if (bot.fetchUser(id)){
+            if (this.bot.fetchUser(id)){
                 message.channel.send('Found user: <@'+id+'>.')
                 return
             }else{
@@ -40,7 +39,7 @@ class UserIDs extends commando.Command {
             }
         }else if (/^#?[\d]{17}$/i.test(params[0])){
             id = /^#?([\d]{17})$/i.exec(params[0])[1].toLowerCase()
-            if (bot.fetchUser(id)){
+            if (this.bot.fetchUser(id)){
                 message.channel.send('Found user: <@'+id+'>.')
                 return
             }else{
