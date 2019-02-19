@@ -1,4 +1,5 @@
 const commando = require('discord.js-commando')
+const bot = require('../../index')
 class Fonts extends commando.Command {
 	constructor(client) {
 		super(client, {
@@ -9,9 +10,14 @@ class Fonts extends commando.Command {
 		});
     }
     async run(message,args){
-        let params = message.content.split(/ +/).slice(1)
+        let params
+        if (message.guild.commandPrefix==null || message.guild.commandPrefix==undefined){
+            params = message.content.split(/ +/).slice(bot.commandPrefix.length)
+        }else{
+            params = message.content.split(/ +/).slice(message.guild.commandPrefix.length)
+        }
         if(!params[0]){
-            message.channel.send(':capital_abcd: **Help for `&font`**\nUsage: `&font <fullwidth; chinese; script; blocks; mirror> <text>`\nExamples:\n&font by itself shows this help screen.\n&font fullwidth hi will give `ｈｉ`\n&font script hi will give `𝒽𝒾')
+            message.channel.send(':capital_abcd: **Help for `&font`**\nUsage: `&font <fullwidth; chinese; script; blocks; mirror> <text>`\nExamples:\n`&font` by itself shows this help screen.\n`&font fullwidth hi` will give `ｈｉ`\n`&font script hi` will give `𝒽𝒾')
             return
         }
         if(params[0]=='fullwidth'){
@@ -367,11 +373,12 @@ class Fonts extends commando.Command {
                    7: ':seven: ',
                    8: ':eight: ',
                    9: ':nine: ',
+                   up!: ':up:',
                    '*': ':asterisk: ',
                    '#': ':hash: ',
                    '\ ': '　',
                    '!': ':exclamation: ',
-                   '?': ':question: ' 
+                   '?': ':question: ',
               })[i])
               .join('')
             }
