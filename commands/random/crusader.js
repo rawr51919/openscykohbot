@@ -1,0 +1,26 @@
+const commando = require('discord.js-commando')
+var random = require('random-js')()
+class Crusader extends commando.Command {
+	constructor(client) {
+		super(client, {
+			name: 'crusade',
+			group: 'random',
+			memberName: 'crusade',
+			description: 'Start a crusade.',
+		});
+    }
+    async run(message,args){
+		const images = [
+            'No images yet.',
+      ]
+      const quotes = [
+            'DEUS VULT',
+            'WE MUST BRING THE HOLY LAND TO... wherever this is.',
+        ]
+        let crusadeImage=images[random.integer(0,images.length)]
+        let crusadeQuote=quotes[random.integer(0,quotes.length)]
+        message.channel.send(crusadeImage)
+        message.channel.send(crusadeQuote)
+    }
+}
+module.exports=Crusader
