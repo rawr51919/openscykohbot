@@ -1,7 +1,7 @@
 const commando = require('discord.js-commando')
 class Info extends commando.Command {
     constructor(client) {
-        super (client, {
+        super(client, {
             name: 'info',
             group: 'information',
             memberName: 'info',

@@ -11,7 +11,7 @@ class ChangeOnlineStatus extends commando.Command {
     async run(message,args){
         let params
         if (message.guild.commandPrefix==null || message.guild.commandPrefix==undefined){
-            params = message.content.split(/ +/).slice(this.bot.commandPrefix.length)
+            params = message.content.split(/ +/).slice(this.client.commandPrefix.length)
         }else{
             params = message.content.split(/ +/).slice(message.guild.commandPrefix.length)
         }
@@ -20,16 +20,16 @@ class ChangeOnlineStatus extends commando.Command {
             return
         }
         if (params[0].toLowerCase()=='dnd'){
-            this.bot.user.setStatus('dnd')
+            this.client.user.setStatus('dnd')
             message.channel.send("My online status is now: **Do Not Disturb**.")
         }else if (params[0].toLowerCase()=='away' || params[0].toLowerCase()=='idle'){
-            this.bot.user.setStatus('idle')
+            this.client.user.setStatus('idle')
             message.channel.send("My online status is now: **Away/Idle**.")
         }else if (params[0].toLowerCase()=='invisible' || params[0].toLowerCase()=='offline'){
-            this.bot.user.setStatus('invisible')
+            this.client.user.setStatus('invisible')
             message.channel.send("My online status is now: **Invisible/Offline**.")
         }else if (params[0].toLowerCase()=='online'){
-            this.bot.user.setStatus('online')
+            this.client.user.setStatus('online')
             message.channel.send("My online status is now: **Online**.")
         }else{
                 message.channel.send(`You must specify either online, away/idle, invisible, or dnd (do not disturb).`)

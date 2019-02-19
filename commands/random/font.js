@@ -11,7 +11,7 @@ class Fonts extends commando.Command {
     async run(message,args){
         let params
         if (message.guild.commandPrefix==null || message.guild.commandPrefix==undefined){
-            params = message.content.split(/ +/).slice(this.bot.commandPrefix.length)
+            params = message.content.split(/ +/).slice(this.client.commandPrefix.length)
         }else{
             params = message.content.split(/ +/).slice(message.guild.commandPrefix.length)
         }
@@ -373,6 +373,9 @@ class Fonts extends commando.Command {
                    8: ':eight: ',
                    9: ':nine: ',
                    'up!': ':up:',
+                   'UP!': ':up:',
+                   'uP!': ':up:',
+                   'Up!': ':up:',
                    '*': ':asterisk: ',
                    '#': ':hash: ',
                    '\ ': '　',

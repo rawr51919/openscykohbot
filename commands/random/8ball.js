@@ -1,5 +1,5 @@
 const commando = require('discord.js-commando')
-var random = require('random-js') ()
+var random = require('random-js')()
 class EightBall extends commando.Command {
 	constructor(client) {
 		super(client, {

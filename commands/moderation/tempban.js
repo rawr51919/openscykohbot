@@ -14,7 +14,7 @@ class TempBanUsers extends commando.Command {
 		let banmember = message.mentions.members.first()
         let params
         if (message.guild.commandPrefix==null || message.guild.commandPrefix==undefined){
-            params = message.content.split(/ +/).slice(bot.commandPrefix.length)
+            params = message.content.split(/ +/).slice(this.client.commandPrefix.length)
         }else{
             params = message.content.split(/ +/).slice(message.guild.commandPrefix.length)
         }

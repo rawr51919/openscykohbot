@@ -2,7 +2,7 @@ const commando = require('discord.js-commando')
 var random = require('random-js')()
 class DiceRoll extends commando.Command {
     constructor(client) {
-        super (client, {
+        super(client, {
             name: 'roll',
             group: 'random',
             memberName: 'roll',
@@ -23,13 +23,13 @@ class DiceRoll extends commando.Command {
         }else if (roll[0]>9007199254740992 || roll[1]>9007199254740992 || roll[2]>9007199254740992 || (roll[1]>9007199254740992 && roll[2]>9007199254740992) || (roll[0]>9007199254740992 && roll[1]>9007199254740992 && roll[2]>9007199254740992)){
             message.reply('you\'ve reached the maximum limit of this command. Please use a lower number(s).')
         }
-        if (message.content.match(this.bot.commandPrefix+/^roll$/) || message.content.match(message.guild.commandPrefix+/^roll$/)){
+        if (message.content.match(this.client.commandPrefix+/^roll$/) || message.content.match(message.guild.commandPrefix+/^roll$/)){
             message.reply('you rolled a '+random.integer(1,6)+'.')
-        }else if ((message.content.match(this.bot.commandPrefix+/^roll [0-9]+\b/) && !roll[1]) || (message.content.match(message.guild.commandPrefix+/^roll [0-9]+\b/) && !roll[1])){
+        }else if ((message.content.match(this.client.commandPrefix+/^roll [0-9]+\b/) && !roll[1]) || (message.content.match(message.guild.commandPrefix+/^roll [0-9]+\b/) && !roll[1])){
                 message.reply('you rolled a '+random.integer(1,roll[0])+'.')
-        }else if ((message.content.match(this.bot.commandPrefix+/^roll ([0-9]*) ([0-9]*)+\b/) && !roll[2]) || (message.content.match(message.guild.commandPrefix+/^roll ([0-9]*) ([0-9]*)+\b/) && !roll[2])){
+        }else if ((message.content.match(this.client.commandPrefix+/^roll ([0-9]*) ([0-9]*)+\b/) && !roll[2]) || (message.content.match(message.guild.commandPrefix+/^roll ([0-9]*) ([0-9]*)+\b/) && !roll[2])){
                 message.reply('you rolled a '+random.integer(roll[0],roll[1])+'.')
-        }else if ((message.content.match(this.bot.commandPrefix+/^roll ([0-9]*) ([0-9]*) ([0-9]*)+\b/)) || (message.content.match(message.guild.commandPrefix+/^roll ([0-9]*) ([0-9]*) ([0-9]*)+\b/))){
+        }else if ((message.content.match(this.client.commandPrefix+/^roll ([0-9]*) ([0-9]*) ([0-9]*)+\b/)) || (message.content.match(message.guild.commandPrefix+/^roll ([0-9]*) ([0-9]*) ([0-9]*)+\b/))){
                 var rollnumbers=[]
                 var rolltotal=0
                 for (var i=1;i<=roll[0];i++){

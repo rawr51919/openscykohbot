@@ -2,7 +2,7 @@ const commando = require('discord.js-commando')
 var random = require('random-js')()
 class RandomMegaPokémon extends commando.Command {
     constructor(client) {
-        super (client, {
+        super(client, {
             name: 'randmega',
             group: 'random',
             memberName: 'randmega',

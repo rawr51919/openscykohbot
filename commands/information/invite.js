@@ -1,7 +1,7 @@
 const commando = require('discord.js-commando')
 class BotInvite extends commando.Command {
     constructor(client) {
-        super (client, {
+        super(client, {
             name: 'invite',
             group: 'information',
             memberName: 'invite',

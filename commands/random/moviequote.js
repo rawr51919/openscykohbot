@@ -2,11 +2,11 @@ const commando = require('discord.js-commando')
 var random = require('random-js')()
 class MovieQuotes extends commando.Command {
     constructor(client) {
-        super (client, {
+        super(client, {
             name: 'moviequote',
             group: 'random',
             memberName: 'moviequote',
-            description: 'Displays a generated movie quote.',
+            description: 'Displays a random movie quote.',
         });
     }
     async run(message, args) {
