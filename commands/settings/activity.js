@@ -1,5 +1,4 @@
 const commando = require('discord.js-commando')
-const bot = require('../../index')
 class ChangeActivity extends commando.Command {
 	constructor(client) {
 		super(client, {
@@ -12,7 +11,7 @@ class ChangeActivity extends commando.Command {
     async run(message,args){
         let params
         if (message.guild.commandPrefix==null || message.guild.commandPrefix==undefined){
-            params = message.content.split(/ +/).slice(bot.commandPrefix.length)
+            params = message.content.split(/ +/).slice(this.bot.commandPrefix.length)
         }else{
             params = message.content.split(/ +/).slice(message.guild.commandPrefix.length)
         }
@@ -21,13 +20,13 @@ class ChangeActivity extends commando.Command {
             return
         }
         if (params[0].toLowerCase()=='remove'){
-            bot.user.setPresence({
+            this.bot.user.setPresence({
                 game:null
                 })
             message.channel.send("I now have no status.")
             return
         }else if (params[0].toLowerCase()=='playing' && params[1]){
-            bot.user.setPresence({
+            this.bot.user.setPresence({
                 game:
                     {
                         name:message.content.substr(18),
@@ -36,7 +35,7 @@ class ChangeActivity extends commando.Command {
                 })
             message.channel.send("My status is now: \"**Playing** "+message.content.substr(18)+"\".")
         }else if (params[0].toLowerCase()=='streaming' && params[1]){
-            bot.user.setPresence({
+            this.bot.user.setPresence({
                 game:
                     {
                         name:message.content.substr(20),
@@ -45,7 +44,7 @@ class ChangeActivity extends commando.Command {
                 })
             message.channel.send("My status is now: \"**Streaming** "+message.content.substr(20)+"\".")
         }else if (params[0].toLowerCase()=='listening' && params[1]){
-            bot.user.setPresence({
+            this.bot.user.setPresence({
                 game:
                     {
                         name:message.content.substr(20),
@@ -54,7 +53,7 @@ class ChangeActivity extends commando.Command {
                 })
             message.channel.send("My status is now: \"**Listening to** "+message.content.substr(20)+"\".")
         }else if (params[0].toLowerCase()=='watching' && params[1]){
-            bot.user.setPresence({
+            this.bot.user.setPresence({
                 game:
                     {
                         name:message.content.substr(19),

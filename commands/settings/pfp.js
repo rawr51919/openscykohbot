@@ -1,5 +1,4 @@
 const commando = require('discord.js-commando')
-const bot = require('../../index')
 class ChangePFP extends commando.Command {
 	constructor(client) {
 		super(client, {
@@ -12,7 +11,7 @@ class ChangePFP extends commando.Command {
     async run (message,args){
         let params
         if (message.guild.commandPrefix==null || message.guild.commandPrefix==undefined){
-            params = message.content.split(/ +/).slice(bot.commandPrefix.length)
+            params = message.content.split(/ +/).slice(this.bot.commandPrefix.length)
         }else{
             params = message.content.split(/ +/).slice(message.guild.commandPrefix.length)
         }
@@ -20,7 +19,7 @@ class ChangePFP extends commando.Command {
             message.reply(`you don\'t have permission to use this command.`)
         }
         if (params[0]){
-                bot.user.setAvatar(params[0])
+                this.bot.user.setAvatar(params[0])
                 return
         }else{
                 message.channel.send("You need a valid image URL to use as an avatar/profile picture.")
