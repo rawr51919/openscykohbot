@@ -1,5 +1,6 @@
 const commando = require('discord.js-commando')
 const tools = require('discord.js-tools')
+const bot = require('../../index')
 class PurgeMessages extends commando.Command {
 	constructor(client) {
 		super(client, {
@@ -16,7 +17,7 @@ class PurgeMessages extends commando.Command {
             message.channel.send("You need to specify the amount of messages to delete!\nExample: `&purge 10`")
             return
         }else if (params[0]){
-            tools.purge(amount)
+            tools.purge(message, bot, amount)
             message.channel.send('Successfully deleted '+params[0]+' messages.')
             return
         }else{
