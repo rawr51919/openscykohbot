@@ -370,4 +370,4 @@ bot.registry.registerGroup('moderation', 'Moderation')
 bot.registry.registerGroup('information', 'Information')
 bot.registry.registerCommandsIn(__dirname+"/commands")
 // logs into the bot using this bot token
-bot.login('NDY4NjE1NzY0NjQzOTM4MzE0.D0UlsA.4HCeeZgM6LcRzr5CGhtHYgBjeC8')
+bot.login('')
