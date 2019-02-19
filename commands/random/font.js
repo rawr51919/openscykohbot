@@ -373,7 +373,7 @@ class Fonts extends commando.Command {
                    7: ':seven: ',
                    8: ':eight: ',
                    9: ':nine: ',
-                   up!: ':up:',
+                   'up!': ':up:',
                    '*': ':asterisk: ',
                    '#': ':hash: ',
                    '\ ': '　',
