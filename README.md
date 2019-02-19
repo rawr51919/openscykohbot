@@ -2,7 +2,7 @@
 An open-source bot meant for Scykoh's Crudbutt server.
 
 Installation Instructions:
-1. Install libsodium and zlib1g-dev on your platform of choice if you don't already have them.
+1. Install libsodium (via libsodium-wrappers) and zlib1g-dev on your platform of choice if you don't already have them.
 2. `git clone` this bot's source code.
 3. `npm install` inside the bot's directory.
 4. Set up a Discord bot (this is left to the reader)
