@@ -18,7 +18,7 @@ bot.on('ready',()=>{
     })
 });
 bot.on('message',(message)=>{// to be cleaned up and/or added to in a future update (commands will also eventually be removed from here)
-    if (message.content.startsWith(bot.commandPrefix+'activity') || (message.content.startsWith((message.guild.commandPrefix+'activity' && message.channel.type!=='dm')))){
+    if (message.content.startsWith(bot.commandPrefix+'activity') || (message.guild !== null && message.content.startsWith((message.guild.commandPrefix+'activity')))){
         let params
         if (message.guild.commandPrefix==null || message.guild.commandPrefix==undefined){
             params = message.content.split(/ +/).slice(bot.commandPrefix.length)
@@ -88,7 +88,7 @@ bot.on('message',(message)=>{// to be cleaned up and/or added to in a future upd
             return
         }
     }
-    if (message.content.startsWith(bot.commandPrefix+'onlinestatus') || (message.content.startsWith((message.guild.commandPrefix+'onlinestatus' && message.channel.type!=='dm')))){
+    if (message.content.startsWith(bot.commandPrefix+'onlinestatus') || (message.guild !== null && message.content.startsWith((message.guild.commandPrefix+'onlinestatus')))){
         let params
         if (message.guild.commandPrefix==null || message.guild.commandPrefix==undefined){
             params = message.content.split(/ +/).slice(bot.commandPrefix.length)
@@ -116,7 +116,7 @@ bot.on('message',(message)=>{// to be cleaned up and/or added to in a future upd
                 return
         }
     }
-    if (message.content.startsWith(bot.commandPrefix+'status') || (message.content.startsWith((message.guild.commandPrefix+'status' && message.channel.type!=='dm')))){// this command could use some serious cleanup, but it works
+    if (message.content.startsWith(bot.commandPrefix+'status') || (message.guild !== null && message.content.startsWith((message.guild.commandPrefix+'status')))){// this command could use some serious cleanup, but it works
         let params
         if (message.guild.commandPrefix==null || message.guild.commandPrefix==undefined){
             params = message.content.split(/ +/).slice(bot.commandPrefix.length)
@@ -261,7 +261,7 @@ bot.on('message',(message)=>{// to be cleaned up and/or added to in a future upd
             message.channel.send("My status was reset.\nIf my status was like this already when you used this command, it won't change.")
         }
     }
-    if (message.content.startsWith(bot.commandPrefix+'pfp') || (message.content.startsWith((message.guild.commandPrefix+'pfp' && message.channel.type!=='dm')))){
+    if (message.content.startsWith(bot.commandPrefix+'pfp') || (message.guild !== null && message.content.startsWith((message.guild.commandPrefix+'pfp')))){
         let params
         if (message.guild.commandPrefix==null || message.guild.commandPrefix==undefined){
             params = message.content.split(/ +/).slice(bot.commandPrefix.length)
@@ -279,7 +279,7 @@ bot.on('message',(message)=>{// to be cleaned up and/or added to in a future upd
                 return
         }
     }
-    if (message.content.startsWith(bot.commandPrefix+'userid') || (message.content.startsWith((message.guild.commandPrefix+'userid' && message.channel.type!=='dm')))){
+    if (message.content.startsWith(bot.commandPrefix+'userid') || (message.guild !== null && message.content.startsWith((message.guild.commandPrefix+'userid')))){
         let params
         if (message.guild.commandPrefix==null || message.guild.commandPrefix==undefined){
             params = message.content.split(/ +/).slice(bot.commandPrefix.length)
@@ -361,6 +361,9 @@ bot.on('message',(message)=>{// to be cleaned up and/or added to in a future upd
 		message.react("🇳")
 		setTimeout(function(){message.react("🇴")}, 1000)
     }
+    //if (message.content.includes("rip")){
+    //    message.react(":coffin:")
+    //}
     if (message.author=='159985870458322944'){
 		message.react("🇸")
 		setTimeout(function(){message.react("🇭")}, 1000)
