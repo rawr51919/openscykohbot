@@ -18,7 +18,7 @@ bot.on('ready',()=>{
     })
 });
 bot.on('message',(message)=>{// to be cleaned up and/or added to in a future update (commands will also eventually be removed from here)
-    if (message.content.startsWith(bot.commandPrefix+'activity') || message.content.startsWith(message.guild.commandPrefix+'activity')){
+    if (message.content.startsWith(bot.commandPrefix+'activity') || (message.content.startsWith((message.guild.commandPrefix+'activity' && message.channel.type!=='dm')))){
         let params
         if (message.guild.commandPrefix==null || message.guild.commandPrefix==undefined){
             params = message.content.split(/ +/).slice(bot.commandPrefix.length)
@@ -88,7 +88,7 @@ bot.on('message',(message)=>{// to be cleaned up and/or added to in a future upd
             return
         }
     }
-    if (message.content.startsWith(bot.commandPrefix+'onlinestatus') || message.content.startsWith(message.guild.commandPrefix+'onlinestatus')){
+    if (message.content.startsWith(bot.commandPrefix+'onlinestatus') || (message.content.startsWith((message.guild.commandPrefix+'onlinestatus' && message.channel.type!=='dm')))){
         let params
         if (message.guild.commandPrefix==null || message.guild.commandPrefix==undefined){
             params = message.content.split(/ +/).slice(bot.commandPrefix.length)
@@ -116,7 +116,7 @@ bot.on('message',(message)=>{// to be cleaned up and/or added to in a future upd
                 return
         }
     }
-    if (message.content.startsWith(bot.commandPrefix+'status') || message.content.startsWith(message.guild.commandPrefix+'status')){// this command could use some serious cleanup, but it works
+    if (message.content.startsWith(bot.commandPrefix+'status') || (message.content.startsWith((message.guild.commandPrefix+'status' && message.channel.type!=='dm')))){// this command could use some serious cleanup, but it works
         let params
         if (message.guild.commandPrefix==null || message.guild.commandPrefix==undefined){
             params = message.content.split(/ +/).slice(bot.commandPrefix.length)
@@ -261,7 +261,7 @@ bot.on('message',(message)=>{// to be cleaned up and/or added to in a future upd
             message.channel.send("My status was reset.\nIf my status was like this already when you used this command, it won't change.")
         }
     }
-    if (message.content.startsWith(bot.commandPrefix+'pfp') || message.content.startsWith(message.guild.commandPrefix+'pfp')){
+    if (message.content.startsWith(bot.commandPrefix+'pfp') || (message.content.startsWith((message.guild.commandPrefix+'pfp' && message.channel.type!=='dm')))){
         let params
         if (message.guild.commandPrefix==null || message.guild.commandPrefix==undefined){
             params = message.content.split(/ +/).slice(bot.commandPrefix.length)
@@ -279,7 +279,7 @@ bot.on('message',(message)=>{// to be cleaned up and/or added to in a future upd
                 return
         }
     }
-    if (message.content.startsWith(bot.commandPrefix+'userid') || message.content.startsWith(message.guild.commandPrefix+'userid')){
+    if (message.content.startsWith(bot.commandPrefix+'userid') || (message.content.startsWith((message.guild.commandPrefix+'userid' && message.channel.type!=='dm')))){
         let params
         if (message.guild.commandPrefix==null || message.guild.commandPrefix==undefined){
             params = message.content.split(/ +/).slice(bot.commandPrefix.length)
@@ -360,7 +360,14 @@ bot.on('message',(message)=>{// to be cleaned up and/or added to in a future upd
 	if (message.content.includes("amirite")){
 		message.react("🇳")
 		setTimeout(function(){message.react("🇴")}, 1000)
-	}
+    }
+    if (message.author=='159985870458322944'){
+		message.react("🇸")
+		setTimeout(function(){message.react("🇭")}, 1000)
+		setTimeout(function(){message.react("🇺")}, 1000)
+		setTimeout(function(){message.react("🇹")}, 1000)
+		setTimeout(function(){message.react(":up:")}, 1000)
+    }
 });
 // loads all the commands
 bot.registry.registerDefaults()
@@ -370,4 +377,4 @@ bot.registry.registerGroup('moderation', 'Moderation')
 bot.registry.registerGroup('information', 'Information')
 bot.registry.registerCommandsIn(__dirname+"/commands")
 // logs into the bot using this bot token
-bot.login('')
+bot.login('NDY4NjE1NzY0NjQzOTM4MzE0.D0zbkw.gxcWopXDgcNXai0Amlio-J7woXM')
