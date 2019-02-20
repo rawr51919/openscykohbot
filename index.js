@@ -7,7 +7,7 @@ const bot = new commando.Client({
 });
 //Change our bot's status and write to the console to show that OpenScykohBot's working
 bot.on('ready',()=>{
-    console.log('OpenScykohBot is ready to crud.')
+	console.log('OpenScykohBot is ready to crud.')
     bot.user.setStatus('online')
 	bot.user.setPresence({
 		game:
@@ -17,7 +17,7 @@ bot.on('ready',()=>{
   			}
     })
 });
-bot.on('message',(message)=>{// to be cleaned up and/or added to in a future update (commands will also eventually be removed from here)
+bot.on('message',(message)=>{// to be cleaned up and/or added to in a future update
 	if (message.content.toLowerCase() == "bad openscykohbot" || message.content.toLowerCase()=="bad <@468615764643938314>") {
 	    const sadtalk = [
 	        'It\'s all my fault.',
@@ -27,7 +27,7 @@ bot.on('message',(message)=>{// to be cleaned up and/or added to in a future upd
 	        'That kinda hurt my feelings...',
 	        'no u'
 	    ]
-	    let chosenSadTalk = sadtalk[random.integer(0,sadtalk.length)]
+	    let chosenSadTalk = sadtalk[random.integer(0,sadtalk.length-1)]
 	    message.channel.send(chosenSadTalk)
 	}
 	if (message.content.toLowerCase() == "good openscykohbot" || message.content.toLowerCase()=="good <@468615764643938314>") {
@@ -38,7 +38,7 @@ bot.on('message',(message)=>{// to be cleaned up and/or added to in a future upd
 	        'Okay, never heard that one before. People are usually spamming "bad openscykohbot"...',
 	        'Uhh... okay?'
 	    ]
-	    let chosenHappyTalk = happytalk[random.integer(0,happytalk.length)]
+	    let chosenHappyTalk = happytalk[random.integer(0,happytalk.length-1)]
 	    message.channel.send(chosenHappyTalk)
     }
     const responses = {
@@ -63,7 +63,7 @@ bot.on('message',(message)=>{// to be cleaned up and/or added to in a future upd
             'Hast thou found me irritating?',
             'Dost thou want to fight?'
         ]
-	    let chosenCrusaderMsg = crusadermsgs[random.integer(0,crusadermsgs.length)]
+	    let chosenCrusaderMsg = crusadermsgs[random.integer(0,crusadermsgs.length-1)]
 	    message.channel.send(chosenCrusaderMsg)
     }
 	if (message.content.includes("amirite")){
