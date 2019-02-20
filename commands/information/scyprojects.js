@@ -8,7 +8,7 @@ class ScyProjects extends commando.Command {
             description: 'The official ScyProjects server.',
         });
     }
-    async run(message, args) {
+    async run(message,args) {
         message.channel.send("https://discord.gg/5uh8aS7")
     }
 }

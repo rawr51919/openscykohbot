@@ -9,26 +9,26 @@ class ChangeOnlineStatus extends commando.Command {
 		});
     }
     async run(message,args){
-        let params
+        
         if (message.guild.commandPrefix==null || message.guild.commandPrefix==undefined){
-            params = message.content.split(/ +/).slice(this.client.commandPrefix.length)
+            args = message.content.split(/ +/).slice(this.client.commandPrefix.length)
         }else{
-            params = message.content.split(/ +/).slice(message.guild.commandPrefix.length)
+            args = message.content.split(/ +/).slice(message.guild.commandPrefix.length)
         }
         if (message.author.id !== '324661689972686849'){
             message.reply(`you don\'t have permission to use this command.`)
             return
         }
-        if (params[0].toLowerCase()=='dnd'){
+        if (args[0].toLowerCase()=='dnd'){
             this.client.user.setStatus('dnd')
             message.channel.send("My online status is now: **Do Not Disturb**.")
-        }else if (params[0].toLowerCase()=='away' || params[0].toLowerCase()=='idle'){
+        }else if (args[0].toLowerCase()=='away' || args[0].toLowerCase()=='idle'){
             this.client.user.setStatus('idle')
             message.channel.send("My online status is now: **Away/Idle**.")
-        }else if (params[0].toLowerCase()=='invisible' || params[0].toLowerCase()=='offline'){
+        }else if (args[0].toLowerCase()=='invisible' || args[0].toLowerCase()=='offline'){
             this.client.user.setStatus('invisible')
             message.channel.send("My online status is now: **Invisible/Offline**.")
-        }else if (params[0].toLowerCase()=='online'){
+        }else if (args[0].toLowerCase()=='online'){
             this.client.user.setStatus('online')
             message.channel.send("My online status is now: **Online**.")
         }else{

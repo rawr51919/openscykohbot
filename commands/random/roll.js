@@ -9,7 +9,7 @@ class DiceRoll extends commando.Command {
             description: 'Roll up to 9007199254740992 dice with up to 9007199254740992 sides to get numbers for whatever you need.',
         });
     }
-    async run(message, args){
+    async run(message,args){
         let roll=args.split(/ +/)
         let numbers=/^[0-9]+$/
         if (!numbers.test(roll[0]) || !numbers.test(roll[1]) || !numbers.test(roll[2])){

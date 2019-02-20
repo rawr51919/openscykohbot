@@ -9,18 +9,17 @@ class Fonts extends commando.Command {
 		});
     }
     async run(message,args){
-        let params
         if (message.guild.commandPrefix==null || message.guild.commandPrefix==undefined){
-            params = message.content.split(/ +/).slice(this.client.commandPrefix.length)
+            args = message.content.split(/ +/).slice(this.client.commandPrefix.length)
         }else{
-            params = message.content.split(/ +/).slice(message.guild.commandPrefix.length)
+            args = message.content.split(/ +/).slice(message.guild.commandPrefix.length)
         }
-        if(!params[0]){
+        if(!args[0]){
             message.channel.send(':capital_abcd: **Help for `&font`**\nUsage: `&font <fullwidth; chinese; script; blocks; mirror> <text>`\nExamples:\n`&font` by itself shows this help screen.\n`&font fullwidth hi` will give `ｈｉ`\n`&font script hi` will give `𝒽𝒾')
             return
         }
-        if(params[0]=='fullwidth'){
-            if (!params[1]){
+        if(args[0]=='fullwidth'){
+            if (!args[1]){
                 message.channel.send('You need to specify text to convert.')
                 return
             }
@@ -128,8 +127,8 @@ class Fonts extends commando.Command {
             }
             message.channel.send(textlooks1(message.content.substr(16)))
         }
-        else if(params[0]=='chinese'){
-            if (!params[1]){
+        else if(args[0]=='chinese'){
+            if (!args[1]){
                 message.channel.send('You need to specify text to convert.')
                 return
             }
@@ -219,8 +218,8 @@ class Fonts extends commando.Command {
             }
             message.channel.send(textlooks2(message.content.substr(14)))
         }
-        else if(params[0]=='script'){
-            if (!params[1]){
+        else if(args[0]=='script'){
+            if (!args[1]){
                 message.channel.send('You need to specify text to convert.')
                 return
             }
@@ -301,8 +300,8 @@ class Fonts extends commando.Command {
             }
             message.channel.send(textlooks3(message.content.substr(13)))
         }
-        else if(params[0]=='blocks'){
-            if (!params[1]){
+        else if(args[0]=='blocks'){
+            if (!args[1]){
                 message.channel.send('You need to specify text to convert.')
                 return
             }
@@ -386,8 +385,8 @@ class Fonts extends commando.Command {
             }
             message.channel.send(textlooks4(message.content.substr(12)))
         }
-        else if(params[0]=='mirror'){
-            if (!params[1]){
+        else if(args[0]=='mirror'){
+            if (!args[1]){
                 message.channel.send('You need to specify text to convert.')
                 return
             }

@@ -9,17 +9,17 @@ class ChangePFP extends commando.Command {
 		});
     }
     async run (message,args){
-        let params
+        
         if (message.guild.commandPrefix==null || message.guild.commandPrefix==undefined){
-            params = message.content.split(/ +/).slice(this.client.commandPrefix.length)
+            args = message.content.split(/ +/).slice(this.client.commandPrefix.length)
         }else{
-            params = message.content.split(/ +/).slice(message.guild.commandPrefix.length)
+            args = message.content.split(/ +/).slice(message.guild.commandPrefix.length)
         }
         if (message.author.id !== '324661689972686849'){
             message.reply(`you don\'t have permission to use this command.`)
         }
-        if (params[0]){
-                this.client.user.setAvatar(params[0])
+        if (args[0]){
+                this.client.setAvatar(args[0])
                 return
         }else{
                 message.channel.send("You need a valid image URL to use as an avatar/profile picture.")

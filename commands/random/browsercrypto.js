@@ -10,7 +10,7 @@ class BCRNG extends commando.Command {
             description: 'Allows for the crypto.generateRandomValues() RNG library to generate a random number or up to 9007199254740992 numbers between 0 and 9007199254740992.',
         });
     }
-    async run(message, args) {
+    async run(message,args) {
         let number=args.split(/ +/)
         let numbers=/^[0-9]+$/
         if (!numbers.test(number[0]) || !numbers.test(number[1]) || (!numbers.test(number[2]) && number[2])){

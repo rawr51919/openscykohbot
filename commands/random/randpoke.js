@@ -9,7 +9,7 @@ class RandomPokémon extends commando.Command {
             description: 'Displays a random Pokémon.',
         });
     }
-    async run(message, args) {
+    async run(message,args) {
         const pokes = [
 			'Bulbasaur',
 			'Ivysaur',

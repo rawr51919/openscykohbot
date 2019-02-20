@@ -9,7 +9,7 @@ class MovieQuotes extends commando.Command {
             description: 'Displays a random movie quote.',
         });
     }
-    async run(message, args) {
+    async run(message,args) {
         const quotes = [
             'No, Luke... I am your father.',
             'Reach for the sky!',

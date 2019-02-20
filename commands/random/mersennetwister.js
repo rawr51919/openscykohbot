@@ -10,7 +10,7 @@ class MTRNG extends commando.Command {
             description: 'Allows for the Mersenne Twister RNG algorithm to generate a random number or up to 9007199254740992 random numbers between 0 and 4294967295.',
         });
     }
-    async run(message, args) {
+    async run(message,args) {
         let number=args.split(/ +/)
         let numbers=/^[0-9]+$/
         if (!numbers.test(number[0]) || !numbers.test(number[1]) || (!numbers.test(number[2]) && number[2])){
