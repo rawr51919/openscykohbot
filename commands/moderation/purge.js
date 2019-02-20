@@ -11,11 +11,7 @@ class PurgeMessages extends commando.Command {
 		});
     }
     async run(message,args){
-        if (message.guild.commandPrefix==null || message.guild.commandPrefix==undefined){
-            args = message.content.split(/ +/).slice(this.client.commandPrefix.length)
-        }else{
-            args = message.content.split(/ +/).slice(message.guild.commandPrefix.length)
-        }
+        args = message.content.split(/ +/).slice(message.guild.commandPrefix.length)
         var amount=parseInt(args[0])
         if(!args[0]){
             message.channel.send("You need to specify the amount of messages to delete!\nExample: `&purge 10`")

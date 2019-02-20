@@ -10,11 +10,7 @@ class ChangePFP extends commando.Command {
     }
     async run (message,args){
         
-        if (message.guild.commandPrefix==null || message.guild.commandPrefix==undefined){
-            args = message.content.split(/ +/).slice(this.client.commandPrefix.length)
-        }else{
-            args = message.content.split(/ +/).slice(message.guild.commandPrefix.length)
-        }
+        args = message.content.split(/ +/).slice(message.guild.commandPrefix.length)
         if (message.author.id !== '324661689972686849'){
             message.reply(`you don\'t have permission to use this command.`)
         }

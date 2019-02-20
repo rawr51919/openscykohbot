@@ -9,11 +9,7 @@ class Fonts extends commando.Command {
 		});
     }
     async run(message,args){
-        if (message.guild.commandPrefix==null || message.guild.commandPrefix==undefined){
-            args = message.content.split(/ +/).slice(this.client.commandPrefix.length)
-        }else{
-            args = message.content.split(/ +/).slice(message.guild.commandPrefix.length)
-        }
+        args = message.content.split(/ +/).slice(message.guild.commandPrefix.length)
         if(!args[0]){
             message.channel.send(':capital_abcd: **Help for `&font`**\nUsage: `&font <fullwidth; chinese; script; blocks; mirror> <text>`\nExamples:\n`&font` by itself shows this help screen.\n`&font fullwidth hi` will give `ｈｉ`\n`&font script hi` will give `𝒽𝒾')
             return
