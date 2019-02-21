@@ -1,4 +1,5 @@
 const commando = require('discord.js-commando')
+const fetch = require('node-fetch')
 class ChangePFP extends commando.Command {
 	constructor(client) {
 		super(client, {
@@ -9,18 +10,22 @@ class ChangePFP extends commando.Command {
 		});
     }
     async run (message,args){
+        const options = {
+            headers: {'content-type': 'image'}
+        }
+        const headers = new Headers({'Content-Type': 'image'})
         if (message.channel.type!=='dm'){
             args = message.content.split(/ +/).slice(message.guild.commandPrefix.length)
         }
         if (message.author.id !== '324661689972686849'){
             message.reply(`you don\'t have permission to use this command.`)
         }
-        if (args[0]){
+        if (fetch(args[0], options)){
                 this.client.user.setAvatar(args[0])
-                message.reply('The bot\'s avatar/profile picture has been successfully changed.')
+                message.channel.send('The bot\'s avatar/profile picture has been successfully changed.')
                 return
         }else{
-                message.reply("you need a valid image URL to use as an avatar/profile picture.")
+                message.channel.send("You need a valid image URL to use as an avatar/profile picture.")
                 return
         }
     }

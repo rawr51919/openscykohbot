@@ -1,5 +1,5 @@
 const commando = require('discord.js-commando')
-var random = require('random-js')()
+const random = new Random()
 class DiceRoll extends commando.Command {
     constructor(client) {
         super(client, {
@@ -20,16 +20,25 @@ class DiceRoll extends commando.Command {
         }
         if (roll[0]>=1000000 || roll[1]>=1000000 || roll[2]>=1000000 || (roll[0]>=1000000 && roll[1]>=1000000) || (roll[0]>=1000000 && roll[1]>=1000000 && roll[2]>=1000000)){
             message.reply('unfortunately for you, computers have a limited amount of memory, so unless you want me to run out, stop sending ludicrous numbers. Thanks.')
-        }else if (roll[0]>9007199254740992 || roll[1]>9007199254740992 || roll[2]>9007199254740992 || (roll[1]>9007199254740992 && roll[2]>9007199254740992) || (roll[0]>9007199254740992 && roll[1]>9007199254740992 && roll[2]>9007199254740992)){
-            message.reply('you\'ve reached the maximum limit of this command. Please use a lower number(s).')
         }
         if (message.content.match(message.guild.commandPrefix+/^roll$/)){
             message.reply('you rolled a '+random.integer(1,6)+'.')
         }else if (message.content.match(message.guild.commandPrefix+/^roll [0-9]+\b/) && !roll[1]){
+            if (roll[0]>9007199254740992){
+                message.reply('you\'ve reached the maximum limit of this command. Please use a lower number(s).')
+            }else{
                 message.reply('you rolled a '+random.integer(1,roll[0])+'.')
+            }
         }else if (message.content.match(message.guild.commandPrefix+/^roll ([0-9]*) ([0-9]*)+\b/) && !roll[2]){
+            if (roll[0]>9007199254740992 || roll[1]>9007199254740992 || (roll[0]>9007199254740992 && roll[1]>9007199254740992)){
+                message.reply('you\'ve reached the maximum limit of this command. Please use a lower number(s).')
+            }else{
                 message.reply('you rolled a '+random.integer(roll[0],roll[1])+'.')
+            }
         }else if (message.content.match(message.guild.commandPrefix+/^roll ([0-9]*) ([0-9]*) ([0-9]*)+\b/)){
+            if (roll[0]>9007199254740992 || roll[1]>9007199254740992 || roll[2]>9007199254740992 || (roll[1]>9007199254740992 && roll[2]>9007199254740992) || (roll[0]>9007199254740992 && roll[1]>9007199254740992 && roll[2]>9007199254740992)){
+                message.reply('you\'ve reached the maximum limit of this command. Please use a lower number(s).')
+            }else{
                 var rollnumbers=[]
                 var rolltotal=0
                 for (var i=1;i<=roll[0];i++){
@@ -38,6 +47,7 @@ class DiceRoll extends commando.Command {
                     rolltotal=rolltotal+rollnumbers[i-1]
                 }
                 message.reply('the sum of the dice rolls is '+rolltotal+'.')
+            }
         }
     }
 }

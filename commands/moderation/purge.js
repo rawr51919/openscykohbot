@@ -16,13 +16,24 @@ class PurgeMessages extends commando.Command {
         if(!args[0]){
             message.channel.send("You need to specify the amount of messages to delete!\nExample: `&purge 10`")
             return
-        }else if (args[0]){
+        }else if (args[0] && message.channel.type!=='dm'){
             tools.purge(message, this.client, parseInt(args[0]))
             if (parseInt(args[0])=="1"){
-                message.channel.send('Successfully deleted '+args[0]+' message.').then(message => message.delete(5000))
+                message.channel.send('Successfully deleted '+args[0]+' message.').then(message => message.delete(3000))
                 return
             }else{
-                message.channel.send('Successfully deleted '+args[0]+' messages.').then(message => message.delete(5000))
+                message.channel.send('Successfully deleted '+args[0]+' messages.').then(message => message.delete(3000))
+                return
+            }
+        }else if (args[0] && message.channel.type==='dm'){
+            await message.channel.fetchMessages({limit: 100}).then(messages => {
+                messages.filter(message => message.author.id === this.client.user.id).last(parseInt(args[0])).map(message => message.delete())
+            })
+            if (parseInt(args[0])==1){
+                message.channel.send('Successfully deleted '+args[0]+' message of mine.').then(message => message.delete(3000))
+                return
+            }else{
+                message.channel.send('Successfully deleted '+args[0]+' messages of mine.').then(message => message.delete(3000))
                 return
             }
         }else{

@@ -19,8 +19,10 @@ class UserPFP extends commando.Command {
     async run(message,args) {
         if(!args.member || args.member.user==message.author){
             return message.reply('your avatar is: '+message.author.displayAvatarURL.replace('?size=2048', ''))
-        }else{
+        }else if (args.member.user==args.member.user.username || args.member.user==args.member.user.id){
             return message.reply(args.member.user.username+'\'s avatar is: '+args.member.user.displayAvatarURL.replace('?size=2048', ''))
+        }else if (args.member.user==args.member.user.mentions.first() || args.member.user=='<@'+args.member.user.id+'>'){
+            return message.reply(args.member.user.mentions.first()+'\'s avatar is: '+args.member.user.displayAvatarURL.replace('?size=2048', ''))
         }
     }
 }

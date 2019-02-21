@@ -1,5 +1,5 @@
 const commando = require('discord.js-commando')
-var random = require('random-js')()
+const random = new Random()
 class Knuccles extends commando.Command {
 	constructor(client) {
 		super(client, {

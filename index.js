@@ -1,5 +1,5 @@
 const commando = require('discord.js-commando')
-var random = require('random-js')()
+const random = new Random()
 const bot = new commando.Client({
     commandPrefix: '&',
     unknownCommandResponse: false,

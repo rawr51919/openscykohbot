@@ -5,7 +5,8 @@ class TempBanUsers extends commando.Command {
 			name: 'tempban',
 			group: 'moderation',
 			memberName: 'tempban',
-			description: 'Allows OpenScykohBot to ban users for a specific time period. That is, if both you and the bot have mod permissions.',
+            description: 'Allows OpenScykohBot to ban users for a specific time period. That is, if both you and the bot have mod permissions.',
+            guildOnly: true
 		});
     }
     async run(message,args){

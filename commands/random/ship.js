@@ -1,5 +1,5 @@
 const commando = require('discord.js-commando')
-var random = require('random-js')()
+const random = new Random()
 class Ships extends commando.Command {
 	constructor(client) {
 		super(client, {
