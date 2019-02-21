@@ -25,9 +25,9 @@ class NMRNG extends commando.Command {
         }
         if (message.content.match(message.guild.commandPrefix+/^nmrng$/)){
             message.reply('please specify numbers to generate between.\nUsage: `&nmrng number1 number2` for one number and `&nmrng number1 number2 number3` for up to 9007199254740992 numbers up to 9007199254740992.')
-        }else if ((message.content.match(message.guild.commandPrefix+/^nmrng ([0-9]*) ([0-9]*)+\b/) && !number[2])){
+        }else if (message.content.match(message.guild.commandPrefix+/^nmrng ([0-9]*) ([0-9]*)+\b/) && !number[2]){
             message.reply('your generated number is '+random.integer(number[0],number[1])+'.')
-        }else if ((message.content.match(message.guild.commandPrefix+/^nmrng ([0-9]*) ([0-9]*) ([0-9]*)+\b/))){
+        }else if (message.content.match(message.guild.commandPrefix+/^nmrng ([0-9]*) ([0-9]*) ([0-9]*)+\b/)){
             var numberarray=[]
             var numbertotal=0
             for (var i=1;i<=number[0];i++){
