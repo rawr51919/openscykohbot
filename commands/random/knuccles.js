@@ -65,8 +65,8 @@ class Knuccles extends commando.Command {
         'KNUCKLES AND KNUCKLES AND KNUCKLES: THE MOVIE: STARRING KNUCKLES EDITED BY: KNUCKLES DIRECTED BY: KNUCKLES',
         'KNUCKLES AND KNUCCLES AND DUCKLES AND BUCKLES AND PUCCLES AND TUCCLES AND FUCKLES'
         ]
-        let knuxImage=images[random.integer(0,images.length)]
-        let knuxQuote=quotes[random.integer(0,quotes.length)]
+        let knuxImage=images[random.integer(0,images.length-1)]
+        let knuxQuote=quotes[random.integer(0,quotes.length-1)]
         message.channel.send(knuxImage)
         message.channel.send(knuxQuote)
   }

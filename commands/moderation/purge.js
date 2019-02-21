@@ -1,6 +1,5 @@
 const commando = require('discord.js-commando')
 const tools = require('discord.js-tools')
-const bot = require('../../index')
 class PurgeMessages extends commando.Command {
 	constructor(client) {
 		super(client, {
@@ -11,20 +10,19 @@ class PurgeMessages extends commando.Command {
 		});
     }
     async run(message,args){
-        args = message.content.split(/ +/).slice(message.guild.commandPrefix.length)
-        var amount=parseInt(args[0])
+        if (message.channel.type!=='dm'){
+            args = message.content.split(/ +/).slice(message.guild.commandPrefix.length)
+        }
         if(!args[0]){
             message.channel.send("You need to specify the amount of messages to delete!\nExample: `&purge 10`")
             return
         }else if (args[0]){
-            tools.purge(message, this.client, amount)
-            if (amount=="1"){
-                message.channel.send('Successfully deleted '+args[0]+' message.')
-                setTimeout(function(){tools.purge(message, bot, 1)}, 5000)
+            tools.purge(message, this.client, parseInt(args[0]))
+            if (parseInt(args[0])=="1"){
+                message.channel.send('Successfully deleted '+args[0]+' message.').then(message => message.delete(5000))
                 return
             }else{
-                message.channel.send('Successfully deleted '+args[0]+' messages.')
-                setTimeout(function(){tools.purge(message, bot, 1)}, 5000)
+                message.channel.send('Successfully deleted '+args[0]+' messages.').then(message => message.delete(5000))
                 return
             }
         }else{

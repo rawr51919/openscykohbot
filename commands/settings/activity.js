@@ -9,8 +9,9 @@ class ChangeActivity extends commando.Command {
 		});
     }
     async run(message,args){
-        
-        args = message.content.split(/ +/).slice(message.guild.commandPrefix.length)
+        if (message.channel.type!=='dm'){
+            args = message.content.split(/ +/).slice(message.guild.commandPrefix.length)
+        }
         if (message.author.id !== '324661689972686849'){
             message.reply(`you don\'t have permission to use this command.`)
             return

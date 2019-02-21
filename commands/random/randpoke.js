@@ -819,7 +819,7 @@ class RandomPokémon extends commando.Command {
 			'Blacephalon',
 			'Zeraora'
         ]
-        let chosenPoke=pokes[random.integer(0,pokes.length)]
+        let chosenPoke=pokes[random.integer(0,pokes.length-1)]
         message.channel.send('You got '+chosenPoke+'!')
     }
 }

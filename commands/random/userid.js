@@ -9,8 +9,9 @@ class UserIDs extends commando.Command {
 		});
     }
     async run(message,args){
-        
-        args = message.content.split(/ +/).slice(message.guild.commandPrefix.length)
+        if (message.channel.type!=='dm'){
+            args = message.content.split(/ +/).slice(message.guild.commandPrefix.length)
+        }
         let id
         if (/^$/.test(args[0])){
             message.channel.send('This command will allow you to see who has what user ID.\nExample: `&userid 324661689972686849`\nTo find User IDs, you must enable Developer Mode in Discord\'s user settings, then right click any user and click `Copy ID`.')

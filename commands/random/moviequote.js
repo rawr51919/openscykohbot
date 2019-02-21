@@ -16,7 +16,7 @@ class MovieQuotes extends commando.Command {
             'The Force is strong with this one.',
             'I\'ll be back!',
         ]
-        let chosenQuote=quotes[random.integer(0,quotes.length)]
+        let chosenQuote=quotes[random.integer(0,quotes.length-1)]
         message.channel.send(chosenQuote)
     }
 }

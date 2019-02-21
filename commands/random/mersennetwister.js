@@ -22,15 +22,15 @@ class MTRNG extends commando.Command {
         if (number[0]>=1000000 || number[1]>=1000000 || number[2]>=1000000 || (number[0]>=1000000 && number[1]>=1000000) || (number[0]>=1000000 && number[1]>=1000000 && number[2]>=1000000)){
             message.reply('unfortunately for you, computers have a limited amount of memory, so unless you want me to run out, stop sending ludicrous numbers. Thanks.')
         }
-        if ((message.content.match(this.client.commandPrefix+/^mtrng$/)) || (message.content.match(message.guild.commandPrefix+/^mtrng$/))){
+        if ((message.content.match(message.guild.commandPrefix+/^mtrng$/)) || (message.content.match(message.guild.commandPrefix+/^mtrng$/))){
             message.reply('please specify numbers to generate between.\nUsage: `&mtrng number1 number2` for one number and `&mtrng number1 number2 number3` for up to 9007199254740992 numbers up to 4294967295.')
-        }else if ((message.content.match(this.client.commandPrefix+/^mtrng ([0-9]*) ([0-9]*)+\b/) && !number[2]) || (message.content.match(message.guild.commandPrefix+/^mtrng ([0-9]*) ([0-9]*)+\b/) && !number[2])){
+        }else if ((message.content.match(message.guild.commandPrefix+/^mtrng ([0-9]*) ([0-9]*)+\b/) && !number[2]) || (message.content.match(message.guild.commandPrefix+/^mtrng ([0-9]*) ([0-9]*)+\b/) && !number[2])){
             if (number[0]>9007199254740992 || number[1]>4294967295 || number[2]>4294967295 || (number[1]>4294967295 && number[2]>4294967295) || (number[0]>9007199254740992 && number[1]>4294967295 && number[2]>4294967295)){
                 message.reply('you\'ve reached the maximum limit of this RNG engine. Please use a lower number(s).')
             }else{
                 message.reply('your generated number is '+random.integer(number[0],number[1])+'.')
             }
-        }else if ((message.content.match(this.client.commandPrefix+/^mtrng ([0-9]*) ([0-9]*) ([0-9]*)+\b/)) || (message.content.match(message.guild.commandPrefix+/^mtrng ([0-9]*) ([0-9]*) ([0-9]*)+\b/))){
+        }else if ((message.content.match(message.guild.commandPrefix+/^mtrng ([0-9]*) ([0-9]*) ([0-9]*)+\b/)) || (message.content.match(message.guild.commandPrefix+/^mtrng ([0-9]*) ([0-9]*) ([0-9]*)+\b/))){
             var numberarray=[]
             var numbertotal=0
             if (number[0]>9007199254740992 || number[1]>9007199254740992 || number[2]>9007199254740992 || (number[1]>9007199254740992 && number[2]>9007199254740992) || (number[0]>9007199254740992 && number[1]>9007199254740992 && number[2]>9007199254740992)){
