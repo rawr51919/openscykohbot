@@ -23,7 +23,7 @@ class DiceRoll extends commando.Command {
         }else if (roll[0]>9007199254740992 || roll[1]>9007199254740992 || roll[2]>9007199254740992 || (roll[1]>9007199254740992 && roll[2]>9007199254740992) || (roll[0]>9007199254740992 && roll[1]>9007199254740992 && roll[2]>9007199254740992)){
             message.reply('you\'ve reached the maximum limit of this command. Please use a lower number(s).')
         }
-        if (message.content.match(message.guild.commandPrefix+/^roll$/) || message.content.match(message.guild.commandPrefix+/^roll$/)){
+        if (message.content.match(message.guild.commandPrefix+/^roll$/)){
             message.reply('you rolled a '+random.integer(1,6)+'.')
         }else if (message.content.match(message.guild.commandPrefix+/^roll [0-9]+\b/) && !roll[1]){
                 message.reply('you rolled a '+random.integer(1,roll[0])+'.')

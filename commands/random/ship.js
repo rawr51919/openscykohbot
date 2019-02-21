@@ -11,7 +11,7 @@ class Ships extends commando.Command {
     }
     async run(message,args){
 		 args = message.content.split(",")
-            if (args[0]==message.guild.commandPrefix+'ship' || args[0]==message.guild.commandPrefix+'ship'){
+            if (args[0]==message.guild.commandPrefix+'ship'){
                 message.channel.send('I can\'t ship literally nothing with literally nothing!\nUsage: `&ship person1, person2`')
                 return
             }
