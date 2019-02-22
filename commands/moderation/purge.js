@@ -37,10 +37,10 @@ class PurgeMessages extends commando.Command {
                     messages.filter(message => message.author.id === this.client.user.id).first(parseInt(args)).map(message => message.delete())
                 })
             }
-            if (args==1 && intRegex.test(args)){
+            if (args==1){
                 message.channel.send('Successfully deleted '+args+' message of mine.').then(message => message.delete(3000))
                 return
-            }else if (args!=1 && intRegex.test(args)){
+            }else{
                 message.channel.send('Successfully deleted '+args+' messages of mine.').then(message => message.delete(3000))
                 return
             }
