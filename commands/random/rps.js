@@ -56,10 +56,10 @@ class RockPaperScissors extends commando.Command {
 				message.channel.send(":fist::skin-tone-1: I choose rock. I win!")
 			}
 		} else if(args[0].toLowerCase() == 'tornado') {
-			message.channel.send("I choose hurricane! :dash:")
+			message.channel.send(":dash: I choose hurricane!")
 			return
 		} else if(args[0].toLowerCase() == 'hurricane') {
-			message.channel.send("I choose tornado! :cloud_tornado:")
+			message.channel.send(":cloud_tornado: I choose tornado!")
 			return
 		} else {
 			message.channel.send("You need to specify if you're playing Rock, Paper, Scissors, Tornado, or Hurricane.\nExample: `&rps rock`")
