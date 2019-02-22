@@ -6,7 +6,7 @@ class UserIDs extends commando.Command {
 			group: 'random',
 			memberName: 'userid',
 			description: 'Make the bot find the user ID you specify in this command.',
-		});
+		})
     }
     async run(message,args){
         if (message.channel.type!=='dm'){

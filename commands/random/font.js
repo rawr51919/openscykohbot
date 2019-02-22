@@ -6,14 +6,14 @@ class Fonts extends commando.Command {
 			group: 'random',
 			memberName: 'font',
 			description: 'Make OpenScykohBot output what you say in any font you specify.',
-		});
+		})
     }
     async run(message,args){
         if (message.channel.type!=='dm'){
             args = message.content.split(/ +/).slice(message.guild.commandPrefix.length)
         }
         if(!args[0]){
-            message.channel.send(':capital_abcd: **Help for `&font`**\nUsage: `&font <fullwidth; chinese; script; blocks; mirror> <text>`\nExamples:\n`&font` by itself shows this help screen.\n`&font fullwidth hi` will give `ｈｉ`\n`&font script hi` will give `𝒽𝒾')
+            message.channel.send(':capital_abcd: **Help for `&font`**\nUsage: `&font <fullwidth; chinese; script; blocks; mirror> <text>`\nExamples:\n`&font` by itself shows this help screen.\n`&font fullwidth hi` will give `ｈｉ`\n`&font script hi` will give `𝒽𝒾`')
             return
         }
         if(args[0]=='fullwidth'){

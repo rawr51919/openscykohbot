@@ -1,5 +1,6 @@
 const commando = require('discord.js-commando')
-const random = new Random()
+const Random = require('random-js')
+const random = new Random.Random()
 class DiceRoll extends commando.Command {
     constructor(client) {
         super(client, {
@@ -7,7 +8,7 @@ class DiceRoll extends commando.Command {
             group: 'random',
             memberName: 'roll',
             description: 'Roll up to 9007199254740992 dice with up to 9007199254740992 sides to get numbers for whatever you need.',
-        });
+        })
     }
     async run(message,args){
         let roll=args.split(/ +/)
@@ -22,12 +23,12 @@ class DiceRoll extends commando.Command {
             message.reply('unfortunately for you, computers have a limited amount of memory, so unless you want me to run out, stop sending ludicrous numbers. Thanks.')
         }
         if (message.content.match(message.guild.commandPrefix+/^roll$/)){
-            message.reply('you rolled a '+random.integer(1,6)+'.')
+            message.reply('you rolled a '+random.die(6)+'.')
         }else if (message.content.match(message.guild.commandPrefix+/^roll [0-9]+\b/) && !roll[1]){
             if (roll[0]>9007199254740992){
                 message.reply('you\'ve reached the maximum limit of this command. Please use a lower number(s).')
             }else{
-                message.reply('you rolled a '+random.integer(1,roll[0])+'.')
+                message.reply('you rolled a '+random.die(roll[0])+'.')
             }
         }else if (message.content.match(message.guild.commandPrefix+/^roll ([0-9]*) ([0-9]*)+\b/) && !roll[2]){
             if (roll[0]>9007199254740992 || roll[1]>9007199254740992 || (roll[0]>9007199254740992 && roll[1]>9007199254740992)){

@@ -6,7 +6,7 @@ class ChangeActivity extends commando.Command {
 			group: 'settings',
 			memberName: 'activity',
 			description: 'Change the bot\'s Rich Presence status. Only a select few are allowed to use this command.',
-		});
+		})
     }
     async run(message,args){
         if (message.channel.type!=='dm'){

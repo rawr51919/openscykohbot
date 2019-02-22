@@ -1,5 +1,6 @@
 const commando = require('discord.js-commando')
-const random = new Random()
+const Random = require('random-js')
+const random = new Random.Random()
 class NMRNG extends commando.Command {
     constructor(client) {
         super(client, {
@@ -7,7 +8,7 @@ class NMRNG extends commando.Command {
             group: 'random',
             memberName: 'nmrng',
             description: 'Allows for the Math.random() RNG library to generate a random number or up to 9007199254740992 random numbers between 0 and 9007199254740992.',
-        });
+        })
     }
     async run(message,args) {
         let number=args.split(/ +/)

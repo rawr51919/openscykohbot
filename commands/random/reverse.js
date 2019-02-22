@@ -6,7 +6,7 @@ class ReverseStrings extends commando.Command {
 			group: 'random',
 			memberName: 'reverse',
 			description: 'Reverses any text you input into this command.',
-		});
+		})
     }
     async run (message,args){
         function reverseString(string){

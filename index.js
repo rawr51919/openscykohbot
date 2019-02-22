@@ -1,10 +1,11 @@
 const commando = require('discord.js-commando')
-const random = new Random()
+const Random = require('random-js')
+const random = new Random.Random()
 const bot = new commando.Client({
     commandPrefix: '&',
     unknownCommandResponse: false,
     owner: ['324661689972686849'],
-});
+})
 //Change our bot's status and write to the console to show that OpenScykohBot's working
 bot.on('ready',()=>{
 	console.log('OpenScykohBot is ready to crud.')
@@ -16,7 +17,7 @@ bot.on('ready',()=>{
     		    type:3
   			}
     })
-});
+})
 bot.on('message',(message)=>{// to be cleaned up and/or added to in a future update
 	if (message.content.toLowerCase() == "bad openscykohbot" || message.content.toLowerCase()=="bad <@468615764643938314>") {
 	    const sadtalk = [
@@ -47,6 +48,8 @@ bot.on('message',(message)=>{// to be cleaned up and/or added to in a future upd
         "<@468615764643938314>, go away": "NEVAR!!",
         "<@468615764643938314> go away.": "NEVAR!!",
         "<@468615764643938314>, go away.": "NEVAR!!",
+        "<@468615764643938314> go away!": "NEVAR!!",
+        "<@468615764643938314>, go away!": "NEVAR!!",
         "hello, <@468615764643938314>": "Hi, <@"+message.author.id+">.",
         "hello <@468615764643938314>": "Hi, <@"+message.author.id+">.",
         "hello, <@468615764643938314>.": "Hi, <@"+message.author.id+">.",
@@ -71,16 +74,20 @@ bot.on('message',(message)=>{// to be cleaned up and/or added to in a future upd
 		setTimeout(function(){message.react("🇴")}, 1000)
     }
     //if (message.content.includes("rip")){
-    //    message.react(":coffin:")
-    //}
-    if (message.author=='159985870458322944'){
+    //	message.react(":coffin:")
+	//}
+	//if (message.content.includes("wh")){
+	//	message.react("🇼")
+	//	setTimeout(function(){message.react("🇭")}, 1000)
+	//}
+    if (message.author.id=='159985870458322944'){
 		message.react("🇸")
 		setTimeout(function(){message.react("🇭")}, 1000)
 		setTimeout(function(){message.react("🇺")}, 1000)
 		setTimeout(function(){message.react("🇹")}, 1000)
 		setTimeout(function(){message.react(":up:")}, 1000)
     }
-});
+})
 // loads all the commands
 bot.registry.registerDefaults()
 bot.registry.registerGroup('random', 'Random')

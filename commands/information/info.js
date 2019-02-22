@@ -5,11 +5,11 @@ class Info extends commando.Command {
             name: 'info',
             group: 'information',
             memberName: 'info',
-            description: 'Shows who created this bot and the bot\'s GitHub repository.',
-        });
+            description: "Shows who created this bot and the bot's GitHub repository.",
+        })
     }
     async run(message,args) {
-        message.channel.send("OpenScykohBot was created by <@324661689972686849>\nThe bot\'s GitHub repository can be found here: https://github.com/coltongit/openscykohbot\nThis bot is in the public domain.")
+        message.channel.send("OpenScykohBot was created by <@324661689972686849>\nThe bot's GitHub repository can be found here: https://github.com/coltongit/openscykohbot\nThis bot is in the public domain.")
     }
 }
 module.exports=Info

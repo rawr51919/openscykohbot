@@ -1,5 +1,6 @@
 const commando = require('discord.js-commando')
-const random = new Random()
+const Random = require('random-js')
+const random = new Random.Random()
 class Rate extends commando.Command {
 	constructor(client) {
 		super(client, {
@@ -7,7 +8,7 @@ class Rate extends commando.Command {
 			group: 'random',
 			memberName: 'rate',
 			description: 'Allow the bot to rate anything and anyone you like.',
-		});
+		})
     }
     async run(message,args){
         switch (message.content.substr(6).toLowerCase()){

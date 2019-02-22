@@ -1,5 +1,6 @@
 const commando = require('discord.js-commando')
-const random = new Random()
+const Random = require('random-js')
+const random = new Random.Random()
 class Knuccles extends commando.Command {
 	constructor(client) {
 		super(client, {
@@ -7,7 +8,7 @@ class Knuccles extends commando.Command {
 			group: 'random',
 			memberName: 'knuccles',
 			description: 'BRING ON THE KNUCCLES!',
-		});
+		})
   }
   async run(message,args){
 		const images = [
@@ -31,7 +32,7 @@ class Knuccles extends commando.Command {
           'https://i.imgur.com/CJqO5Ut.png\nImage originally requested by: an unknown user',
           'https://i.imgur.com/GIEbA8S.png\nImage originally requested by: `Mr. Chubbs#3989`',
           'https://i.imgur.com/6rjd6N2.png\nImage originally requested by: an unknown user',
-          'https://i.imgur.com/DtSd5Xq.png\nImage not originally requested by Fear#1143, but by: an unknown user',
+          'https://i.imgur.com/DtSd5Xq.png\nImage not originally requested by `Fear#1143`, but by: an unknown user',
           'https://i.imgur.com/ZsctD9L.png\nImage originally requested by: `coltonrawr#5011`',
           'https://www.shitpostbot.com/img/sourceimages/hot-dog-knuckles-the-echidna-582b7879885ff.png\nImage originally requested by: `coltonrawr#5011`',
           'https://ih1.redbubble.net/image.346054961.4490/poster,220x200,ffffff-pad,220x200,ffffff.jpg\nImage originally requested by: `coltonrawr#5011`',

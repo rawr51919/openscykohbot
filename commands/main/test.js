@@ -5,8 +5,8 @@ class Test extends commando.Command {
             name: 'test',
             group: 'main',
             memberName: 'test',
-            description: 'Check to see if OpenScykohBot\'s online and responding.',
-        });
+            description: "Check to see if OpenScykohBot's online and responding.",
+        })
     }
     async run(message,args) {
         message.channel.send("I'm online.")

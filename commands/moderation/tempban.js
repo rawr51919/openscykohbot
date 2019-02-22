@@ -7,32 +7,29 @@ class TempBanUsers extends commando.Command {
 			memberName: 'tempban',
             description: 'Allows OpenScykohBot to ban users for a specific time period. That is, if both you and the bot have mod permissions.',
             guildOnly: true
-		});
+		})
     }
     async run(message,args){
-		var user = message.author
-		var member = message.guild.member(user)
-		let banmember = message.mentions.members.first()
         if (message.channel.type!=='dm'){
             args = message.content.split(/ +/).slice(message.guild.commandPrefix.length)
         }
+        const banmember=message.mentions.members.first()
         if(message.member.has('BAN_MEMBERS')){
             if(!message.guild.member(client.user).has('BAN_MEMBERS')){
-                member.channel.send('Command error. Both you and the bot must have the BAN_MEMBERS permission.')
+                message.guild.member(message.author).channel.send('Command error. Both you and the bot must have the BAN_MEMBERS permission.')
             }
-            if(!member){
-                member.channel.send('Command error. Either this user doesn\'t exist or you didn\'t specify one when you typed the command.')
+            if(!banmember){
+                message.guild.member(message.author).channel.send("Command error. Either this user doesn't exist or you didn't specify one when you typed the command.")
             }
-            let time=args[1]
-            if(!time){
-                member.channel.send('Command error. You didn\'t specify how long to ban the specified user.')
+            if(!args[1]){
+                message.guild.member(message.author).channel.send("Command error. You didn't specify how long to ban the specified user.")
             }
             message.channel.send('Are you sure you want to ban the user '+args[0]+'for '+args[1]+' milliseconds? You must type `accept` within 5 seconds to do so.')
             .then(() => {
             message.channel.awaitMessages(response => response.content === 'accept', {
                 max: 1,
                 time: 5000,
-                errors: ['time'],
+                errors: ['args[1]'],
                 })
                 .then((collected) => {
                     banmember.ban()
@@ -42,7 +39,7 @@ class TempBanUsers extends commando.Command {
                 .catch(()=> {
                     message.channel.send('Command error. You didn\'t accept the command in time.')
                     return
-                });
+                })
             })
             .setTimeout(()=> {
                 message.guild.unban(banmember)

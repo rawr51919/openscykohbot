@@ -6,7 +6,7 @@ class ScyProjects extends commando.Command {
             group: 'information',
             memberName: 'scyprojects',
             description: 'The official ScyProjects server.',
-        });
+        })
     }
     async run(message,args) {
         message.channel.send("https://discord.gg/5uh8aS7")

@@ -6,10 +6,10 @@ class REE extends commando.Command {
 			group: 'random',
 			memberName: 'reeee',
 			description: 'Make the bot reeee.',
-		});
+		})
     }
     async run(message,args){
-        message.channel.send('REEEEEEEEEEEEEEEEE')
+		message.channel.send('REEEEEEEEEEEEEEEEE')
     }
 }
 module.exports=REE

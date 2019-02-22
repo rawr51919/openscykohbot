@@ -6,7 +6,7 @@ class ChangeOnlineStatus extends commando.Command {
 			group: 'settings',
 			memberName: 'onlinestatus',
 			description: 'Change the bot\'s online status. Only a select few are allowed to use this command.',
-		});
+		})
     }
     async run(message,args){
         if (message.channel.type!=='dm'){

@@ -14,15 +14,16 @@ class UserPFP extends commando.Command {
                     default: ""
                 },
             ]
-        });
+        })
     }
     async run(message,args) {
+        const mentionmember=args.member.user.mentions.first()
         if(!args.member || args.member.user==message.author){
-            return message.reply('your avatar is: '+message.author.displayAvatarURL.replace('?size=2048', ''))
+            return message.reply("your avatar is: "+message.author.displayAvatarURL.replace("?size=2048", ""))
         }else if (args.member.user==args.member.user.username || args.member.user==args.member.user.id){
-            return message.reply(args.member.user.username+'\'s avatar is: '+args.member.user.displayAvatarURL.replace('?size=2048', ''))
-        }else if (args.member.user==args.member.user.mentions.first() || args.member.user=='<@'+args.member.user.id+'>'){
-            return message.reply(args.member.user.mentions.first()+'\'s avatar is: '+args.member.user.displayAvatarURL.replace('?size=2048', ''))
+            return message.reply(args.member.user.username+"'s avatar is: "+args.member.user.displayAvatarURL.replace("?size=2048", ""))
+        }else if (mentionmember || args.member.user=='<@'+args.member.user.id+'>'){
+            return message.reply(mentionmember+"s avatar is: "+args.member.user.displayAvatarURL.replace("?size=2048", ""))
         }
     }
 }

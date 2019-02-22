@@ -1,5 +1,6 @@
 const commando = require('discord.js-commando')
-const random = new Random(MersenneTwister19937.autoSeed())
+const Random = require('random-js')
+const random = new Random.Random(Random.MersenneTwister19937.autoSeed())
 class MTRNG extends commando.Command {
     constructor(client) {
         super(client, {
@@ -7,7 +8,7 @@ class MTRNG extends commando.Command {
             group: 'random',
             memberName: 'mtrng',
             description: 'Allows for the Mersenne Twister RNG algorithm to generate a random number or up to 9007199254740992 random numbers between 0 and 4294967295.',
-        });
+        })
     }
     async run(message,args) {
         let number=args.split(/ +/)

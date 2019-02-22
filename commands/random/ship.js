@@ -1,5 +1,6 @@
 const commando = require('discord.js-commando')
-const random = new Random()
+const Random = require('random-js')
+const random = new Random.Random()
 class Ships extends commando.Command {
 	constructor(client) {
 		super(client, {
@@ -7,16 +8,16 @@ class Ships extends commando.Command {
 			group: 'random',
 			memberName: 'ship',
 			description: 'Ship whatever you want with whatever you want.',
-		});
+		})
     }
     async run(message,args){
 		 args = message.content.split(",")
             if (args[0]==message.guild.commandPrefix+'ship'){
-                message.channel.send('I can\'t ship literally nothing with literally nothing!\nUsage: `&ship person1, person2`')
+                message.channel.send("I can't ship literally nothing with literally nothing!\nUsage: `&ship person1, person2`")
                 return
             }
             if (!args[1]){
-                message.channel.send('I can\'t ship '+args[0].substr(6)+' with literally nothing!\nUsage: `&ship person1, person2`')
+                message.channel.send("I can't ship '+args[0].substr(6)+' with literally nothing!\nUsage: `&ship person1, person2`")
                 return
             }
         var rating = random.integer(0,100)

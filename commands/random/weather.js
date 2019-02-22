@@ -7,7 +7,7 @@ class Weather extends commando.Command {
 			group: 'random',
 			memberName: 'weather',
 			description: 'Have OpenScykohBot check the weather for your area.',
-		});
+		})
     }
     async run(message,args){
         weather.find({search: message.content.substr(9), degreeType: 'F'}, function(err, result) {
@@ -77,7 +77,7 @@ class Weather extends commando.Command {
             var celsius=Math.round((fahrenheit-32)/1.8)
             message.channel.send(`Weather for **${result[0].current.observationpoint}**:`)
             message.channel.send(`:thermometer: __Temperature:__ **${result[0].current.temperature}**°F / **`+celsius+`**°C\n:dash: __Wind Speed:__ **`+windspeed+`**\n`+emoji+` __Wind Direction:__ **`+winddirection+`**\n`+weather+` __Weather:__ **${result[0].current.skytext}**\n:sweat_drops: __Humidity:__ **${result[0].current.humidity}%**\n:clock3: __Timezone:__ UTC${result[0].location.timezone}`)
-        });
+        })
         return
     }
 }
