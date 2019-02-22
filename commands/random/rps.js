@@ -10,12 +10,11 @@ class RockPaperScissors extends commando.Command {
 			description: 'Play a game of Rock, Paper, Scissors with OpenScykohBot.',
 		})
 	}
-
 	async run(message,args) {
         if (message.channel.type!=='dm'){
             args = message.content.split(/ +/).slice(message.guild.commandPrefix.length)
         }
-        let choice = random.integer(0,5)
+        let choice = random.integer(0,4)
 		if(!args[0]) {
 			message.channel.send("You need to specify if you're playing Rock, Paper, Scissors, Tornado, or Hurricane.\nExample: `&rps rock`")
 			return
