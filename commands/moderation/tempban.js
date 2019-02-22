@@ -13,7 +13,7 @@ class TempBanUsers extends commando.Command {
         if (message.channel.type!=='dm'){
             args = message.content.split(/ +/).slice(message.guild.commandPrefix.length)
         }
-        const banmember=message.mentions.members.first()
+        let banmember=message.mentions.members.first()
         if(message.member.has('BAN_MEMBERS')){
             if(!message.guild.member(client.user).has('BAN_MEMBERS')){
                 message.guild.member(message.author).channel.send('Command error. Both you and the bot must have the BAN_MEMBERS permission.')
