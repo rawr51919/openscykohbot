@@ -81,8 +81,7 @@ bot.on('message',(message)=>{// to be cleaned up and/or added to in a future upd
     //	message.react(":coffin:")
 	//}
 	//if (message.content.includes("wh")){
-	//	message.react("🇼")
-	//	setTimeout(function(){message.react("🇭")}, 1000)
+	//	message.react("<:scyWh:548503602113544193>")
 	//}
     if (message.author.id=='159985870458322944'){
 		message.react("🇸")
