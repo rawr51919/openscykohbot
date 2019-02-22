@@ -1,5 +1,5 @@
 # openscykohbot
-An open-source, public domain bot meant for Scykoh's Crudbutt server.
+An open-source, public domain bot meant for Scykoh's CrudButt server.
 
 Installation Instructions:
 1. Install libsodium (via libsodium-wrappers) and zlib1g-dev on your platform of choice if you don't already have them.
