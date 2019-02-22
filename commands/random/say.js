@@ -1,6 +1,4 @@
 const commando = require('discord.js-commando')
-const Random = require('random-js')
-const random = new Random.Random()
 class Say extends commando.Command {
 	constructor(client) {
 		super(client, {
@@ -11,7 +9,7 @@ class Say extends commando.Command {
 		})
     }
     async run(message,args){
-        if (random.integer(0,100)>=0 && random.integer(0,100)<=50){
+        if (message.author.id!=='324661689972686849'){
             message.channel.send("You can't control me!")
         } else {
             message.channel.send(message.content.substr(5))
