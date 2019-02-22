@@ -29,10 +29,10 @@ class PKMNMeanings extends commando.Command {
 				message.channel.send('**Charizard**:\n*v* char - to burn or singe\n*n* lizard - a long-bodied, long-tailed, short-legged reptile')
 				break
 			case '7':
-				message.channel.send('**Squirtle**:\n*V* squirt - to rapidly eject water\n*n* turtle - a large marine reptile with a bony shell')
+				message.channel.send('**Squirtle**:\n*v* squirt - to rapidly eject water\n*n* turtle - a large marine reptile with a bony shell')
 				break
 			case '8':
-				message.channel.send('**Wartortle**:\n*n* war - engage in armed conflict\n*n* tortoise - a large land reptile with a bony shell\n*n* turtle - a large marine reptile with a bony shell')
+				message.channel.send('**Wartortle**:\n*v* war - engage in armed conflict\n*n* tortoise - a large land reptile with a bony shell\n*n* turtle - a large marine reptile with a bony shell')
 				break
 			case '9':
 				message.channel.send('**Blastoise**:\n*n* blast - a strong gust of wind or air\n*n* tortoise - a large land reptile with a bony shell')
