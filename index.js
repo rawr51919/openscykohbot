@@ -54,6 +54,10 @@ bot.on('message',(message)=>{// to be cleaned up and/or added to in a future upd
         "hello <@468615764643938314>": "Hi, <@"+message.author.id+">.",
         "hello, <@468615764643938314>.": "Hi, <@"+message.author.id+">.",
         "hello <@468615764643938314>.": "Hi, <@"+message.author.id+">.",
+        "hi, <@468615764643938314>": "Hi, <@"+message.author.id+">.",
+        "hi <@468615764643938314>": "Hi, <@"+message.author.id+">.",
+        "hi, <@468615764643938314>.": "Hi, <@"+message.author.id+">.",
+        "hi <@468615764643938314>.": "Hi, <@"+message.author.id+">.",
     }
     if (responses[message.content.toLowerCase()]){
         message.channel.send(responses[message.content.toLowerCase()])
