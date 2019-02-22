@@ -43,7 +43,7 @@ class RockPaperScissors extends commando.Command {
 			} else if(choice == 4) {
 				message.channel.send(":v::skin-tone-1: I choose scissors. I win!")
 			}
-		} else if(params[0].toLowerCase() == 'scissors') {
+		} else if(args[0].toLowerCase() == 'scissors') {
 			if(choice == 0) {
 				message.channel.send(":fist::skin-tone-1: I choose rock. I win!")
 			} else if(choice == 1) {
