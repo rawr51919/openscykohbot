@@ -18,7 +18,7 @@ class PurgeMessages extends commando.Command {
             message.channel.send("You need to specify the amount of messages to delete.\nExample: `&purge 10`\nExample in DMs (this will only delete the bot's messages, not your own): `@OpenScykohBot purge 10`")
             return
         }else if(!intRegex.test(args)){
-            message.channel.send("I can't delete messages without a proper number. Try again with a proper number.")
+            message.channel.send("I can't delete messages without a proper number. Try again with a proper number.").then(message => message.delete(3000))
             return
         }else if (intRegex.test(args) && message.channel.type!=='dm'){
             tools.purge(message, this.client, parseInt(args))
