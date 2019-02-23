@@ -78,7 +78,7 @@ bot.on('message',(message)=>{// to be cleaned up and/or added to in a future upd
 		setTimeout(function(){message.react("🇴")}, 1000)
     }
     //if (message.content.includes("rip")){
-    //	message.react(":coffin:")
+    //	message.react("\u26B0")
 	//}
 	//if (message.content.includes("wh")){
 	//	message.react("<:scyWh:548503602113544193>")
@@ -88,7 +88,7 @@ bot.on('message',(message)=>{// to be cleaned up and/or added to in a future upd
 		setTimeout(function(){message.react("🇭")}, 1000)
 		setTimeout(function(){message.react("🇺")}, 1000)
 		setTimeout(function(){message.react("🇹")}, 1000)
-		setTimeout(function(){message.react(":up:")}, 1000)
+		setTimeout(function(){message.react("\u1F199")}, 1000)
     }
 })
 // loads all the commands
