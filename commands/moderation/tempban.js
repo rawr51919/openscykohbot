@@ -44,7 +44,7 @@ class TempBanUsers extends commando.Command {
             .setTimeout(()=> {
                 message.guild.unban(banmember)
                 message.author.send('The user '+split[0]+' has been unbanned after '+split[1]+' milliseconds, just like you specified.')
-            }, time);
+            }, time)
         }else{
             member.channel.send('Command error. Both you and the bot must have the BAN_MEMBERS permission.')
         }

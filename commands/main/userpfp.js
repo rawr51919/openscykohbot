@@ -17,13 +17,11 @@ class UserPFP extends commando.Command {
         })
     }
     async run(message,args) {
-        const mentionmember=args.member.user.mentions.first()
-        if(!args.member || args.member.user==message.author){
+        const mentionmember=message.mentions.members.first()
+        if(!args.member){
             return message.reply("your avatar is: "+message.author.displayAvatarURL.replace("?size=2048", ""))
-        }else if (args.member.user==args.member.user.username || args.member.user==args.member.user.id){
+        }else{
             return message.reply(args.member.user.username+"'s avatar is: "+args.member.user.displayAvatarURL.replace("?size=2048", ""))
-        }else if (mentionmember || args.member.user=='<@'+args.member.user.id+'>'){
-            return message.reply(mentionmember+"s avatar is: "+args.member.user.displayAvatarURL.replace("?size=2048", ""))
         }
     }
 }
