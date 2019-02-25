@@ -10,12 +10,7 @@ class ReverseStrings extends commando.Command {
     }
     async run (message){
         function reverseString(string){
-            if (string=="")
-                return ""
-            else if (string.length==1)
-                return string
-            else
-                return reverseString(string.substr(1))+string.charAt(0)
+            return string.split("").reverse().join("")
         }
         message.channel.send(reverseString(message.content.substr(9)))
     }
