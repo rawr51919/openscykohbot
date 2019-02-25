@@ -21,8 +21,8 @@ bot.on('ready',()=>{
 bot.on('message',(message)=>{// to be cleaned up and/or added to in a future update
 	if (message.content.toLowerCase() == "bad openscykohbot" || message.content.toLowerCase()=="bad <@468615764643938314>") {
 	    const sadtalk = [
-	        'It\'s all my fault.',
-	        'It\'s not my fault! It\'s random!',
+	        "It's all my fault.",
+	        "It's not my fault! It's random!",
 	        ';(',
 	        'Sorry :(',
 	        'That kinda hurt my feelings...',
@@ -33,11 +33,13 @@ bot.on('message',(message)=>{// to be cleaned up and/or added to in a future upd
 	}
 	if (message.content.toLowerCase() == "good openscykohbot" || message.content.toLowerCase()=="good <@468615764643938314>") {
 	    const happytalk = [
-	        'I\'m always bad.',
-	        'I\'m always bad. That\'s what bots do.',
-	        'Bots aren\'t good. Especially me.',
+	        "I'm always bad.",
+	        "I'm always bad. That's what bots do.",
+	        "Bots aren't good. Especially me.",
 	        'Okay, never heard that one before. People are usually spamming "bad openscykohbot"...',
-	        'Uhh... okay?'
+			'Uhh... okay?',
+			':)',
+			';)'
 	    ]
 	    let chosenHappyTalk = happytalk[random.integer(0,happytalk.length-1)]
 	    message.channel.send(chosenHappyTalk)
@@ -66,7 +68,7 @@ bot.on('message',(message)=>{// to be cleaned up and/or added to in a future upd
 	    message.channel.send("No. I don't speak to the likes of you.")
     }else if ((message.content.toLowerCase() == "<@468615764643938314> speak to me, foul bot!" && message.author.id == "246865356482805760") || (message.content.toLowerCase() == "<@468615764643938314>, speak to me, foul bot!" && message.author.id == "246865356482805760")){
 	    const crusadermsgs = [
-            'Greetings, Sir Crusader',
+            'Greetings, Sir Crusader.',
             'Hast thou found me irritating?',
             'Dost thou want to fight?'
         ]
@@ -78,7 +80,7 @@ bot.on('message',(message)=>{// to be cleaned up and/or added to in a future upd
 		setTimeout(function(){message.react("🇴")}, 1000)
     }
     //if (message.content.includes("rip")){
-    //	message.react("\u26B0")
+    //	message.react("⚰")
 	//}
 	//if (message.content.includes("wh")){
 	//	message.react("<:scyWh:548503602113544193>")
@@ -88,7 +90,7 @@ bot.on('message',(message)=>{// to be cleaned up and/or added to in a future upd
 		setTimeout(function(){message.react("🇭")}, 1000)
 		setTimeout(function(){message.react("🇺")}, 1000)
 		setTimeout(function(){message.react("🇹")}, 1000)
-		setTimeout(function(){message.react("\u1F199")}, 1000)
+		setTimeout(function(){message.react("🆙")}, 1000)
     }
 })
 // loads all the commands
@@ -100,4 +102,4 @@ bot.registry.registerGroup('information', 'Information')
 bot.registry.registerGroup('settings', 'Settings')
 bot.registry.registerCommandsIn(__dirname+"/commands")
 // logs into the bot using this bot token
-bot.login('')
+bot.login('NDY4NjE1NzY0NjQzOTM4MzE0.D0z90A.gNFW7WJ9rVK2K7Q_cbbfFfqqxOM')
