@@ -47,13 +47,13 @@ class Weather extends commando.Command {
                     emoji = ":arrow_lower_left:"
             }
             if (result[0].current.skytext == "Light Snow"){
-                    weather = ""
+                    weather = ":cloud_snow:"
             }else if (result[0].current.skytext == "Clear"){
                     weather = ":sunny:"
             }else if (result[0].current.skytext == "Rain"){
                     weather = ":cloud_rain:"
             }else if (result[0].current.skytext == "Mostly Clear"){
-                    weather = ""
+                    weather = ":white_sun_small_cloud:"
             }else if (result[0].current.skytext == "Sunny"){
                     weather = ":sunny:"
             }else if (result[0].current.skytext == "Mostly Sunny"){
@@ -67,7 +67,7 @@ class Weather extends commando.Command {
             }else if (result[0].current.skytext == "Snow"){
                     weather = ":cloud_snow:"
             }else if (result[0].current.skytext == "Smoke"){
-                    weather = ""
+                    weather = ":dash:"
             }else if (result[0].current.skytext == "Haze"){
                     weather = ""
             }else if (result[0].current.skytext == "Fair"){
