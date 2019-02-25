@@ -102,4 +102,4 @@ bot.registry.registerGroup('information', 'Information')
 bot.registry.registerGroup('settings', 'Settings')
 bot.registry.registerCommandsIn(__dirname+"/commands")
 // logs into the bot using this bot token
-bot.login('NDY4NjE1NzY0NjQzOTM4MzE0.D0z90A.gNFW7WJ9rVK2K7Q_cbbfFfqqxOM')
+bot.login('')
