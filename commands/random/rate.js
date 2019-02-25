@@ -109,10 +109,10 @@ class Rate extends commando.Command {
             message.channel.send('It\'s cool, man. I\'d give it a 10/10.')
             break
             case 'myself':
-            message.channel.send(':thinking: Huh... I\'d give you a' +random.integer(0,10)+'/10.')
+            message.channel.send(':thinking: Huh... I\'d give you a ' +random.integer(0,10)+'/10.')
             break
             case 'me':
-            message.channel.send(':thinking: Huh... I\'d give you a' +random.integer(0,10)+'/10.')
+            message.channel.send(':thinking: Huh... I\'d give you a ' +random.integer(0,10)+'/10.')
             break
             case 'vaporeon':
             message.channel.send('It\'s cool, man. I\'d give it a 10/10.')
