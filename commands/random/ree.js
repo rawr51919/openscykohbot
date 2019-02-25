@@ -8,8 +8,8 @@ class REE extends commando.Command {
 			description: 'Make the bot reeee.',
 		})
     }
-    async run(message,args){
-		message.channel.send('REEEEEEEEEEEEEEEEE')
+    async run(message){
+			message.channel.send('REEEEEEEEEEEEEEEEE')
     }
 }
 module.exports=REE

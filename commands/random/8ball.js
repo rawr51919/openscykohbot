@@ -9,8 +9,8 @@ class EightBall extends commando.Command {
 			memberName: '8ball',
 			description: 'Turns the bot into a magic 8-ball.',
 		})
-    }
-    async run(message,args){
+  }
+    async run(message){
         const eightballquotes = [
           'Dude, really? The obvious answer is... erm... what was my line again?',
           'Um, yeah?',

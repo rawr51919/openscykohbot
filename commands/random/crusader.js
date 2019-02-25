@@ -9,8 +9,8 @@ class Crusader extends commando.Command {
 			memberName: 'crusade',
 			description: 'Start a crusade.',
 		})
-    }
-    async run(message,args){
+  }
+    async run(message){
 		const images = [
             'No images yet.',
       ]

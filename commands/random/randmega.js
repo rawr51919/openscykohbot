@@ -10,7 +10,7 @@ class RandomMegaPokémon extends commando.Command {
             description: 'Displays a random Mega Pokémon.',
         })
     }
-    async run(message,args) {
+    async run(message) {
         const megas = [
             'Venusaur-Mega',
             'Charizard-Mega-X',

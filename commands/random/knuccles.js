@@ -10,7 +10,7 @@ class Knuccles extends commando.Command {
 			description: 'BRING ON THE KNUCCLES!',
 		})
   }
-  async run(message,args){
+  async run(message){
 		const images = [
           'https://i.imgur.com/RqNFJZ2.png\nImage originally requested by: an unknown user',
           'https://i.imgur.com/OmieAYp.png\nImage originally requested by: an unknown user',
@@ -39,7 +39,7 @@ class Knuccles extends commando.Command {
           'http://image.blingee.com/images15/content/output/000/000/000/3a2/191866454_1230862.gif\nImage originally requested by: `coltonrawr#5011`',
           'https://i.imgur.com/bjsUemL.jpg\nImage originally requested by: `coltonrawr#5011`',
           'https://i.imgur.com/zKCCsrn.png\nImage originally requested by: `coltonrawr#5011`',
-          'http://www.toydorks.com/pimages/sonicx/bjuvi_01.jpg\nImage originally requested by: `coltonrawr#5011`',
+          'https://www.toysonfire.ca/i/4084_95a8780/pop-games-sonic-the-hedgehog-vinyl-figure-knuckles-08-retired-4084.jpg\nImage originally requested by: `coltonrawr#5011`',
           'http://image.blingee.com/images17/content/output/000/000/000/5b1/485845422_2072734.gif\nImage originally requested by: `coltonrawr#5011`',
           'https://cdn.discordapp.com/attachments/367856978812207105/399302032600727554/20180106203924_1.jpg\nImage originally requested by: `JoshuaTheAxew#8369`',
           'https://cdn.discordapp.com/attachments/367856978812207105/399302672345464840/20180106204548_1.jpg\nImage originally requested by: `JoshuaTheAxew#8369`',
@@ -50,7 +50,9 @@ class Knuccles extends commando.Command {
           'https://cdn.discordapp.com/attachments/385623588943953923/405112307451166742/KnucklesMania.png\nImage originally requested by: `JoshuaTheAxew#8369`',
           'https://cdn.discordapp.com/attachments/392774760733605889/405517467360952322/image.jpg\nImage originally requested by: `Dr. Meme Crysader ™#3572`',
           'https://cdn.discordapp.com/attachments/385623588943953923/411586051459645450/KnuckallicMadchuckleJoshuaTheAxew.png\nImage originally requested by: `JoshuaTheAxew#8369`',
-          'https://cdn.discordapp.com/attachments/392774760733605889/413394302157455360/SonicSaysKNUCKLESSneakyZorua.png\nImage originally requested by: `Sneaky Zorua#8408`'
+          'https://cdn.discordapp.com/attachments/392774760733605889/413394302157455360/SonicSaysKNUCKLESSneakyZorua.png\nImage originally requested by: `Sneaky Zorua#8408`',
+          'https://i.redd.it/4od07sv184a01.jpg\nImage originally requested by: `coltonrawr#5011`',
+          'https://66.media.tumblr.com/a615392ed1e74b3655d6687ace9624b2/tumblr_nl7lpxYHVD1r1mcgyo1_1280.png\nImage originally requested by: `coltonrawr#5011',
       ]
       const quotes = [
         'KNUCKLES AND KNUCKLES AND KNUCKLES: INCLUDING: KNUCKLES - INTRODUCING: KNUCKLES - STARRING: KNUCKLES - EXTRA KNUCKLES BY: KNUCKLES: THE MOVIE: THE GAME: THE KNUCKLES',
@@ -58,13 +60,15 @@ class Knuccles extends commando.Command {
         'This command needs more love. SPREAD THE KNUCCLES!',
         'Did Knuckles ever crack *his* knuckles?',
         'Remember when this command used to be used a lot in the original ScykohBot?',
-        'GIMME MOAR OF THE KNUCKLES OR I\'LL PUNCH KNUCKLES IN WITH MY KNUCKLES.',
+        "GIMME MOAR OF THE KNUCKLES OR I'LL PUNCH KNUCKLES IN WITH MY KNUCKLES!",
         'KNUCCLES 3 & KNUCCLES & KNUCCLES DELUXE FEATURING KNUCCLES FROM THE KNUCCLES MAY CHUCCLE SERIES FOR THE NEW NINTENDO SWITCH U 3D XL & KNUCCLES',
         'KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES',
         `Approximately ${images.length}00000 knuccles and counting!`,
         'THE KNUCKLES BLENDED MY KNUCKLES AND SHOVED THE KNUCKLES INTO THE KNUCKLES AND MADE MY KNUCKLES INTO A KNUCKLE SANDWICH, TURNING MY KNUCKLES INTO KNUCKLES AND KNUCKLES AND KNUCKLES',
         'KNUCKLES AND KNUCKLES AND KNUCKLES: THE MOVIE: STARRING KNUCKLES EDITED BY: KNUCKLES DIRECTED BY: KNUCKLES',
-        'KNUCKLES AND KNUCCLES AND DUCKLES AND BUCKLES AND PUCCLES AND TUCCLES AND FUCKLES'
+        'KNUCKLES AND KNUCCLES AND DUCKLES AND BUCKLES AND PUCCLES AND TUCCLES AND FUCKLES',
+        //'KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES AND KNUCKLES...',
+        'THIS KNUCKLES USES AN AUTOSAVE KNUCKLES. DO NOT CHUCKLE OR TURN OFF THE KNUCKLES WHEN THIS KNUCKLES IS KNUCKLES.',
         ]
         let knuxImage=images[random.integer(0,images.length-1)]
         let knuxQuote=quotes[random.integer(0,quotes.length-1)]

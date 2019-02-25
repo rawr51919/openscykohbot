@@ -38,7 +38,7 @@ class PKMNMeanings extends commando.Command {
 				message.channel.send('**Blastoise**:\n*n* blast - a strong gust of wind or air\n*n* tortoise - a large land reptile with a bony shell')
 				break
 			default:
-                message.channel.send('Please specify a valid Pokémon ID. Usage: `&pkmnmeaning <ID>`')
+                		message.channel.send('Please specify a valid Pokémon ID. Usage: `&pkmnmeaning <ID>`')
 				break
 		}
 	}

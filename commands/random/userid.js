@@ -29,7 +29,7 @@ class UserIDs extends commando.Command {
             message.channel.send('Found user: <@'+id+'>.')
             return
         }else{
-            message.reply('you provided an invalid User ID (or you provided something else). Please try again with a valid User ID.')
+            message.reply('you provided an invalid user ID (or you provided something else). Please try again with a valid user ID.')
             return
         }
     }

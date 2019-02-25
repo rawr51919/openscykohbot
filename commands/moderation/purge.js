@@ -6,7 +6,7 @@ class PurgeMessages extends commando.Command {
 			name: 'purge',
 			group: 'moderation',
 			memberName: 'purge',
-			description: 'Allows OpenScykohBot to purge messages. That is, if both you and the bot have mod permissions.',
+			description: "Allows OpenScykohBot to purge messages. That is, if both you and the bot have mod permissions (which aren't necessary in DMs).",
 		})
     }
     async run(message,args){
@@ -15,7 +15,7 @@ class PurgeMessages extends commando.Command {
         }
         var intRegex = /^\d+$/
         if(!args){
-            message.channel.send("You need to specify the amount of messages to delete.\nExample: `&purge 10`\nExample in DMs (this will only delete the bot's messages, not your own): `@OpenScykohBot purge 10`")
+            message.channel.send("You need to specify the amount of messages to delete.\nExample: `&purge 10`\nExample in DMs (this will only delete the bot's messages, not your own): `@OpenScykohBot purge 10` or simply `purge 10`")
             return
         }else if(!intRegex.test(args)){
             message.channel.send("I can't delete messages without a proper number. Try again with a proper number.").then(message => message.delete(3000))
@@ -31,10 +31,10 @@ class PurgeMessages extends commando.Command {
             }
         }else if (intRegex.test(args) && message.channel.type==='dm'){
             if (args>100){
-                message.channel.send("I can only delete up to 100 of my DM messages at a time.\nLower the message amount and try again, as you're gonna probably overload both me and the API.\nNo one wants that, do we?")
+                message.channel.send("I can only delete up to 100 of my DM messages at a time.\nLower the message amount and try again, as you're probably gonna overload both me and the API.\nNo one wants that, do we?")
             }else{
-                await message.channel.fetchMessages({limit: 100}).then(messages => {
-                    messages.filter(message => message.author.id === this.client.user.id).first(parseInt(args)).map(message => message.delete())
+                await message.channel.fetchMessages({limit: 100}).then(message => {
+                    message.filter(message => message.author.id === this.client.user.id).first(parseInt(args)).map(message => message.delete())
                 })
             }
             if (args==1){

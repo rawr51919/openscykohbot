@@ -10,16 +10,16 @@ class Rate extends commando.Command {
 			description: 'Allow the bot to rate anything and anyone you like.',
 		})
     }
-    async run(message,args){
+    async run(message){
         switch (message.content.substr(6).toLowerCase()){
             case 'bob ross':
             message.channel.send(':thinking: Huh... I\'d give '+message.content.substr(6)+' a 20/10.')
             break
             case 'maro':
-            message.channel.send(':thinking: Huh... I\'d give '+message.content.substr(6)+' a maro/lubigi.')
+            message.channel.send(':thinking: Huh... I\'d give '+message.content.substr(6)+' a maro/luggy.')
             break
             case 'lubigi':
-            message.channel.send(':thinking: Huh... I\'d give '+message.content.substr(6)+' a lubigi/maro.')
+            message.channel.send(':thinking: Huh... I\'d give '+message.content.substr(6)+' a luggy/maro.')
             break
             case 'ethan':
             message.channel.send(':thinking: Huh... I\'d give '+message.content.substr(6)+' a 10/10.')

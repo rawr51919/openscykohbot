@@ -8,11 +8,11 @@ class ReverseStrings extends commando.Command {
 			description: 'Reverses any text you input into this command.',
 		})
     }
-    async run (message,args){
+    async run (message){
         function reverseString(string){
-            if (string==="")
+            if (string=="")
                 return ""
-            else if (string.length===1)
+            else if (string.length==1)
                 return string
             else
                 return reverseString(string.substr(1))+string.charAt(0)
