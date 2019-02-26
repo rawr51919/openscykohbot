@@ -6,6 +6,13 @@ class UserPFP extends commando.Command {
             group: 'main',
             memberName: 'userpfp',
             description: 'Allows OpenScykohBot to show the avatar of either you or anyone you choose.',
+            args: [
+                {
+                    key: "member",
+                    prompt: "Who should I ping?",
+                    type: "member"
+                }
+            ]
         })
     }
     async run(message,args) {
