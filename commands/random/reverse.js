@@ -9,10 +9,7 @@ class ReverseStrings extends commando.Command {
 		})
     }
     async run (message){
-        function reverseString(string){
-            return string.split("").reverse().join("")
-        }
-        message.channel.send(reverseString(message.content.substr(9)))
+        message.channel.send(String(message.content.substr(9)).split("").reverse().join(""))
     }
 }
 module.exports=ReverseStrings
