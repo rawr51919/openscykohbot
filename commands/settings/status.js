@@ -27,7 +27,7 @@ class ChangeOverallStatus extends commando.Command {
                         type:0
                     }
                 })
-            message.channel.send("My online status is now: **Online** and my status is now: **Playing** "+message.content.substr(21)+"\".")
+            message.channel.send("My online status is now: **Online** and my status is now: **Playing** "+message.content.substr(21)+".")
         }else if ((args[0].toLowerCase()=='dnd' && args[1].toLowerCase()=='playing' && args[2]) || (args[0].toLowerCase()=='playing' && args[1].toLowerCase()=='dnd' && args[2])){
             this.client.user.setStatus('dnd')
             this.client.user.setPresence({
@@ -37,7 +37,7 @@ class ChangeOverallStatus extends commando.Command {
                         type:0
                     }
                 })
-            message.channel.send("My online status is now: **Do Not Disturb** and my status is now: **Playing** "+message.content.substr(18)+"\".")
+            message.channel.send("My online status is now: **Do Not Disturb** and my status is now: **Playing** "+message.content.substr(18)+".")
         }else if ((args[0].toLowerCase()=='away' && args[1].toLowerCase()=='playing' && args[2]) || (args[0].toLowerCase()=='playing' && args[1].toLowerCase()=='away' && args[2]) || (args[0].toLowerCase()=='idle' && args[1].toLowerCase()=='playing' && args[2]) || (args[0].toLowerCase()=='playing' && args[1].toLowerCase()=='idle' && args[2])){
             this.client.user.setStatus('idle')
             this.client.user.setPresence({
@@ -47,7 +47,7 @@ class ChangeOverallStatus extends commando.Command {
                         type:0
                     }
                 })
-            message.channel.send("My online status is now: **Away/Idle** and my status is now: **Playing** "+message.content.substr(19)+"\".")
+            message.channel.send("My online status is now: **Away/Idle** and my status is now: **Playing** "+message.content.substr(19)+".")
         }else if ((args[0].toLowerCase()=='online' && args[1].toLowerCase()=='streaming' && args[2]) || (args[0].toLowerCase()=='streaming' && args[1].toLowerCase()=='online' && args[2])){
             this.client.user.setStatus('online')
             this.client.user.setPresence({
@@ -57,7 +57,7 @@ class ChangeOverallStatus extends commando.Command {
                         type:1
                     }
                 })
-            message.channel.send("My online status is now: **Online** and my status is now: **Streaming** "+message.content.substr(23)+"\".")
+            message.channel.send("My online status is now: **Online** and my status is now: **Streaming** "+message.content.substr(23)+".")
         }else if ((args[0].toLowerCase()=='dnd' && args[1].toLowerCase()=='streaming' && args[2]) || (args[0].toLowerCase()=='streaming' && args[1].toLowerCase()=='dnd' && args[2])){
             this.client.user.setStatus('dnd')
             this.client.user.setPresence({
@@ -67,7 +67,7 @@ class ChangeOverallStatus extends commando.Command {
                         type:1
                     }
                 })
-            message.channel.send("My online status is now: **Do Not Disturb** and my status is now: **Streaming** "+message.content.substr(20)+"\".")
+            message.channel.send("My online status is now: **Do Not Disturb** and my status is now: **Streaming** "+message.content.substr(20)+".")
         }else if ((args[0].toLowerCase()=='away' && args[1].toLowerCase()=='streaming' && args[2]) || (args[0].toLowerCase()=='streaming' && args[1].toLowerCase()=='away' && args[2]) || (args[0].toLowerCase()=='idle' && args[1].toLowerCase()=='streaming' && args[2]) || (args[0].toLowerCase()=='streaming' && args[1].toLowerCase()=='idle' && args[2])){
             this.client.user.setStatus('idle')
             this.client.user.setPresence({
@@ -77,7 +77,7 @@ class ChangeOverallStatus extends commando.Command {
                         type:1
                     }
                 })
-            message.channel.send("My online status is now: **Away/Idle** and my status is now: **Streaming** "+message.content.substr(21)+"\".")
+            message.channel.send("My online status is now: **Away/Idle** and my status is now: **Streaming** "+message.content.substr(21)+".")
         }else if ((args[0].toLowerCase()=='online' && args[1].toLowerCase()=='listening' && args[2]) || (args[0].toLowerCase()=='listening' && args[1].toLowerCase()=='online' && args[2])){
             this.client.user.setStatus('online')
             this.client.user.setPresence({
@@ -87,7 +87,7 @@ class ChangeOverallStatus extends commando.Command {
                         type:2
                     }
                 })
-            message.channel.send("My online status is now: **Online** and my status is now: **Listening to** "+message.content.substr(25)+"\".")
+            message.channel.send("My online status is now: **Online** and my status is now: **Listening to** "+message.content.substr(25)+".")
         }else if ((args[0].toLowerCase()=='dnd' && args[1].toLowerCase()=='listening' && args[2]) || (args[0].toLowerCase()=='listening' && args[1].toLowerCase()=='dnd' && args[2])){
             this.client.user.setStatus('dnd')
             this.client.user.setPresence({
@@ -97,7 +97,7 @@ class ChangeOverallStatus extends commando.Command {
                         type:2
                     }
                 })
-            message.channel.send("My online status is now: **Do Not Disturb** and my status is now: **Listening to** "+message.content.substr(22)+"\".")
+            message.channel.send("My online status is now: **Do Not Disturb** and my status is now: **Listening to** "+message.content.substr(22)+".")
         }else if ((args[0].toLowerCase()=='away' && args[1].toLowerCase()=='listening' && args[2]) || (args[0].toLowerCase()=='listening' && args[1].toLowerCase()=='away' && args[2]) || (args[0].toLowerCase()=='idle' && args[1].toLowerCase()=='listening' && args[2]) || (args[0].toLowerCase()=='listening' && args[1].toLowerCase()=='idle' && args[2])){
             this.client.user.setStatus('idle')
             this.client.user.setPresence({
@@ -107,7 +107,7 @@ class ChangeOverallStatus extends commando.Command {
                         type:2
                     }
                 })
-            message.channel.send("My online status is now: **Away/Idle** and my status is now: **Listening to** "+message.content.substr(23)+"\".")
+            message.channel.send("My online status is now: **Away/Idle** and my status is now: **Listening to** "+message.content.substr(23)+".")
         }else if ((args[0].toLowerCase()=='online' && args[1].toLowerCase()=='watching' && args[2]) || (args[0].toLowerCase()=='watching' && args[1].toLowerCase()=='online' && args[2])){
             this.client.user.setStatus('online')
             this.client.user.setPresence({
@@ -117,7 +117,7 @@ class ChangeOverallStatus extends commando.Command {
                         type:3
                     }
                 })
-            message.channel.send("My online status is now: **Online** and my status is now: **Watching** "+message.content.substr(22)+"\".")
+            message.channel.send("My online status is now: **Online** and my status is now: **Watching** "+message.content.substr(22)+".")
         }else if ((args[0].toLowerCase()=='dnd' && args[1].toLowerCase()=='watching' && args[2]) || (args[0].toLowerCase()=='watching' && args[1].toLowerCase()=='dnd' && args[2])){
             this.client.user.setStatus('dnd')
             this.client.user.setPresence({
@@ -127,7 +127,7 @@ class ChangeOverallStatus extends commando.Command {
                         type:3
                     }
                 })
-            message.channel.send("My online status is now: **Do Not Disturb** and my status is now: **Watching** "+message.content.substr(19)+"\".")
+            message.channel.send("My online status is now: **Do Not Disturb** and my status is now: **Watching** "+message.content.substr(19)+".")
         }else if ((args[0].toLowerCase()=='away' && args[1].toLowerCase()=='watching' && args[2]) || (args[0].toLowerCase()=='watching' && args[1].toLowerCase()=='away' && args[2]) || (args[0].toLowerCase()=='idle' && args[1].toLowerCase()=='watching' && args[2]) || (args[0].toLowerCase()=='watching' && args[1].toLowerCase()=='idle' && args[2])){
             this.client.user.setStatus('idle')
             this.client.user.setPresence({
@@ -137,7 +137,7 @@ class ChangeOverallStatus extends commando.Command {
                         type:3
                     }
                 })
-            message.channel.send("My online status is now: **Away/Idle** and my status is now: **Watching** "+message.content.substr(20)+"\".")
+            message.channel.send("My online status is now: **Away/Idle** and my status is now: **Watching** "+message.content.substr(20)+".")
         }else if(args[0].toLowerCase()=='reset'){
             this.client.user.setStatus('online')
 	        this.client.user.setPresence({
