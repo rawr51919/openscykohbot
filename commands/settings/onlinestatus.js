@@ -5,7 +5,7 @@ class ChangeOnlineStatus extends commando.Command {
 			name: 'onlinestatus',
 			group: 'settings',
 			memberName: 'onlinestatus',
-			description: 'Change the bot\'s online status. Only a select few are allowed to use this command.',
+			description: "Change the bot's online status. Only a select few are allowed to use this command.",
 		})
     }
     async run(message,args){
@@ -13,10 +13,10 @@ class ChangeOnlineStatus extends commando.Command {
             args = message.content.split(/ +/).slice(message.guild.commandPrefix.length)
         }
         if (message.author.id !== '324661689972686849'){
-            message.reply(`you don\'t have permission to use this command.`)
+            message.reply("you don't have permission to use this command.")
             return
         }
-        if (args[0].toLowerCase()=='dnd'){
+        if (args[0].toLowerCase()=='dnd' || args.toLowerCase()=='donotdisturb'){
             this.client.user.setStatus('dnd')
             message.channel.send("My online status is now: **Do Not Disturb**.")
         }else if (args[0].toLowerCase()=='away' || args[0].toLowerCase()=='idle'){
@@ -29,8 +29,8 @@ class ChangeOnlineStatus extends commando.Command {
             this.client.user.setStatus('online')
             message.channel.send("My online status is now: **Online**.")
         }else{
-                message.channel.send(`You must specify either online, away/idle, invisible, or dnd (do not disturb).`)
-                return
+            message.channel.send(`You must specify either online, away/idle, invisible, or dnd (do not disturb).`)
+            return
         }
     }
 }

@@ -35,8 +35,7 @@ class EightBall extends commando.Command {
           '*puts pineapple on a pizza* Hah!',
           'No.'
         ]
-        let chosen8BallQuote=eightballquotes[random.integer(0,eightballquotes.length-1)]
-        message.channel.send(chosen8BallQuote)
+        message.channel.send(eightballquotes[random.integer(0,eightballquotes.length-1)])
     }
 }
 module.exports=EightBall

@@ -480,13 +480,7 @@ class Fonts extends commando.Command {
               })[i])
               .join('')
             }
-            function reverse(string){
-                if (string==="")
-                    return ""
-                else
-                    return reverse(string.substr(1))+string.charAt(0)
-            }
-            message.channel.send(reverse(textlooks5(message.content.substr(12))))
+            message.channel.send(textlooks5(message.content.substr(12)).split("").reverse().join(""))
         }
     }
 }

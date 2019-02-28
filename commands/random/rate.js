@@ -73,7 +73,7 @@ class Rate extends commando.Command {
             message.channel.send(':thinking: Huh... I\'d give '+message.content.substr(6)+' a 6/6/6.')
             break
             case '🅱':
-            message.channel.send('Keep your :b:\'s to yourself, kiddo.')
+            message.channel.send("Keep your :b:'s to yourself, kiddo.")
             break
             case 'skype':
             message.channel.send('O')

@@ -9,7 +9,7 @@ class UserPFP extends commando.Command {
             args: [
                 {
                     key: "member",
-                    prompt: "Who should I ping?",
+                    prompt: "Who should I choose?",
                     type: "member"
                 }
             ]

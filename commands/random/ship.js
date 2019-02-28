@@ -17,7 +17,7 @@ class Ships extends commando.Command {
                 return
             }
             if (!args[1]){
-                message.channel.send("I can't ship '+args[0].substr(6)+' with literally nothing!\nUsage: `&ship person1, person2`")
+                message.channel.send("I can't ship "+args[0].substr(6)+" with literally nothing!\nUsage: `&ship person1, person2`")
                 return
             }
         var rating = random.integer(0,100)

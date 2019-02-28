@@ -94,7 +94,7 @@ class RandomPokémon extends commando.Command {
 			'Slowbro',
 			'Magnemite',
 			'Magneton',
-			'Farfetch\'d',
+			"Farfetch'd",
 			'Doduo',
 			'Dodrio',
 			'Seel',
@@ -820,8 +820,7 @@ class RandomPokémon extends commando.Command {
 			'Blacephalon',
 			'Zeraora'
         ]
-        let chosenPoke=pokes[random.integer(0,pokes.length-1)]
-        message.channel.send('You got '+chosenPoke+'!')
+        message.channel.send('You got '+pokes[random.integer(0,pokes.length-1)]+'!')
     }
 }
 module.exports=RandomPokémon

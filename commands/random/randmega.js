@@ -61,8 +61,7 @@ class RandomMegaPokémon extends commando.Command {
             'Audino-Mega',
             'Diancie-Mega',
         ]
-        let chosenMega=megas[random.integer(0,megas.length-1)]
-        message.channel.send('You got '+chosenMega+'!')
+        message.channel.send('You got '+megas[random.integer(0,megas.length-1)]+'!')
     }
 }
 module.exports=RandomMegaPokémon
