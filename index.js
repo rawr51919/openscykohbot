@@ -28,8 +28,7 @@ bot.on('message',(message)=>{// to be cleaned up and/or added to in a future upd
 	        'That kinda hurt my feelings...',
 	        'no u'
 	    ]
-	    let chosenSadTalk = sadtalk[random.integer(0,sadtalk.length-1)]
-	    message.channel.send(chosenSadTalk)
+	    message.channel.send(sadtalk[random.integer(0,sadtalk.length-1)])
 	}
 	if (message.content.toLowerCase() == "good openscykohbot" || message.content.toLowerCase()=="good <@468615764643938314>") {
 	    const happytalk = [
@@ -41,8 +40,7 @@ bot.on('message',(message)=>{// to be cleaned up and/or added to in a future upd
 			':)',
 			';)'
 	    ]
-	    let chosenHappyTalk = happytalk[random.integer(0,happytalk.length-1)]
-	    message.channel.send(chosenHappyTalk)
+	    message.channel.send(happytalk[random.integer(0,happytalk.length-1)])
     }
     const responses = {
         "how's it going, openscykohbot?": "It's not easy being a bot... ~~listening to your demands~~",
@@ -72,8 +70,7 @@ bot.on('message',(message)=>{// to be cleaned up and/or added to in a future upd
             'Hast thou found me irritating?',
             'Dost thou want to fight?'
         ]
-	    let chosenCrusaderMsg = crusadermsgs[random.integer(0,crusadermsgs.length-1)]
-	    message.channel.send(chosenCrusaderMsg)
+	    message.channel.send(crusadermsgs[random.integer(0,crusadermsgs.length-1)])
     }
 	if (message.content.includes("amirite")){
 		message.react("🇳")
