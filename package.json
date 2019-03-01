@@ -7,7 +7,7 @@
     "@types/better-sqlite3": "^5.2.2",
     "better-sqlite-pool": "eslachance/better-sqlite-pool",
     "bufferutil": "^4.0.1",
-    "google-translate-api": "^2.3.0",
+    "@vitalets/google-translate-api": "^2.7.0",
     "discord.js": "^11.4.2",
     "discord.js-commando": "^0.10.0",
     "discord.js-minesweeper": "^1.0.3",
