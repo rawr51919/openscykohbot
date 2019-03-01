@@ -13,7 +13,7 @@ class Fonts extends commando.Command {
             args = message.content.split(/ +/).slice(message.guild.commandPrefix.length)
         }
         if(!args[0]){
-            message.channel.send(':capital_abcd: **Help for `&font`**\nUsage: `&font <fullwidth; chinese; script; blocks; mirror> <text>`\nExamples:\n`&font` by itself shows this help screen.\n`&font fullwidth hi` will give `ｈｉ`\n`&font script hi` will give `𝒽𝒾`')
+            message.channel.send(':capital_abcd: **Help for `&font`**\nUsage: `&font <fullwidth; chinese; script; blocks1; blocks2; mirror> <text>`\nExamples:\n`&font` by itself shows this help screen.\n`&font fullwidth hi` will give `ｈｉ`\n`&font script hi` will give `𝒽𝒾`')
             return
         }
         if(args[0]=='fullwidth'){
@@ -124,8 +124,7 @@ class Fonts extends commando.Command {
               .join('')
             }
             message.channel.send(textlooks1(message.content.substr(16)))
-        }
-        else if(args[0]=='chinese'){
+        }else if(args[0]=='chinese'){
             if (!args[1]){
                 message.channel.send('You need to specify text to convert.')
                 return
@@ -215,8 +214,7 @@ class Fonts extends commando.Command {
               .join('')
             }
             message.channel.send(textlooks2(message.content.substr(14)))
-        }
-        else if(args[0]=='script'){
+        }else if(args[0]=='script'){
             if (!args[1]){
                 message.channel.send('You need to specify text to convert.')
                 return
@@ -297,8 +295,7 @@ class Fonts extends commando.Command {
               .join('')
             }
             message.channel.send(textlooks3(message.content.substr(13)))
-        }
-        else if(args[0]=='blocks'){
+        }else if(args[0]=='blocks1'){
             if (!args[1]){
                 message.channel.send('You need to specify text to convert.')
                 return
@@ -369,10 +366,6 @@ class Fonts extends commando.Command {
                 7: ':seven: ',
                 8: ':eight: ',
                 9: ':nine: ',
-                'up!': ':up: ',
-                'UP!': ':up: ',
-                'uP!': ':up: ',
-                'Up!': ':up: ',
                 '*': ':asterisk: ',
                 '#': ':hash: ',
                 '\ ': '　',
@@ -382,13 +375,92 @@ class Fonts extends commando.Command {
               .join('')
             }
             message.channel.send(textlooks4(message.content.substr(12)))
-        }
-        else if(args[0]=='mirror'){
+        }else if(args[0]=='blocks2'){
             if (!args[1]){
                 message.channel.send('You need to specify text to convert.')
                 return
             }
             function textlooks5(text){
+  			return Array.from(text)
+              .map(i => ({
+                  // blocks font lookup table
+                a: '🇦 ',
+                b: '🇧 ',
+                c: '🇨 ',
+                d: '🇩 ',
+                e: '🇪 ',
+                f: '🇫 ',
+                g: '🇬 ',
+                h: '🇭 ',
+                i: 'ℹ ',
+                j: '🇯 ',
+                k: '🇰 ',
+                l: '🇱 ',
+                m: '🇲 ',
+                n: '🇳 ',
+                o: '🇴 ',
+                p: '🇵 ',
+                q: '🇶 ',
+                r: '🇷 ',
+                s: '🇸 ',
+                t: '🇹 ',
+                u: '🇺 ',
+                v: '🇻 ',
+                w: '🇼 ',
+                x: '🇽 ',
+                y: '🇾 ',
+                z: '🇿 ',
+                A: '🇦 ',
+                B: '🇧 ',
+                C: '🇨 ',
+                D: '🇩 ',
+                E: '🇪 ',
+                F: '🇫 ',
+                G: '🇬 ',
+                H: '🇭 ',
+                I: '🇮 ',
+                J: '🇯 ',
+                K: '🇰 ',
+                L: '🇱 ',
+                M: '🇲 ',
+                N: '🇳 ',
+                O: '🇴 ',
+                P: '🇵 ',
+                Q: '🇶 ',
+                R: '🇷 ',
+                S: '🇸 ',
+                T: '🇹 ',
+                U: '🇺 ',
+                V: '🇻 ',
+                W: '🇼 ',
+                X: '🇽 ',
+                Y: '🇾 ',
+                Z: '🇿 ',
+                0: ':zero: ',
+                1: ':one: ',
+                2: ':two: ',
+                3: ':three: ',
+                4: ':four: ',
+                5: ':five: ',
+                6: ':six: ',
+                7: ':seven: ',
+                8: ':eight: ',
+                9: ':nine: ',
+                '*': ':asterisk: ',
+                '#': ':hash: ',
+                '\ ': '　',
+                '!': ':grey_exclamation: ',
+                '?': ':grey_question: ',
+              })[i])
+              .join('')
+            }
+            message.channel.send(textlooks5(message.content.substr(12)))
+        }else if(args[0]=='mirror'){
+            if (!args[1]){
+                message.channel.send('You need to specify text to convert.')
+                return
+            }
+            function textlooks6(text){
   			return Array.from(text)
               .map(i => ({
                   // mirror font lookup table
@@ -480,7 +552,7 @@ class Fonts extends commando.Command {
               })[i])
               .join('')
             }
-            message.channel.send(textlooks5(message.content.substr(12)).split("").reverse().join(""))
+            message.channel.send(textlooks6(message.content.substr(12)).split("").reverse().join(""))
         }
     }
 }
