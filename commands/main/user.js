@@ -9,38 +9,38 @@ class UserInfo extends commando.Command {
             description: "Check a particular Discord user's stats.",
             args: [
                 {
-                    key: "member",
+                    key: "user",
                     prompt: "Who should I choose?",
-                    type: "member",
+                    type: "user",
                     default: ""
-                }
+                },
             ]
         })
     }
     async run(message,args){
-        if (message.channel.type=='text' && message.channel.type=='group'){
-            const member = (!args.member) ? message.member : args.member
+        const user = (!args.user) ? message.author : args.user
+        if (message.channel.type=='text' || message.channel.type=='group'){
             return message.say(stripIndents`
-            User info for **${member.user.tag}** ${member.user.bot ? "(BOT)" : "(USER)"} in ${message.guild.name}:
-            User ID: ${member.id}
-            User Profile: ${member}
-            Current Status: ${member.user.presence.status.toUpperCase()}
-            Server Nickname: ${member.displayName}
-            Account Created On: ${member.user.createdAt}
-            Account Joined Server On: ${member.joinedAt}
-            Account's Last Message ID: ${member.message.id}
-            Account Avatar: ${member.user.displayAvatarURL.replace("?size=2048","")}
+            User info for **${user.tag}** ${user.bot ? "(BOT)" : "(USER)"} in ${message.guild.name}:
+            User ID: ${user.id}
+            User Profile: ${user}
+            Current Status: ${user.presence.status.toUpperCase()}
+            Server Nickname: ${message.guild.members.get(user.id).displayName}
+            Account Created On: ${user.createdAt}
+            Account Joined Server On: ${message.guild.members.get(user.id).joinedAt}
+            Account's Last Server Message ID: ${user.lastMessageID}
+            Account Avatar: ${user.displayAvatarURL.replace("?size=2048","")}
             `)
-        }else if ((message.channel.type=='dm')){
-            const member = (!args.member) ? message.author : args.member
+        }else if (message.channel.type=='dm'){
             message.say(stripIndents`
-            User info for **${member.tag}**:
-            User ID: ${member.id}
-            User Profile: ${member}
-            User Name: ${member.username}
-            Account Created On: ${member.createdAt}
-            Account's Last Message ID: ${member.message.id}
-            Account Avatar: ${member.displayAvatarURL.replace("?size=2048","")}
+            User info for **${user.tag}**:
+            User ID: ${user.id}
+            User Profile: ${user}
+            Current Status: ${user.presence.status.toUpperCase()}
+            User Name: ${user.username}
+            Account Created On: ${user.createdAt}
+            Account's Last DM Message ID: ${user.lastMessageID}
+            Account Avatar: ${user.displayAvatarURL.replace("?size=2048","")}
             `)
         }
     }
