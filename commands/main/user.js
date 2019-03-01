@@ -21,25 +21,25 @@ class UserInfo extends commando.Command {
         const user = (!args.user) ? message.author : args.user
         if (message.channel.type=='text' || message.channel.type=='group'){
             return message.say(stripIndents`
-            User info for **${user.tag}** ${user.bot ? "(BOT)" : "(USER)"} in ${message.guild.name}:
-            User ID: ${user.id}
+            User info for **${user.tag}** ${user.bot ? "(BOT)" : "(USER)"} in **${message.guild.name}**:
+            User ID: **${user.id}**
             User Profile: ${user}
-            Current Status: ${user.presence.status.toUpperCase()}
-            Server Nickname: ${message.guild.members.get(user.id).displayName}
-            Account Created On: ${user.createdAt}
-            Account Joined Server On: ${message.guild.members.get(user.id).joinedAt}
-            Account's Last Server Message ID: ${user.lastMessageID}
+            Current Status: **${user.presence.status.toUpperCase()}**
+            Server Nickname: **${message.guild.members.get(user.id).displayName}**
+            Account Created On: **${user.createdAt}**
+            Account Joined Server On: **${message.guild.members.get(user.id).joinedAt}**
+            Account's Last Server Message ID: **${user.lastMessageID}**
             Account Avatar: ${user.displayAvatarURL.replace("?size=2048","")}
             `)
         }else if (message.channel.type=='dm'){
             message.say(stripIndents`
             User info for **${user.tag}**:
-            User ID: ${user.id}
+            User ID: **${user.id}**
             User Profile: ${user}
-            Current Status: ${user.presence.status.toUpperCase()}
-            User Name: ${user.username}
-            Account Created On: ${user.createdAt}
-            Account's Last DM Message ID: ${user.lastMessageID}
+            Current Status: **${user.presence.status.toUpperCase()}**
+            User Name: **${user.username}**
+            Account Created On: **${user.createdAt}**
+            Account's Last DM Message ID: **${user.lastMessageID}**
             Account Avatar: ${user.displayAvatarURL.replace("?size=2048","")}
             `)
         }
