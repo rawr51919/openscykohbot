@@ -374,7 +374,7 @@ class Fonts extends commando.Command {
               })[i])
               .join('')
             }
-            message.channel.send(textlooks4(message.content.substr(12)))
+            message.channel.send(textlooks4(message.content.substr(14)))
         }else if(args[0]=='blocks2'){
             if (!args[1]){
                 message.channel.send('You need to specify text to convert.')
@@ -454,7 +454,7 @@ class Fonts extends commando.Command {
               })[i])
               .join('')
             }
-            message.channel.send(textlooks5(message.content.substr(12)))
+            message.channel.send(textlooks5(message.content.substr(14)))
         }else if(args[0]=='mirror'){
             if (!args[1]){
                 message.channel.send('You need to specify text to convert.')
