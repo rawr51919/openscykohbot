@@ -1,5 +1,5 @@
 const commando = require('discord.js-commando')
-const translate = require('google-translate-api')
+const translate = require('@vitalets/google-translate-api')
 const langs = {
   'auto': 'Automatic',
   'af': 'Afrikaans',
