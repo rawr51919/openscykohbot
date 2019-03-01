@@ -10,17 +10,17 @@ class MinesweeperBoards extends commando.Command {
                 args: [
                         {
                           key: 'rows',
-                          prompt: 'How many rows?',
+                          prompt: 'How many rows of pieces should there be?',
                           type: 'integer',
                           min: 1,
-                          max: 20
+                          max: 12
                         },
                         {
                           key: 'columns',
-                          prompt: 'How many columns?',
+                          prompt: 'How many columns of pieces should there be?',
                           type: 'integer',
                           min: 1,
-                          max: 20
+                          max: 12
                         },
                         {
                           key: 'mines',
@@ -39,7 +39,7 @@ class MinesweeperBoards extends commando.Command {
                           type: 'boolean',
                           false: 'no',
                           true: 'yes'
-                        }
+                        },
                 ]
             })
         }
