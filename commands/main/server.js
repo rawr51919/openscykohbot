@@ -20,9 +20,9 @@ class ServerInfo extends commando.Command {
                 3: "3 (On server for >10 minutes)",
                 4: "4 (Phone Verification)"
             }
-            var textChannels = message.guild.channels.filter(message => message.type=='text')
-            var voiceChannels = message.guild.channels.filter(message => message.type=='voice')
-            var categoryChannels = message.guild.channels.filter(message => message.type=='category')
+            var textChannels = message.guild.channels.filter(channels => channels.type=='text')
+            var voiceChannels = message.guild.channels.filter(channels => channels.type=='voice')
+            var categoryChannels = message.guild.channels.filter(channels => channels.type=='category')
             message.say(stripIndents`
             Server info for **${message.guild.name}**:
             Server ID: **${message.guild.id}**
