@@ -82,13 +82,13 @@ bot.on('message',(message)=>{// to be cleaned up and/or added to in a future upd
 	//if (message.content.includes("wh")){
 	//	message.react("<:scyWh:548503602113544193>")
 	//}
-    if (message.author.id=='159985870458322944'){
-		message.react("🇸")
-		setTimeout(function(){message.react("🇭")}, 1000)
-		setTimeout(function(){message.react("🇺")}, 1000)
-		setTimeout(function(){message.react("🇹")}, 1000)
-		setTimeout(function(){message.react("🆙")}, 1000)
-    }
+    //if (message.author.id=='159985870458322944'){
+	//	message.react("🇸")
+	//	setTimeout(function(){message.react("🇭")}, 1000)
+	//	setTimeout(function(){message.react("🇺")}, 1000)
+	//	setTimeout(function(){message.react("🇹")}, 1000)
+	//	setTimeout(function(){message.react("🆙")}, 1000)
+    //}
 })
 // loads all the commands
 bot.registry.registerDefaults()
