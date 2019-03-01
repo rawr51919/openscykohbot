@@ -126,7 +126,7 @@ class GoogleTranslate extends commando.Command {
                 from: manual.exec(args[0])[1],
                 to: manual.exec(args[0])[2]
             }).then(text => {
-                message.channel.send("From "+manual.exec(args[0])[1]+" to "+manual.exec(args[0])[2]+":\n"+text.text)
+                message.channel.send("Translating from "+manual.exec(args[0])[1]+" to "+manual.exec(args[0])[2]+":\n"+text.text)
             }).catch(err => {
                 message.channel.send('A translation error occurred.')
                 console.error(err)
