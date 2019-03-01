@@ -5,7 +5,7 @@ class GroupDMPFP extends commando.Command {
             name: 'groupdmpfp',
             group: 'main',
             memberName: 'groupdmpfp',
-            description: "Allows OpenScykohBot to show the icon of the group DM you're currently in."
+            description: "Allows OpenScykohBot to show the icon of the group DM you're currently in. (Note that this command doesn't have functionality yet due to Discord not supporting it)."
         })
     }
     async run(message) {
