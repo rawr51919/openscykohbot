@@ -28,10 +28,10 @@ class EightBall extends commando.Command {
           "Most likely.",
           "I would prefer to say yes.",
           "Why, no.",
-          'That\'s pretty obvious, dude.',
+          "That's pretty obvious, dude.",
           'Well, if you t-- *shuts down*',
           '*cough* Erm, y-yeah?',
-          'Hold on, I\'m thinking! :thinking:',
+          "Hold on, I'm thinking! :thinking:",
           '*puts pineapple on a pizza* Hah!',
           'No.'
         ]

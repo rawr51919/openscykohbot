@@ -75,7 +75,7 @@ const langs = {
   'fa': 'Persian',
   'pl': 'Polish',
   'pt': 'Portuguese',
-  'ma': 'Punjabi',
+  'pa': 'Punjabi',
   'ro': 'Romanian',
   'ru': 'Russian',
   'sm': 'Samoan',
@@ -119,7 +119,7 @@ class GoogleTranslate extends commando.Command {
         description: 'Translates text from one language to another.'
       });  
     }
-    async run(message){   
+    run(message){   
         let args = message.content.substr(11).split(/ +/)
         if (manual.exec(args[0])){
             translate(args.slice(1).join(/ +/), {
@@ -131,7 +131,8 @@ class GoogleTranslate extends commando.Command {
                 message.channel.send('A translation error occurred.')
                 console.error(err)
             })
-        }else if (auto.exec(args[0])){
+        }else{
+            if (auto.exec(args[0])){
             translate(args.slice(1).join(/ +/), {
             to: auto.exec(args[0])[1]
             }).then(text => {
@@ -140,8 +141,9 @@ class GoogleTranslate extends commando.Command {
                 message.channel.send('A translation error occurred.')
                 console.error(err)
             })
-        }else{
-            message.channel.send("Command error. You must specify a language to use, for ex. `en` or `en-us`, in the first argument.\nYou can manually specify what to translate from if you specify two arguments before the text you wish to translate.")
+            }else{
+                message.channel.send("Command error. You must specify a language to use, for ex. `en` or `en-us`, in the first argument.\nYou can manually specify what to translate from if you specify two arguments before the text you wish to translate.")
+            }
         }
     }
 }
