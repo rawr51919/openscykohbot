@@ -10,7 +10,7 @@ class TempBanUsers extends commando.Command {
 		})
     }
     async run(message,args){
-        if (message.channel.type!=='dm'){
+        if(message.channel.type!=='dm'){
             args=message.content.split(/ +/).slice(message.guild.commandPrefix.length)
         }
         let banmember=message.mentions.members.first()

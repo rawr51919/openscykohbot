@@ -9,7 +9,7 @@ class Say extends commando.Command {
 		})
     }
     async run(message,args){
-        if (message.author.id!=='324661689972686849'){
+        if(message.author.id!=='324661689972686849'){
             message.channel.send("You can't control me!")
         } else {
             message.channel.send(message.content.substr(5))

@@ -19,7 +19,7 @@ class UserInfo extends commando.Command {
     }
     async run(message,args){
         const user=(!args.user) ? message.author : args.user
-        if (message.channel.type=='text'||message.channel.type=='group'){
+        if(message.channel.type=='text'||message.channel.type=='group'){
             return message.say(stripIndents`
             User info for **${user.tag}** ${user.bot ? "(BOT)" : "(USER)"} in **${message.guild.name}**:
             User ID: **${user.id}**
@@ -31,7 +31,7 @@ class UserInfo extends commando.Command {
             Account's Last Server Message ID: **${user.lastMessageID}**
             Account Avatar: ${user.displayAvatarURL.replace("?size=2048","")}
             `)
-        }else if (message.channel.type=='dm'){
+        }else if(message.channel.type=='dm'){
             message.say(stripIndents`
             User info for **${user.tag}**:
             User ID: **${user.id}**

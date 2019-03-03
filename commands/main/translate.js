@@ -121,7 +121,7 @@ class GoogleTranslate extends commando.Command {
     }
     run(message){   
         let args=message.content.substr(11).split(/ +/)
-        if (manual.exec(args[0])){
+        if(manual.exec(args[0])){
             translate(args.slice(1).join(/ +/), {
                 from: manual.exec(args[0])[1],
                 to: manual.exec(args[0])[2]
@@ -132,7 +132,7 @@ class GoogleTranslate extends commando.Command {
                 console.error(err)
             })
         }else{
-            if (auto.exec(args[0])){
+            if(auto.exec(args[0])){
                 translate(args.slice(1).join(/ +/), {
                     to: auto.exec(args[0])[1]
                 }).then(text => {

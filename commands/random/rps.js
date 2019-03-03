@@ -11,7 +11,7 @@ class RockPaperScissors extends commando.Command {
 		})
 	}
 	async run(message,args){
-        if (message.channel.type!=='dm')
+        if(message.channel.type!=='dm')
             args=message.content.split(/ +/).slice(message.guild.commandPrefix.length)
 		if(!args[0])
 			message.channel.send("You need to specify if you're playing Rock, Paper, Scissors, Tornado, or Hurricane.\nExample: `&rps rock`")

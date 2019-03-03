@@ -10,7 +10,7 @@ class ServerPFP extends commando.Command {
         })
     }
     async run(message){
-        if (message.guild.iconURL!=null){
+        if(message.guild.iconURL!=null){
             return message.reply(message.guild.name+"'s icon is: "+message.guild.iconURL)
         }else{
             return message.channel.send("This server doesn't have an icon.")

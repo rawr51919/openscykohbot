@@ -9,20 +9,20 @@ class ChangeActivity extends commando.Command {
 		})
     }
     async run(message,args){
-        if (message.channel.type!=='dm'){
+        if(message.channel.type!=='dm'){
             args=message.content.split(/ +/).slice(message.guild.commandPrefix.length)
         }
-        if (message.author.id!=='324661689972686849'){
+        if(message.author.id!=='324661689972686849'){
             message.reply(`you don\'t have permission to use this command.`)
             return
         }
-        if (args[0].toLowerCase()=='remove'){
+        if(args[0].toLowerCase()=='remove'){
             this.client.user.setPresence({
                 game:null
                 })
             message.channel.send("I now have no status.")
             return
-        }else if (args[0].toLowerCase()=='playing'&&args[1]){
+        }else if(args[0].toLowerCase()=='playing'&&args[1]){
             this.client.user.setPresence({
                 game:
                     {
@@ -31,7 +31,7 @@ class ChangeActivity extends commando.Command {
                     }
                 })
             message.channel.send("My status is now: \"**Playing** "+message.content.substr(18)+"\".")
-        }else if (args[0].toLowerCase()=='streaming'&&args[1]){
+        }else if(args[0].toLowerCase()=='streaming'&&args[1]){
             this.client.user.setPresence({
                 game:
                     {
@@ -40,7 +40,7 @@ class ChangeActivity extends commando.Command {
                     }
                 })
             message.channel.send("My status is now: \"**Streaming** "+message.content.substr(20)+"\".")
-        }else if (args[0].toLowerCase()=='listening'&&args[1]){
+        }else if(args[0].toLowerCase()=='listening'&&args[1]){
             this.client.user.setPresence({
                 game:
                     {
@@ -49,7 +49,7 @@ class ChangeActivity extends commando.Command {
                     }
                 })
             message.channel.send("My status is now: \"**Listening to** "+message.content.substr(20)+"\".")
-        }else if (args[0].toLowerCase()=='watching'&&args[1]){
+        }else if(args[0].toLowerCase()=='watching'&&args[1]){
             this.client.user.setPresence({
                 game:
                     {
@@ -58,16 +58,16 @@ class ChangeActivity extends commando.Command {
                     }
                 })
             message.channel.send("My status is now: \"**Watching** "+message.content.substr(19)+"\".")
-        }else if (args[0].toLowerCase()=='playing'&&!args[1]){
+        }else if(args[0].toLowerCase()=='playing'&&!args[1]){
             message.channel.send("What am I supposed to be playing?")
             return
-        }else if (args[0].toLowerCase()=='streaming'&&!args[1]){
+        }else if(args[0].toLowerCase()=='streaming'&&!args[1]){
             message.channel.send("What am I supposed to be streaming?")
             return
-        }else if (args[0].toLowerCase()=='listening'&&!args[1]){
+        }else if(args[0].toLowerCase()=='listening'&&!args[1]){
             message.channel.send("What am I supposed to be listening to?")
             return
-        }else if (args[0].toLowerCase()=='watching'&&!args[1]){
+        }else if(args[0].toLowerCase()=='watching'&&!args[1]){
             message.channel.send("What am I supposed to be watching?")
             return
         }else{

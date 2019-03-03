@@ -10,7 +10,7 @@ class PurgeMessages extends commando.Command {
 		})
     }
     async run(message,args){
-        if (message.channel.type!=='dm'){
+        if(message.channel.type!=='dm'){
             args=message.content.split(/ +/).slice(message.guild.commandPrefix.length)
         }
         var intRegex=/^\d+$/
@@ -20,26 +20,26 @@ class PurgeMessages extends commando.Command {
         }else if(!intRegex.test(args)&&(message.member.hasPermission('MANAGE_MESSAGES')||message.guild.me.hasPermission('MANAGE_MESSAGES'))){
             message.channel.send("I can't delete messages without a proper number. Try again with a proper number.").then(message => message.delete(3000))
             return
-        }else if (intRegex.test(args)&&message.channel.type!=='dm'){
+        }else if(intRegex.test(args)&&message.channel.type!=='dm'){
             tools.purge(message, this.client, parseInt(args))
-            if (args&&(!message.member.hasPermission('MANAGE_MESSAGES')||!message.guild.me.hasPermission('MANAGE_MESSAGES'))){
+            if(args&&(!message.member.hasPermission('MANAGE_MESSAGES')||!message.guild.me.hasPermission('MANAGE_MESSAGES'))){
                 message.reply('Either you, the bot, or both are missing the MANAGE_MESSAGES permission.')
-            }else if (args==1&&(message.member.hasPermission('MANAGE_MESSAGES')||message.guild.me.hasPermission('MANAGE_MESSAGES'))){
+            }else if(args==1&&(message.member.hasPermission('MANAGE_MESSAGES')||message.guild.me.hasPermission('MANAGE_MESSAGES'))){
                 message.channel.send('Successfully deleted '+args+' message.').then(message => message.delete(3000))
                 return
-            }else if (args<1&&(message.member.hasPermission('MANAGE_MESSAGES')||message.guild.me.hasPermission('MANAGE_MESSAGES'))){
+            }else if(args<1&&(message.member.hasPermission('MANAGE_MESSAGES')||message.guild.me.hasPermission('MANAGE_MESSAGES'))){
                 message.channel.send('Successfully deleted '+args+' messages.').then(message => message.delete(3000))
                 return
             }
-        }else if (intRegex.test(args)&&message.channel.type==='dm'){
-            if (args>100){
+        }else if(intRegex.test(args)&&message.channel.type==='dm'){
+            if(args>100){
                 message.channel.send("I can only delete up to 100 of my DM messages at a time.\nLower the message amount and try again, as you're probably gonna overload both me and the API.\nNo one wants that, do we?")
             }else{
                 await message.channel.fetchMessages({limit: 100}).then(message => {
                     message.filter(message => message.author.id===this.client.user.id).first(parseInt(args)).map(message => message.delete())
                 })
             }
-            if (args==1){
+            if(args==1){
                 message.channel.send('Successfully deleted '+args+' message of mine.').then(message => message.delete(3000))
                 return
             }else{

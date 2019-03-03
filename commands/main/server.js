@@ -10,9 +10,9 @@ class ServerInfo extends commando.Command {
 		})
     }
     async run(message){
-        if (message.channel.type=='dm'){
+        if(message.channel.type=='dm'){
             message.reply("You can't use this command in a DM.")
-        }else if (message.channel.type=='text'){
+        }else if(message.channel.type=='text'){
             const verLevel={
                 0: "0 (Unrestricted)",
                 1: "1 (Email Verification)",
@@ -39,7 +39,7 @@ class ServerInfo extends commando.Command {
             Server Region: **${message.guild.region}**
             Server Avatar: ${message.guild.iconURL}
             `)
-        }else if (message.channel.type=='group'){
+        }else if(message.channel.type=='group'){
             message.say(stripIndents`
             Group DM info for **${channel.name}**:
             Group DM ID: **${channel.id}**

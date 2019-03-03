@@ -9,7 +9,7 @@ class Fonts extends commando.Command {
 		})
     }
     async run(message,args){
-        if (message.channel.type!=='dm'){
+        if(message.channel.type!=='dm'){
             args=message.content.split(/ +/).slice(message.guild.commandPrefix.length)
         }
         if(!args[0]){
@@ -17,7 +17,7 @@ class Fonts extends commando.Command {
             return
         }
         if(args[0]=='fullwidth'){
-            if (!args[1]){
+            if(!args[1]){
                 message.channel.send('You need to specify text to convert.')
                 return
             }
@@ -125,7 +125,7 @@ class Fonts extends commando.Command {
             }
             message.channel.send(textlooks1(message.content.substr(16)))
         }else if(args[0]=='chinese'){
-            if (!args[1]){
+            if(!args[1]){
                 message.channel.send('You need to specify text to convert.')
                 return
             }
@@ -215,7 +215,7 @@ class Fonts extends commando.Command {
             }
             message.channel.send(textlooks2(message.content.substr(14)))
         }else if(args[0]=='script'){
-            if (!args[1]){
+            if(!args[1]){
                 message.channel.send('You need to specify text to convert.')
                 return
             }
@@ -296,7 +296,7 @@ class Fonts extends commando.Command {
             }
             message.channel.send(textlooks3(message.content.substr(13)))
         }else if(args[0]=='blocks1'){
-            if (!args[1]){
+            if(!args[1]){
                 message.channel.send('You need to specify text to convert.')
                 return
             }
@@ -376,7 +376,7 @@ class Fonts extends commando.Command {
             }
             message.channel.send(textlooks4(message.content.substr(14)))
         }else if(args[0]=='blocks2'){
-            if (!args[1]){
+            if(!args[1]){
                 message.channel.send('You need to specify text to convert.')
                 return
             }
@@ -456,7 +456,7 @@ class Fonts extends commando.Command {
             }
             message.channel.send(textlooks5(message.content.substr(14)))
         }else if(args[0]=='mirror'){
-            if (!args[1]){
+            if(!args[1]){
                 message.channel.send('You need to specify text to convert.')
                 return
             }
