@@ -133,14 +133,14 @@ class GoogleTranslate extends commando.Command {
             })
         }else{
             if (auto.exec(args[0])){
-            translate(args.slice(1).join(/ +/), {
-            to: auto.exec(args[0])[1]
-            }).then(text => {
-                message.channel.send("Detected "+`${langs[text.from.language.iso]}`+" as the source language.\n"+text.text)
-            }).catch(err => {
-                message.channel.send('A translation error occurred.')
-                console.error(err)
-            })
+                translate(args.slice(1).join(/ +/), {
+                    to: auto.exec(args[0])[1]
+                }).then(text => {
+                    message.channel.send("Detected "+`${langs[text.from.language.iso]}`+" as the source language.\n"+text.text)
+                }).catch(err => {
+                    message.channel.send('A translation error occurred.')
+                    console.error(err)
+                })
             }else{
                 message.channel.send("Command error. You must specify a language to use, for ex. `en` or `en-us`, in the first argument.\nYou can manually specify what to translate from if you specify two arguments before the text you wish to translate.")
             }
