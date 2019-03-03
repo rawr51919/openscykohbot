@@ -1,17 +1,17 @@
-const commando = require('discord.js-commando')
-const Random = require('random-js')
-const random = new Random.Random()
+const commando=require('discord.js-commando')
+const Random=require('random-js')
+const random=new Random.Random()
 class RandomMegaPokémon extends commando.Command {
-    constructor(client) {
-        super(client, {
+    constructor(client){
+        super(client,{
             name: 'randmega',
             group: 'random',
             memberName: 'randmega',
             description: 'Displays a random Mega Pokémon.',
         })
     }
-    async run(message) {
-        const megas = [
+    async run(message){
+        const megas=[
             'Venusaur-Mega',
             'Charizard-Mega-X',
             'Charizard-Mega-Y',

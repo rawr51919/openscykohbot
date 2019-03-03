@@ -1,9 +1,9 @@
-const commando = require('discord.js-commando')
-const Random = require('random-js')
-var random = new Random.Random()
+const commando=require('discord.js-commando')
+const Random=require('random-js')
+var random=new Random.Random()
 class Hugs extends commando.Command {
-	constructor(client) {
-		super(client, {
+	constructor(client){
+		super(client,{
 			name: 'hug',
 			group: 'random',
 			memberName: 'hug',
@@ -18,7 +18,7 @@ class Hugs extends commando.Command {
 		});
     }
     async run(message,args){
-        const urls = [
+        const urls=[
 			'https://media0.giphy.com/media/8tpiC1JAYVMFq/giphy.gif',
 			'https://media0.giphy.com/media/16bJmyPvRbCDu/giphy.gif',
 			'https://media3.giphy.com/media/lXiRKBj0SAA0EWvbG/giphy.gif',

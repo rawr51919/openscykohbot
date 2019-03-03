@@ -1,7 +1,7 @@
-const commando = require('discord.js-commando')
+const commando=require('discord.js-commando')
 class ServerPFP extends commando.Command {
-    constructor(client) {
-        super(client, {
+    constructor(client){
+        super(client,{
             name: 'serverpfp',
             group: 'main',
             memberName: 'serverpfp',
@@ -9,7 +9,7 @@ class ServerPFP extends commando.Command {
             guildOnly: true
         })
     }
-    async run(message) {
+    async run(message){
         if (message.guild.iconURL!=null){
             return message.reply(message.guild.name+"'s icon is: "+message.guild.iconURL)
         }else{

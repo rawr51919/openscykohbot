@@ -1,7 +1,7 @@
-const commando = require('discord.js-commando')
-const Random = require('random-js')
-const random = new Random.Random()
-const bot = new commando.Client({
+const commando=require('discord.js-commando')
+const Random=require('random-js')
+const random=new Random.Random()
+const bot=new commando.Client({
     commandPrefix: '&',
     unknownCommandResponse: false,
     owner: ['324661689972686849'],
@@ -19,8 +19,8 @@ bot.on('ready',()=>{
     })
 })
 bot.on('message',(message)=>{// to be cleaned up and/or added to in a future update
-	if (message.content.toLowerCase() == "bad openscykohbot" || message.content.toLowerCase()=="bad <@468615764643938314>") {
-	    const sadtalk = [
+	if (message.content.toLowerCase()=="bad openscykohbot"||message.content.toLowerCase()=="bad <@468615764643938314>") {
+	    const sadtalk=[
 	        "It's all my fault.",
 	        "It's not my fault! It's random!",
 	        ';(',
@@ -30,8 +30,8 @@ bot.on('message',(message)=>{// to be cleaned up and/or added to in a future upd
 	    ]
 	    message.channel.send(sadtalk[random.integer(0,sadtalk.length-1)])
 	}
-	if (message.content.toLowerCase() == "good openscykohbot" || message.content.toLowerCase()=="good <@468615764643938314>") {
-	    const happytalk = [
+	if (message.content.toLowerCase()=="good openscykohbot"||message.content.toLowerCase()=="good <@468615764643938314>") {
+	    const happytalk=[
 	        "I'm always bad.",
 	        "I'm always bad. That's what bots do.",
 	        "Bots aren't good. Especially me.",
@@ -42,7 +42,7 @@ bot.on('message',(message)=>{// to be cleaned up and/or added to in a future upd
 	    ]
 	    message.channel.send(happytalk[random.integer(0,happytalk.length-1)])
     }
-    const responses = {
+    const responses={
         "how's it going, openscykohbot?": "It's not easy being a bot... ~~listening to your demands~~",
         "<@468615764643938314> go away": "NEVAR!!",
         "<@468615764643938314>, go away": "NEVAR!!",
@@ -62,10 +62,10 @@ bot.on('message',(message)=>{// to be cleaned up and/or added to in a future upd
     if (responses[message.content.toLowerCase()]){
         message.channel.send(responses[message.content.toLowerCase()])
     }
-	if ((message.content.toLowerCase() == "<@468615764643938314> speak to me, foul bot!" && message.author.id != "246865356482805760") || (message.content.toLowerCase() == "<@468615764643938314>, speak to me, foul bot!" && message.author.id != "246865356482805760")){
+	if ((message.content.toLowerCase()=="<@468615764643938314> speak to me, foul bot!"&&message.author.id!="246865356482805760")||(message.content.toLowerCase()=="<@468615764643938314>, speak to me, foul bot!"&&message.author.id!="246865356482805760")){
 	    message.channel.send("No. I don't speak to the likes of you.")
-    }else if ((message.content.toLowerCase() == "<@468615764643938314> speak to me, foul bot!" && message.author.id == "246865356482805760") || (message.content.toLowerCase() == "<@468615764643938314>, speak to me, foul bot!" && message.author.id == "246865356482805760")){
-	    const crusadermsgs = [
+    }else if ((message.content.toLowerCase()=="<@468615764643938314> speak to me, foul bot!"&&message.author.id=="246865356482805760")||(message.content.toLowerCase()=="<@468615764643938314>, speak to me, foul bot!"&&message.author.id=="246865356482805760")){
+	    const crusadermsgs=[
             'Greetings, Sir Crusader.',
             'Hast thou found me irritating?',
             'Dost thou want to fight?'

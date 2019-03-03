@@ -1,7 +1,7 @@
-const commando = require('discord.js-commando')
+const commando=require('discord.js-commando')
 class ChangeOnlineStatus extends commando.Command {
-	constructor(client) {
-		super(client, {
+	constructor(client){
+		super(client,{
 			name: 'onlinestatus',
 			group: 'settings',
 			memberName: 'onlinestatus',
@@ -10,19 +10,19 @@ class ChangeOnlineStatus extends commando.Command {
     }
     async run(message,args){
         if (message.channel.type!=='dm'){
-            args = message.content.split(/ +/).slice(message.guild.commandPrefix.length)
+            args=message.content.split(/ +/).slice(message.guild.commandPrefix.length)
         }
-        if (message.author.id !== '324661689972686849'){
+        if (message.author.id!=='324661689972686849'){
             message.reply("you don't have permission to use this command.")
             return
         }
-        if (args[0].toLowerCase()=='dnd' || args.toLowerCase()=='donotdisturb'){
+        if (args[0].toLowerCase()=='dnd'||args.toLowerCase()=='donotdisturb'){
             this.client.user.setStatus('dnd')
             message.channel.send("My online status is now: **Do Not Disturb**.")
-        }else if (args[0].toLowerCase()=='away' || args[0].toLowerCase()=='idle'){
+        }else if (args[0].toLowerCase()=='away'||args[0].toLowerCase()=='idle'){
             this.client.user.setStatus('idle')
             message.channel.send("My online status is now: **Away/Idle**.")
-        }else if (args[0].toLowerCase()=='invisible' || args[0].toLowerCase()=='offline'){
+        }else if (args[0].toLowerCase()=='invisible'||args[0].toLowerCase()=='offline'){
             this.client.user.setStatus('invisible')
             message.channel.send("My online status is now: **Invisible/Offline**.")
         }else if (args[0].toLowerCase()=='online'){

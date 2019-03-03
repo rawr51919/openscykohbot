@@ -1,8 +1,8 @@
-const commando = require('discord.js-commando')
-const {stripIndents} = require('common-tags')
+const commando=require('discord.js-commando')
+const {stripIndents}=require('common-tags')
 class UserInfo extends commando.Command {
-    constructor(client) {
-        super(client, {
+    constructor(client){
+        super(client,{
             name: 'user',
             group: 'main',
             memberName: 'user',
@@ -18,8 +18,8 @@ class UserInfo extends commando.Command {
         })
     }
     async run(message,args){
-        const user = (!args.user) ? message.author : args.user
-        if (message.channel.type=='text' || message.channel.type=='group'){
+        const user=(!args.user) ? message.author : args.user
+        if (message.channel.type=='text'||message.channel.type=='group'){
             return message.say(stripIndents`
             User info for **${user.tag}** ${user.bot ? "(BOT)" : "(USER)"} in **${message.guild.name}**:
             User ID: **${user.id}**

@@ -1,14 +1,14 @@
-const commando = require('discord.js-commando')
+const commando=require('discord.js-commando')
 class Test extends commando.Command {
-    constructor(client) {
-        super(client, {
+    constructor(client){
+        super(client,{
             name: 'test',
             group: 'main',
             memberName: 'test',
             description: "Check to see if OpenScykohBot's online and responding.",
         })
     }
-    async run(message) {
+    async run(message){
         message.channel.send("I'm online.")
     }
 }

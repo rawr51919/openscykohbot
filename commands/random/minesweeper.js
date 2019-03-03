@@ -1,8 +1,8 @@
-const commando = require('discord.js-commando')
-const Minesweeper = require('discord.js-minesweeper')
+const commando=require('discord.js-commando')
+const Minesweeper=require('discord.js-minesweeper')
 class MinesweeperBoards extends commando.Command {
-        constructor(client) {
-            super(client, {
+        constructor(client){
+            super(client,{
                 name: 'minesweeper',
                 group: 'random',
                 memberName: 'minesweeper',
@@ -44,8 +44,8 @@ class MinesweeperBoards extends commando.Command {
             })
         }
         async run(message,{rows, columns, mines, emote, spaces}){
-                const minesweeper = new Minesweeper({rows, columns, mines, emote, spaces})
-                const board = minesweeper.start()
+                const minesweeper=new Minesweeper({rows, columns, mines, emote, spaces})
+                const board=minesweeper.start()
                 return board ? message.channel.send(board) : message.channel.send("You provided invalid data. Please try again.")
         }
 }

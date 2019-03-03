@@ -1,14 +1,14 @@
-const commando = require('discord.js-commando')
+const commando=require('discord.js-commando')
 class ScyProjects extends commando.Command {
-    constructor(client) {
-        super(client, {
+    constructor(client){
+        super(client,{
             name: 'scyprojects',
             group: 'information',
             memberName: 'scyprojects',
             description: 'The official ScyProjects server.',
         })
     }
-    async run(message) {
+    async run(message){
         message.channel.send("https://discord.gg/5uh8aS7")
     }
 }

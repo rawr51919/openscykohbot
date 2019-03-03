@@ -1,9 +1,9 @@
-const commando = require('discord.js-commando')
-const Random = require('random-js')
-const random = new Random.Random()
+const commando=require('discord.js-commando')
+const Random=require('random-js')
+const random=new Random.Random()
 class Knuccles extends commando.Command {
-	constructor(client) {
-		super(client, {
+	constructor(client){
+		super(client,{
 			name: 'knuccles',
 			group: 'random',
 			memberName: 'knuccles',
@@ -11,7 +11,7 @@ class Knuccles extends commando.Command {
 		})
   }
   async run(message){
-		const images = [
+		const images=[
           'https://i.imgur.com/RqNFJZ2.png\nImage originally requested by: an unknown user',
           'https://i.imgur.com/OmieAYp.png\nImage originally requested by: an unknown user',
           'https://i.imgur.com/h0Adtaq.png\nImage originally requested by: `グレイシイア#5279`',
@@ -54,7 +54,7 @@ class Knuccles extends commando.Command {
           'https://i.redd.it/4od07sv184a01.jpg\nImage originally requested by: `coltonrawr#5011`',
           'https://66.media.tumblr.com/a615392ed1e74b3655d6687ace9624b2/tumblr_nl7lpxYHVD1r1mcgyo1_1280.png\nImage originally requested by: `coltonrawr#5011',
       ]
-      const quotes = [
+      const quotes=[
         'KNUCKLES AND KNUCKLES AND KNUCKLES: INCLUDING: KNUCKLES - INTRODUCING: KNUCKLES - STARRING: KNUCKLES - EXTRA KNUCKLES BY: KNUCKLES: THE MOVIE: THE GAME: THE KNUCKLES',
         'Knuckles is love. Knuckles is life. We all have knuckles. 68 of them. Almost 69.',
         'This command needs more love. SPREAD THE KNUCCLES!',

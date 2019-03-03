@@ -1,9 +1,9 @@
-const commando = require('discord.js-commando')
-const Random = require('random-js')
-const random = new Random.Random()
+const commando=require('discord.js-commando')
+const Random=require('random-js')
+const random=new Random.Random()
 class EightBall extends commando.Command {
-	constructor(client) {
-		super(client, {
+	constructor(client){
+		super(client,{
 			name: '8ball',
 			group: 'random',
 			memberName: '8ball',
@@ -11,7 +11,7 @@ class EightBall extends commando.Command {
 		})
   }
     async run(message){
-        const eightballquotes = [
+        const eightballquotes=[
           'Dude, really? The obvious answer is... erm... what was my line again?',
           'Um, yeah?',
           'No way, dude!',

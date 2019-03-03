@@ -1,7 +1,7 @@
-const commando = require('discord.js-commando')
+const commando=require('discord.js-commando')
 class TempBanUsers extends commando.Command {
-	constructor(client) {
-		super(client, {
+	constructor(client){
+		super(client,{
 			name: 'tempban',
 			group: 'moderation',
 			memberName: 'tempban',
@@ -11,10 +11,10 @@ class TempBanUsers extends commando.Command {
     }
     async run(message,args){
         if (message.channel.type!=='dm'){
-            args = message.content.split(/ +/).slice(message.guild.commandPrefix.length)
+            args=message.content.split(/ +/).slice(message.guild.commandPrefix.length)
         }
         let banmember=message.mentions.members.first()
-        if(message.member.has('BAN_MEMBERS') && message.guild.me.has('BAN_MEMBERS')){
+        if(message.member.has('BAN_MEMBERS')&&message.guild.me.has('BAN_MEMBERS')){
             if(!banmember){
                 message.channel.send("Command error. Either this user doesn't exist or you didn't specify one when you typed the command.")
             }
@@ -23,7 +23,7 @@ class TempBanUsers extends commando.Command {
             }
             message.channel.send('Are you sure you want to ban the user '+args[0]+'for '+args[1]+' milliseconds? You must type `accept` within 5 seconds to do so.')
             .then(() => {
-            message.channel.awaitMessages(response => response.content === 'accept', {
+            message.channel.awaitMessages(response => response.content==='accept', {
                 max: 1,
                 time: 5000,
                 errors: ['args[1]'],

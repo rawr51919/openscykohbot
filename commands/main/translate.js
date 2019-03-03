@@ -1,6 +1,6 @@
-const commando = require('discord.js-commando')
-const translate = require('@vitalets/google-translate-api')
-const langs = {
+const commando=require('discord.js-commando')
+const translate=require('@vitalets/google-translate-api')
+const langs={
   'auto': 'Automatic',
   'af': 'Afrikaans',
   'sq': 'Albanian',
@@ -107,12 +107,12 @@ const langs = {
   'yo': 'Yoruba',
   'zu': 'Zulu'
 }
-const isos = Object.keys(langs).join('|')
-const manual = new RegExp('('+isos+')-('+isos+')')
-const auto = new RegExp('('+isos+')')
+const isos=Object.keys(langs).join('|')
+const manual=new RegExp('('+isos+')-('+isos+')')
+const auto=new RegExp('('+isos+')')
 class GoogleTranslate extends commando.Command {
-    constructor(client) {
-      super(client, {
+    constructor(client){
+      super(client,{
         name: 'translate',
         group: 'main',
         memberName: 'translate',
@@ -120,7 +120,7 @@ class GoogleTranslate extends commando.Command {
       });  
     }
     run(message){   
-        let args = message.content.substr(11).split(/ +/)
+        let args=message.content.substr(11).split(/ +/)
         if (manual.exec(args[0])){
             translate(args.slice(1).join(/ +/), {
                 from: manual.exec(args[0])[1],

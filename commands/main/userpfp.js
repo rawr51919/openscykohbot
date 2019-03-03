@@ -1,7 +1,7 @@
-const commando = require('discord.js-commando')
+const commando=require('discord.js-commando')
 class UserPFP extends commando.Command {
-    constructor(client) {
-        super(client, {
+    constructor(client){
+        super(client,{
             name: 'userpfp',
             group: 'main',
             memberName: 'userpfp',
@@ -15,8 +15,8 @@ class UserPFP extends commando.Command {
             ]
         })
     }
-    async run(message,args) {
-        if(!args.member || args.member.user==message.author){
+    async run(message,args){
+        if(!args.member||args.member.user==message.author){
             return message.reply("your avatar is: "+message.author.displayAvatarURL.replace("?size=2048", ""))
         }else if (args.member.user==this.client.user){
             return message.reply("my avatar is: "+this.client.user.displayAvatarURL.replace("?size=2048", ""))

@@ -1,8 +1,8 @@
-const commando = require('discord.js-commando')
-const {stripIndents} = require('common-tags')
+const commando=require('discord.js-commando')
+const {stripIndents}=require('common-tags')
 class ServerInfo extends commando.Command {
-	constructor(client) {
-		super(client, {
+	constructor(client){
+		super(client,{
 			name: 'server',
 			group: 'main',
 			memberName: 'server',
@@ -13,16 +13,16 @@ class ServerInfo extends commando.Command {
         if (message.channel.type=='dm'){
             message.reply("You can't use this command in a DM.")
         }else if (message.channel.type=='text'){
-            const verLevel = {
+            const verLevel={
                 0: "0 (Unrestricted)",
                 1: "1 (Email Verification)",
                 2: "2 (On Discord for >5 minutes)",
                 3: "3 (On server for >10 minutes)",
                 4: "4 (Phone Verification)"
             }
-            var textChannels = message.guild.channels.filter(channels => channels.type=='text')
-            var voiceChannels = message.guild.channels.filter(channels => channels.type=='voice')
-            var categoryChannels = message.guild.channels.filter(channels => channels.type=='category')
+            var textChannels=message.guild.channels.filter(channels => channels.type=='text')
+            var voiceChannels=message.guild.channels.filter(channels => channels.type=='voice')
+            var categoryChannels=message.guild.channels.filter(channels => channels.type=='category')
             message.say(stripIndents`
             Server info for **${message.guild.name}**:
             Server ID: **${message.guild.id}**

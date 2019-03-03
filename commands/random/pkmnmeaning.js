@@ -1,14 +1,14 @@
-const commando = require('discord.js-commando')
+const commando=require('discord.js-commando')
 class PKMNMeanings extends commando.Command {
-	constructor(client) {
-		super(client, {
+	constructor(client){
+		super(client,{
 			name: 'pkmnmeaning',
 			group: 'random',
 			memberName: 'pkmnmeaning',
 			description: 'Shows the meaning behind a Pokémon name. Still under construction.',
 		})
 	}
-	async run(message,args) {
+	async run(message,args){
 		switch (args) {
 			case '1':
 				message.channel.send('**Bulbasaur**:\n*n* bulb - a type of plant\n*n* -saur - Greek suffix meaning ‘lizard’')

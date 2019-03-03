@@ -1,9 +1,9 @@
-const commando = require('discord.js-commando')
-const Random = require('random-js')
-const random = new Random.Random()
+const commando=require('discord.js-commando')
+const Random=require('random-js')
+const random=new Random.Random()
 class Rate extends commando.Command {
-	constructor(client) {
-		super(client, {
+	constructor(client){
+		super(client,{
 			name: 'rate',
 			group: 'random',
 			memberName: 'rate',

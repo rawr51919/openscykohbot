@@ -1,7 +1,7 @@
-const commando = require('discord.js-commando')
+const commando=require('discord.js-commando')
 class Fonts extends commando.Command {
-	constructor(client) {
-		super(client, {
+	constructor(client){
+		super(client,{
 			name: 'font',
 			group: 'random',
 			memberName: 'font',
@@ -10,7 +10,7 @@ class Fonts extends commando.Command {
     }
     async run(message,args){
         if (message.channel.type!=='dm'){
-            args = message.content.split(/ +/).slice(message.guild.commandPrefix.length)
+            args=message.content.split(/ +/).slice(message.guild.commandPrefix.length)
         }
         if(!args[0]){
             message.channel.send(':capital_abcd: **Help for `&font`**\nUsage: `&font <fullwidth; chinese; script; blocks1; blocks2; mirror> <text>`\nExamples:\n`&font` by itself shows this help screen.\n`&font fullwidth hi` will give `ｈｉ`\n`&font script hi` will give `𝒽𝒾`')

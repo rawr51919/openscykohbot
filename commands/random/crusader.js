@@ -1,9 +1,9 @@
-const commando = require('discord.js-commando')
-const Random = require('random-js')
-const random = new Random.Random()
+const commando=require('discord.js-commando')
+const Random=require('random-js')
+const random=new Random.Random()
 class Crusader extends commando.Command {
-	constructor(client) {
-		super(client, {
+	constructor(client){
+		super(client,{
 			name: 'crusade',
 			group: 'random',
 			memberName: 'crusade',
@@ -11,10 +11,10 @@ class Crusader extends commando.Command {
 		})
   }
     async run(message){
-		const images = [
+		const images=[
             'No images yet.',
       ]
-      const quotes = [
+      const quotes=[
             'DEUS VULT',
             'WE MUST BRING THE HOLY LAND TO... wherever this is.',
         ]
