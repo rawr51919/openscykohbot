@@ -122,28 +122,26 @@ class GoogleTranslate extends commando.Command{
     }
     run(message){   
         let args=message.content.split(/\s/gm)
-        let match=manual.exec(args[1])
-        if(match){
+        if(manual.exec(args[1])){
             translate(args.slice(2).join(' '), {
-                from: match[1],
-                to: match[2]
+                from: manual.exec(args[1])[1],
+                to: manual.exec(args[1])[2]
             }).then(text => {
                 if (text.from.text.didYouMean==true){
-                    message.channel.send("Did you mean `"+text.from.text.value+"`?\nTranslating from "+langs[match[1]]+" to "+langs[match[2]]+":\n"+text.text)
+                    message.channel.send("Did you mean `"+text.from.text.value+"`?\nTranslating from "+langs[manual.exec(args[1])[1]]+" to "+langs[manual.exec(args[1])[2]]+":\n"+text.text)
                 }else if (text.from.text.autoCorrected==true){
-                    message.channel.send("Text automatically corrected to `"+text.from.text.value+"`.\nTranslating from "+langs[match[1]]+" to "+langs[match[2]]+":\n"+text.text)
+                    message.channel.send("Text automatically corrected to `"+text.from.text.value+"`.\nTranslating from "+langs[manual.exec(args[1])[1]]+" to "+langs[manual.exec(args[1])[2]]+":\n"+text.text)
                 }else{
-                    message.channel.send("Translating from "+langs[match[1]]+" to "+langs[match[2]]+":\n"+text.text)
+                    message.channel.send("Translating from "+langs[manual.exec(args[1])[1]]+" to "+langs[manual.exec(args[1])[2]]+":\n"+text.text)
                 }
             }).catch(err => {
                 message.channel.send("A translation error occurred. Either you didn't use the right language codes for arguments, you typed them the wrong way, or something went wrong on the bot's end.")
                 console.error(err)
             })
         }else{
-            let match=auto.exec(args[1])
-            if(match){
+            if(auto.exec(args[1])){
                 translate(args.slice(2).join(' '), {
-                    to: match[1]
+                    to: auto.exec(args[1])[1]
                 }).then(text => {
                 if (text.from.text.didYouMean==true){
                     message.channel.send("Did you mean `"+text.from.text.value+"`?\nDetected "+`${langs[text.from.language.iso]}`+" as the source language.\n"+text.text)
