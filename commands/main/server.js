@@ -1,6 +1,6 @@
 const commando=require('discord.js-commando')
-const {stripIndents}=require('common-tags')
-class ServerInfo extends commando.Command {
+const{stripIndents}=require('common-tags')
+class ServerInfo extends commando.Command{
 	constructor(client){
 		super(client,{
 			name: 'server',
@@ -20,13 +20,33 @@ class ServerInfo extends commando.Command {
                 3: "3 (On server for >10 minutes)",
                 4: "4 (Phone Verification)"
             }
-            var textChannels=message.guild.channels.filter(channels => channels.type=='text')
-            var voiceChannels=message.guild.channels.filter(channels => channels.type=='voice')
-            var categoryChannels=message.guild.channels.filter(channels => channels.type=='category')
+            var textChannels=message.guild.channels.filter(channels=>channels.type=='text')
+            var voiceChannels=message.guild.channels.filter(channels=>channels.type=='voice')
+            var categoryChannels=message.guild.channels.filter(channels=>channels.type=='category')
+            message.guild.fetchMembers()
+            const stats={
+                online:0,
+                idle:0,
+                offline:0,
+                dnd:0,
+                streaming:0,
+                bot:0
+            }
+            message.guild.members.forEach(member=>{
+                stats[member.presence.status]++
+                if(member.presence.game && member.presence.game.streaming)stats.streaming++
+                if(member.user.bot)stats.bot++
+            })
             message.say(stripIndents`
             Server info for **${message.guild.name}**:
             Server ID: **${message.guild.id}**
             Server Population: **${message.guild.memberCount}**
+            Current Server Online User Population: **${stats.online}**
+            Current Server Do Not Disturb (DND) User Population: **${stats.dnd}**
+            Current Server Idle/Away User Population: **${stats.idle}**
+            Current Server Invisible/Offline User Population: **${stats.offline}**
+            Current Server Streaming User Population: **${stats.streaming}**
+            Current Server Bot Population: **${stats.bot}**
             Server Owner: **${message.guild.owner}**
             Server Owner ID: **${message.guild.owner.id}**
             Text Channel Amount: **${textChannels.size}**
