@@ -108,51 +108,52 @@ const langs={
   'zu': 'Zulu'
 }
 const isos=Object.keys(langs).join('|')
+const manual=new RegExp('('+isos+')-('+isos+')')
+const auto=new RegExp('('+isos+')')
 class GoogleTranslate extends commando.Command{
     constructor(client){
       super(client,{
         name: 'translate',
+        aliases: ['gt'],
         group: 'main',
         memberName: 'translate',
         description: 'Translates text from one language to another.'
       })
     }
-    run(message,args){
-        const fromLang=String(args[0]+args[1])
-        const toLang=String(args[3]+args[4])
-        const text=args.slice(5)
-        if(isos.includes(fromLang) && isos.includes(toLang)){
-            translate(text,{
-                from: fromLang,
-                to: toLang
-            }).then(text =>{
+    run(message){   
+        let args=message.content.split(/\s/gm)
+        let match=manual.exec(args[1])
+        if(match){
+            translate(args.slice(2).join(' '), {
+                from: match[1],
+                to: match[2]
+            }).then(text => {
                 if (text.from.text.didYouMean==true){
-                    message.channel.send("Did you mean "+text.from.text.value+"?\nTranslating from "+langs[fromLang]+" to "+langs[toLang]+":\n"+text.text)
+                    message.channel.send("Did you mean `"+text.from.text.value+"`?\nTranslating from "+langs[match[1]]+" to "+langs[match[2]]+":\n"+text.text)
                 }else if (text.from.text.autoCorrected==true){
-                    message.channel.send("Text automatically corrected to "+text.from.text.value+".\nTranslating from "+langs[fromLang]+" to "+langs[toLang]+":\n"+text.text)
+                    message.channel.send("Text automatically corrected to `"+text.from.text.value+"`.\nTranslating from "+langs[match[1]]+" to "+langs[match[2]]+":\n"+text.text)
                 }else{
-                    message.channel.send("Translating from "+langs[fromLang]+" to "+langs[toLang]+":\n"+text.text)
+                    message.channel.send("Translating from "+langs[match[1]]+" to "+langs[match[2]]+":\n"+text.text)
                 }
-            }).catch(err =>{
-                message.channel.send("A translation error occurred. Either you didn't use the right language codes for arguments, or something went wrong on the bot's end.")
+            }).catch(err => {
+                message.channel.send("A translation error occurred. Either you didn't use the right language codes for arguments, you typed them the wrong way, or something went wrong on the bot's end.")
                 console.error(err)
             })
         }else{
-            const toLang=String(args[0]+args[1])
-            const text=args.slice(3)
-            if(isos.includes(toLang)){
-                translate(text,{
-                    to: toLang
-                }).then(text =>{
-                    if (text.from.text.didYouMean==true){
-                        message.channel.send("Did you mean "+text.from.text.value+"?\nDetected "+`${langs[text.from.language.iso]}`+" as the source language.\n"+text.text)
-                    }else if (text.from.text.autoCorrected==true){
-                        message.channel.send("Text automatically corrected to "+text.from.text.value+".\nDetected "+`${langs[text.from.language.iso]}`+" as the source language.\n"+text.text)
-                    }else{
-                        message.channel.send("Detected "+`${langs[text.from.language.iso]}`+" as the source language.\n"+text.text)
-                    }
-                }).catch(err =>{
-                    message.channel.send("A translation error occurred. Either you didn't use the right language codes for arguments, or something went wrong on the bot's end.")
+            let match=auto.exec(args[1])
+            if(match){
+                translate(args.slice(2).join(' '), {
+                    to: match[1]
+                }).then(text => {
+                if (text.from.text.didYouMean==true){
+                    message.channel.send("Did you mean `"+text.from.text.value+"`?\nDetected "+`${langs[text.from.language.iso]}`+" as the source language.\n"+text.text)
+                }else if (text.from.text.autoCorrected==true){
+                    message.channel.send("Text automatically corrected to `"+text.from.text.value+"`.\nDetected "+`${langs[text.from.language.iso]}`+" as the source language.\n"+text.text)
+                }else{
+                    message.channel.send("Detected "+`${langs[text.from.language.iso]}`+" as the source language.\n"+text.text)
+                }
+                }).catch(err => {
+                    message.channel.send("A translation error occurred. Either you didn't use the right language codes for arguments, you typed them the wrong way, or something went wrong on the bot's end.")
                     console.error(err)
                 })
             }else{
