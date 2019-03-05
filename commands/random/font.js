@@ -23,7 +23,7 @@ class Fonts extends commando.Command{
             }
             function textlooks1(text){
   			return Array.from(text)
-              .map(i => ({
+              .map(i=>({
                   // fullwidth font lookup table
                 a: 'ａ',
                 b: 'ｂ',
@@ -131,7 +131,7 @@ class Fonts extends commando.Command{
             }
             function textlooks2(text){
   			return Array.from(text)
-              .map(i => ({
+              .map(i=>({
                   // chinese font lookup table
                 a: '卂',
                 b: '乃',
@@ -221,7 +221,7 @@ class Fonts extends commando.Command{
             }
             function textlooks3(text){
                 return Array.from(text)
-              .map(i => ({
+              .map(i=>({
                   // script font lookup table
                 a: '𝒶',
                 b: '𝒷',
@@ -302,7 +302,7 @@ class Fonts extends commando.Command{
             }
             function textlooks4(text){
   			return Array.from(text)
-              .map(i => ({
+              .map(i=>({
                   // blocks1 font lookup table
                 a: '🇦 ',
                 b: '🇧 ',
@@ -382,7 +382,7 @@ class Fonts extends commando.Command{
             }
             function textlooks5(text){
   			return Array.from(text)
-              .map(i => ({
+              .map(i=>({
                   // blocks2 font lookup table
                 a: '🇦 ',
                 b: '🇧 ',
@@ -462,7 +462,7 @@ class Fonts extends commando.Command{
             }
             function textlooks6(text){
   			return Array.from(text)
-              .map(i => ({
+              .map(i=>({
                   // mirror font lookup table
                 a: 'ɐ',
                 b: 'q',

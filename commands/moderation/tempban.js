@@ -21,13 +21,13 @@ class TempBanUsers extends commando.Command{
                 message.channel.send("Command error. You didn't specify how long to ban the specified user.")
             }
             message.channel.send('Are you sure you want to ban the user '+args[0]+'for '+args[1]+' milliseconds? You must type `accept` within 5 seconds to do so.')
-            .then(() =>{
-            message.channel.awaitMessages(response => response.content==='accept',{
+            .then(()=>{
+            message.channel.awaitMessages(response=>response.content==='accept',{
                 max: 1,
                 time: 5000,
                 errors: ['args[1]'],
                 })
-                .then((collected) =>{
+                .then((collected)=>{
                     banmember.ban()
                         .then(console.log)
                     banmember.send('You have been banned from '+message.guild+' for '+args[1]+' milliseconds. You will receive a DM when the ban ends.')

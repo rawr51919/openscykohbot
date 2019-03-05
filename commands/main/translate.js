@@ -126,7 +126,7 @@ class GoogleTranslate extends commando.Command{
             translate(args.slice(2).join(' '), {
                 from: manual.exec(args[1])[1],
                 to: manual.exec(args[1])[2]
-            }).then(text => {
+            }).then(text=>{
                 if (text.from.text.didYouMean==true&&text.from.text.autoCorrected==false){
                     message.channel.send("Did you mean `"+text.from.text.value+"`?\nTranslating from "+langs[manual.exec(args[1])[1]]+" to "+langs[manual.exec(args[1])[2]]+":\n"+text.text)
                 }else if (text.from.text.autoCorrected==true&&text.from.text.didYouMean==false){
@@ -134,7 +134,7 @@ class GoogleTranslate extends commando.Command{
                 }else{
                     message.channel.send("Translating from "+langs[manual.exec(args[1])[1]]+" to "+langs[manual.exec(args[1])[2]]+":\n"+text.text)
                 }
-            }).catch(err => {
+            }).catch(err=>{
                 message.channel.send("A translation error occurred. Either you didn't use the right language codes for arguments, you typed them the wrong way, or something went wrong on the bot's end.")
                 console.error(err)
             })
@@ -142,7 +142,7 @@ class GoogleTranslate extends commando.Command{
             if(auto.exec(args[1])){
                 translate(args.slice(2).join(' '), {
                     to: auto.exec(args[1])[1]
-                }).then(text => {
+                }).then(text=>{
                 if (text.from.text.didYouMean==true&text.from.text.autoCorrected==false){
                     message.channel.send("Did you mean `"+text.from.text.value+"`?\nDetected "+`${langs[text.from.language.iso]}`+" as the source language.\n"+text.text)
                 }else if (text.from.text.autoCorrected==true&&text.from.text.didYouMean==false){
@@ -150,7 +150,7 @@ class GoogleTranslate extends commando.Command{
                 }else{
                     message.channel.send("Detected "+`${langs[text.from.language.iso]}`+" as the source language.\n"+text.text)
                 }
-                }).catch(err => {
+                }).catch(err=>{
                     message.channel.send("A translation error occurred. Either you didn't use the right language codes for arguments, you typed them the wrong way, or something went wrong on the bot's end.")
                     console.error(err)
                 })

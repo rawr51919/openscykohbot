@@ -17,17 +17,17 @@ class PurgeMessages extends commando.Command{
             message.channel.send("You need to specify the amount of messages to delete.\nExample: `&purge 10`\nExample in DMs (this will only delete the bot's messages, not your own): `@OpenScykohBot purge 10` or simply `purge 10`")
             return
         }else if(!intRegex.test(args)&&(message.member.hasPermission('MANAGE_MESSAGES')||message.guild.me.hasPermission('MANAGE_MESSAGES'))){
-            message.channel.send("I can't delete messages without a proper number. Try again with a proper number.").then(message => message.delete(3000))
+            message.channel.send("I can't delete messages without a proper number. Try again with a proper number.").then(message=>message.delete(3000))
             return
         }else if(intRegex.test(args)&&message.channel.type!=='dm'){
             tools.purge(message, this.client, parseInt(args))
             if(args&&(!message.member.hasPermission('MANAGE_MESSAGES')||!message.guild.me.hasPermission('MANAGE_MESSAGES'))){
                 message.reply('Either you, the bot, or both are missing the MANAGE_MESSAGES permission.')
             }else if(args==1&&(message.member.hasPermission('MANAGE_MESSAGES')||message.guild.me.hasPermission('MANAGE_MESSAGES'))){
-                message.channel.send('Successfully deleted '+args+' message.').then(message => message.delete(3000))
+                message.channel.send('Successfully deleted '+args+' message.').then(message=>message.delete(3000))
                 return
             }else if(args<1&&(message.member.hasPermission('MANAGE_MESSAGES')||message.guild.me.hasPermission('MANAGE_MESSAGES'))){
-                message.channel.send('Successfully deleted '+args+' messages.').then(message => message.delete(3000))
+                message.channel.send('Successfully deleted '+args+' messages.').then(message=>message.delete(3000))
                 return
             }
         }else if(intRegex.test(args)&&message.channel.type==='dm'){
@@ -35,14 +35,14 @@ class PurgeMessages extends commando.Command{
                 message.channel.send("I can only delete up to 100 of my DM messages at a time.\nLower the message amount and try again, as you're probably gonna overload both me and the API.\nNo one wants that, do we?")
             }else{
                 await message.channel.fetchMessages().then(message =>{
-                    message.filter(message => message.author.id===this.client.user.id).first(parseInt(args)).map(message => message.delete())
+                    message.filter(message=>message.author.id===this.client.user.id).first(parseInt(args)).map(message=>message.delete())
                 })
             }
             if(args==1){
-                message.channel.send('Successfully deleted '+args+' message of mine.').then(message => message.delete(3000))
+                message.channel.send('Successfully deleted '+args+' message of mine.').then(message=>message.delete(3000))
                 return
             }else{
-                message.channel.send('Successfully deleted '+args+' messages of mine.').then(message => message.delete(3000))
+                message.channel.send('Successfully deleted '+args+' messages of mine.').then(message=>message.delete(3000))
                 return
             }
         }

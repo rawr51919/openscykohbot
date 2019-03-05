@@ -23,8 +23,11 @@ class UserIDs extends commando.Command{
         }else if(/^#?[\d]{17}$/i.test(args[0])&&this.client.users.has(args[0])){
             message.channel.send('Found user: <@'+/^#?([\d]{17})$/i.exec(args[0])[1].toLowerCase()+'>.')
             return
+        }else if(((!(/^#?[\d]{19}$/i.test(args[0]))&&!(/^#?[\d]{18}$/i.test(args[0]))&&!(/^#?[\d]{17}$/i.test(args[0])))||(!this.client.users.has(args[0])&&message.channel.type!='dm'))){
+            message.reply('you provided an invalid user ID (or you provided something else). Please try again with a valid user ID.')
+            return
         }else{
-            message.channel.send(message.author+', you provided an invalid user ID (or you provided something else). Please try again with a valid user ID.')
+            message.reply('You provided an invalid user ID (or you provided something else). Please try again with a valid user ID.')
             return
         }
     }

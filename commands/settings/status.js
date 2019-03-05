@@ -5,7 +5,7 @@ class ChangeOverallStatus extends commando.Command{
 			name: 'status',
 			group: 'settings',
 			memberName: 'status',
-			description: 'Change the bot\'s overall status. Only a select few are allowed to use this command.',
+			description: "Change the bot's overall status. Only a select few are allowed to use this command.",
 		})
     }
     async run(message,args){

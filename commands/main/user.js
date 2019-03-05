@@ -8,7 +8,7 @@ class UserInfo extends commando.Command{
             memberName: 'user',
             description: "Check a particular Discord user's stats.",
             args: [
-               {
+                {
                     key: "user",
                     prompt: "Who should I choose?",
                     type: "user",
@@ -18,7 +18,7 @@ class UserInfo extends commando.Command{
         })
     }
     async run(message,args){
-        const user=(!args.user) ? message.author : args.user
+        const user=(!args.user)?message.author:args.user
         if(message.channel.type=='text'||message.channel.type=='group'){
             return message.say(stripIndents`
             User info for **${user.tag}** ${user.bot ? "(BOT)" : "(USER)"} in **${message.guild.name}**:
