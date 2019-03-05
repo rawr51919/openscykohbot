@@ -34,7 +34,7 @@ class PurgeMessages extends commando.Command{
             if(args>100){
                 message.channel.send("I can only delete up to 100 of my DM messages at a time.\nLower the message amount and try again, as you're probably gonna overload both me and the API.\nNo one wants that, do we?")
             }else{
-                await message.channel.fetchMessages().then(message =>{
+                await message.channel.fetchMessages().then(message=>{
                     message.filter(message=>message.author.id===this.client.user.id).first(parseInt(args)).map(message=>message.delete())
                 })
             }
