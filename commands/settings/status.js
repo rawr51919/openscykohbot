@@ -1,5 +1,5 @@
 const commando=require('discord.js-commando')
-class ChangeOverallStatus extends commando.Command {
+class ChangeOverallStatus extends commando.Command{
 	constructor(client){
 		super(client,{
 			name: 'status',
@@ -9,12 +9,12 @@ class ChangeOverallStatus extends commando.Command {
 		})
     }
     async run(message,args){
-        if(message.channel.type!=='dm'){
+        if(message.channel.type!=='dm')
             args=message.content.split(/ +/).slice(message.guild.commandPrefix.length)
-        }
-        if(message.author.id!=='324661689972686849'){
-            message.reply(`you don\'t have permission to use this command.`)
-            return
+        if(message.author.id!=='324661689972686849'&&message.channel.type!=='dm'){
+            message.reply("you don't have permission to use this command.")
+        }else if(message.author.id!=='324661689972686849'&&message.channel.type==='dm'){
+            message.reply("You don't have permission to use this command.")
         }
         if((!args[0]&&!args[1]&&!args[2])||(args[0]!='reset'&&!args[1]&&!args[2])){
             message.reply('you must set both the online status and the activity of this bot, not one or the other.\nIf you want to set either or, use either `&activity` for just the status or `&onlinestatus` for just the online status.')
@@ -138,6 +138,36 @@ class ChangeOverallStatus extends commando.Command {
                     }
                 })
             message.channel.send("My online status is now: **Away/Idle** and my status is now: **Watching** "+message.content.substr(20)+".")
+        }else if((args[0].toLowerCase()=='online'&&args[1].toLowerCase()=='remove')||(args[0].toLowerCase()=='remove'&&args[1].toLowerCase()=='online')){
+            this.client.user.setStatus('online')
+            this.client.user.setPresence({
+                game:
+                    {
+                        name:null,
+                        type:null
+                    }
+                })
+            message.channel.send("My online status is now: **Online** and I have no status.")
+        }else if((args[0].toLowerCase()=='dnd'&&args[1].toLowerCase()=='remove')||(args[0].toLowerCase()=='remove'&&args[1].toLowerCase()=='dnd')){
+            this.client.user.setStatus('dnd')
+            this.client.user.setPresence({
+                game:
+                    {
+                        name:null,
+                        type:null
+                    }
+                })
+            message.channel.send("My online status is now: **Do Not Disturb** and I have no status.")
+        }else if((args[0].toLowerCase()=='away'&&args[1].toLowerCase()=='remove')||(args[0].toLowerCase()=='remove'&&args[1].toLowerCase()=='away')||(args[0].toLowerCase()=='idle'&&args[1].toLowerCase()=='remove')||(args[0].toLowerCase()=='remove'&&args[1].toLowerCase()=='idle')){
+            this.client.user.setStatus('idle')
+            this.client.user.setPresence({
+                game:
+                    {
+                        name:null,
+                        type:null
+                    }
+                })
+            message.channel.send("My online status is now: **Away/Idle** and I have no status.")
         }else if(args[0].toLowerCase()=='reset'){
             this.client.user.setStatus('online')
 	        this.client.user.setPresence({

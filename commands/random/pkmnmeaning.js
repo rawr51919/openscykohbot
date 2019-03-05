@@ -1,5 +1,5 @@
 const commando=require('discord.js-commando')
-class PKMNMeanings extends commando.Command {
+class PKMNMeanings extends commando.Command{
 	constructor(client){
 		super(client,{
 			name: 'pkmnmeaning',
@@ -9,7 +9,7 @@ class PKMNMeanings extends commando.Command {
 		})
 	}
 	async run(message,args){
-		switch (args) {
+		switch (args){
 			case '1':
 				message.channel.send('**Bulbasaur**:\n*n* bulb - a type of plant\n*n* -saur - Greek suffix meaning ‘lizard’')
 				break

@@ -3,7 +3,7 @@ const discord=require('discord.js')
 const commando=require('discord.js-commando')
 const tools=require('discord.js-tools')
 const gm=require('gm')
-class Info extends commando.Command {
+class Info extends commando.Command{
     constructor(client){
         super(client,{
             name: 'info',

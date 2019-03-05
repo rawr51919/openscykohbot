@@ -1,5 +1,5 @@
 const commando=require('discord.js-commando')
-class UserPFP extends commando.Command {
+class UserPFP extends commando.Command{
     constructor(client){
         super(client,{
             name: 'userpfp',
@@ -7,7 +7,7 @@ class UserPFP extends commando.Command {
             memberName: 'userpfp',
             description: 'Allows OpenScykohBot to show the avatar of either you or anyone you choose.',
             args: [
-                {
+               {
                     key: "member",
                     prompt: "Who should I choose?",
                     type: "member"

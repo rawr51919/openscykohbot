@@ -1,5 +1,5 @@
 const commando=require('discord.js-commando')
-class GroupDMPFP extends commando.Command {
+class GroupDMPFP extends commando.Command{
     constructor(client){
         super(client,{
             name: 'groupdmpfp',

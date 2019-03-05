@@ -1,5 +1,5 @@
 const commando=require('discord.js-commando')
-class Eeveelutions extends commando.Command {
+class Eeveelutions extends commando.Command{
     constructor(client){
         super(client,{
             name: 'eeveelutions',

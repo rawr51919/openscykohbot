@@ -1,5 +1,5 @@
 const commando=require('discord.js-commando')
-class Say extends commando.Command {
+class Say extends commando.Command{
 	constructor(client){
 		super(client,{
 			name: 'say',
@@ -8,10 +8,10 @@ class Say extends commando.Command {
 			description: 'Make the bot sass at you for trying to have it say what you wish.',
 		})
     }
-    async run(message,args){
+    async run(message){
         if(message.author.id!=='324661689972686849'){
             message.channel.send("You can't control me!")
-        } else {
+        }else{
             message.channel.send(message.content.substr(5))
         }
     }

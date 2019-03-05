@@ -1,6 +1,6 @@
 const commando=require('discord.js-commando')
 var weather=require('weather-js')
-class Weather extends commando.Command {
+class Weather extends commando.Command{
 	constructor(client){
 		super(client,{
 			name: 'weather',
@@ -9,16 +9,14 @@ class Weather extends commando.Command {
 			description: 'Have OpenScykohBot check the weather for your area.',
 		})
     }
-    async run(message,args){
-        weather.find({search: message.content.substr(9), degreeType: 'F'}, function(err, result) {
-            if(err) console.log(err)
-            if(result===undefined||result.length===0) {
+    async run(message){
+        weather.find({search:message.content.substr(9),degreeType:'F'},function(err,result){
+            if(err)console.log(err)
+            if(result===undefined||result.length===0)
               message.channel.send('Please enter a valid location.')
-              return
-            }
             let emoji=""
             let weather=""
-            let windops=result[0].current.winddisplay.split(/ +/).slice(0)
+            let windops=result[0].current.winddisplay.split(/ +/)
             let winddirection=windops[2]
             let windspeed=result[0].current.winddisplay.slice(0,-winddirection.length-1)
             if(winddirection=="North"){

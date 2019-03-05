@@ -1,7 +1,7 @@
 const commando=require('discord.js-commando')
 const Random=require('random-js')
 const random=new Random.Random()
-class RandomPokémon extends commando.Command {
+class RandomPokémon extends commando.Command{
     constructor(client){
         super(client,{
             name: 'randpoke',

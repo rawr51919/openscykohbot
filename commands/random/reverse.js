@@ -1,5 +1,5 @@
 const commando=require('discord.js-commando')
-class ReverseStrings extends commando.Command {
+class ReverseStrings extends commando.Command{
 	constructor(client){
 		super(client,{
 			name: 'reverse',
@@ -8,7 +8,7 @@ class ReverseStrings extends commando.Command {
 			description: 'Reverses any text you input into this command.',
 		})
     }
-    async run (message){
+    async run(message){
         message.channel.send(String(message.content.substr(9)).split("").reverse().join(""))
     }
 }

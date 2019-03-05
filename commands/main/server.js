@@ -1,5 +1,5 @@
 const commando=require('discord.js-commando')
-const{stripIndents}=require('common-tags')
+const {stripIndents}=require('common-tags')
 class ServerInfo extends commando.Command{
 	constructor(client){
 		super(client,{
@@ -34,7 +34,7 @@ class ServerInfo extends commando.Command{
             }
             message.guild.members.forEach(member=>{
                 stats[member.presence.status]++
-                if(member.presence.game && member.presence.game.streaming)stats.streaming++
+                if(member.presence.game&&member.presence.game.streaming)stats.streaming++
                 if(member.user.bot)stats.bot++
             })
             message.say(stripIndents`
@@ -42,7 +42,7 @@ class ServerInfo extends commando.Command{
             Server ID: **${message.guild.id}**
             Server Population: **${message.guild.memberCount}**
             Current Server Online User Population: **${stats.online}**
-            Current Server Do Not Disturb (DND) User Population: **${stats.dnd}**
+            Current Server Do Not Disturb (DnD) User Population: **${stats.dnd}**
             Current Server Idle/Away User Population: **${stats.idle}**
             Current Server Invisible/Offline User Population: **${stats.offline}**
             Current Server Streaming User Population: **${stats.streaming}**

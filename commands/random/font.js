@@ -1,5 +1,5 @@
 const commando=require('discord.js-commando')
-class Fonts extends commando.Command {
+class Fonts extends commando.Command{
 	constructor(client){
 		super(client,{
 			name: 'font',
@@ -303,7 +303,7 @@ class Fonts extends commando.Command {
             function textlooks4(text){
   			return Array.from(text)
               .map(i => ({
-                  // blocks font lookup table
+                  // blocks1 font lookup table
                 a: '🇦 ',
                 b: '🇧 ',
                 c: '🇨 ',
@@ -383,7 +383,7 @@ class Fonts extends commando.Command {
             function textlooks5(text){
   			return Array.from(text)
               .map(i => ({
-                  // blocks font lookup table
+                  // blocks2 font lookup table
                 a: '🇦 ',
                 b: '🇧 ',
                 c: '🇨 ',

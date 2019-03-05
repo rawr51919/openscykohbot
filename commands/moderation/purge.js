@@ -1,6 +1,6 @@
 const commando=require('discord.js-commando')
 const tools=require('discord.js-tools')
-class PurgeMessages extends commando.Command {
+class PurgeMessages extends commando.Command{
 	constructor(client){
 		super(client,{
 			name: 'purge',
@@ -10,9 +10,8 @@ class PurgeMessages extends commando.Command {
 		})
     }
     async run(message,args){
-        if(message.channel.type!=='dm'){
+        if(message.channel.type!=='dm')
             args=message.content.split(/ +/).slice(message.guild.commandPrefix.length)
-        }
         var intRegex=/^\d+$/
         if(!args&&(message.member.hasPermission('MANAGE_MESSAGES')||message.guild.me.hasPermission('MANAGE_MESSAGES'))){
             message.channel.send("You need to specify the amount of messages to delete.\nExample: `&purge 10`\nExample in DMs (this will only delete the bot's messages, not your own): `@OpenScykohBot purge 10` or simply `purge 10`")
@@ -35,7 +34,7 @@ class PurgeMessages extends commando.Command {
             if(args>100){
                 message.channel.send("I can only delete up to 100 of my DM messages at a time.\nLower the message amount and try again, as you're probably gonna overload both me and the API.\nNo one wants that, do we?")
             }else{
-                await message.channel.fetchMessages({limit: 100}).then(message => {
+                await message.channel.fetchMessages().then(message =>{
                     message.filter(message => message.author.id===this.client.user.id).first(parseInt(args)).map(message => message.delete())
                 })
             }

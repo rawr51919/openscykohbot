@@ -1,6 +1,6 @@
 const commando=require('discord.js-commando')
 const {stripIndents}=require('common-tags')
-class UserInfo extends commando.Command {
+class UserInfo extends commando.Command{
     constructor(client){
         super(client,{
             name: 'user',
@@ -8,7 +8,7 @@ class UserInfo extends commando.Command {
             memberName: 'user',
             description: "Check a particular Discord user's stats.",
             args: [
-                {
+               {
                     key: "user",
                     prompt: "Who should I choose?",
                     type: "user",

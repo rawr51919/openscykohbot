@@ -1,5 +1,5 @@
 const commando=require('discord.js-commando')
-class ChangeOnlineStatus extends commando.Command {
+class ChangeOnlineStatus extends commando.Command{
 	constructor(client){
 		super(client,{
 			name: 'onlinestatus',
@@ -9,14 +9,14 @@ class ChangeOnlineStatus extends commando.Command {
 		})
     }
     async run(message,args){
-        if(message.channel.type!=='dm'){
+        if(message.channel.type!=='dm')
             args=message.content.split(/ +/).slice(message.guild.commandPrefix.length)
-        }
-        if(message.author.id!=='324661689972686849'){
+        if(message.author.id!=='324661689972686849'&&message.channel.type!=='dm'){
             message.reply("you don't have permission to use this command.")
-            return
+        }else if(message.author.id!=='324661689972686849'&&message.channel.type==='dm'){
+            message.reply("You don't have permission to use this command.")
         }
-        if(args[0].toLowerCase()=='dnd'||args.toLowerCase()=='donotdisturb'){
+        if(args[0].toLowerCase()=='dnd'){
             this.client.user.setStatus('dnd')
             message.channel.send("My online status is now: **Do Not Disturb**.")
         }else if(args[0].toLowerCase()=='away'||args[0].toLowerCase()=='idle'){

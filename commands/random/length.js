@@ -1,5 +1,5 @@
 const commando=require('discord.js-commando')
-class StringLength extends commando.Command {
+class StringLength extends commando.Command{
     constructor(client){
         super(client,{
             name: 'length',

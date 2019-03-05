@@ -1,7 +1,7 @@
 const commando=require('discord.js-commando')
 const Random=require('random-js')
 var random
-class RNG extends commando.Command {
+class RNG extends commando.Command{
     constructor(client){
         super(client,{
             name: 'rng',
@@ -11,7 +11,7 @@ class RNG extends commando.Command {
             args: [
                 {
                   key: 'engine',
-                  prompt: 'What engine do you want to use? `nm`, `mt`, `nc`, and `bc` are your options.',
+                  prompt: 'What engine do you want to use? `nm`, `mt`, `nc`, and `bc` are your options.\nSpecify `help` to get help with using this command.',
                   type: 'string',
                   mt: random=new Random.Random(Random.MersenneTwister19937.autoSeed()),
                   nc: random=new Random.Random(Random.nodeCrypto),
@@ -23,21 +23,24 @@ class RNG extends commando.Command {
                   prompt: 'How many numbers?',
                   type: 'integer',
                   min: 1,
-                  max: 9007199254740992
+                  max: 9007199254740992,
+                  default: ""
                 },
                 {
                   key: 'rangebegin',
                   prompt: 'What number should the number range begin at?',
                   type: 'integer',
                   min: 0,
-                  max: 4294967295
+                  max: 4294967295,
+                  default: ""
                 },
                 {
                   key: 'rangeend',
                   prompt: 'What number should the number range end at?',
                   type: 'integer',
                   min: 0,
-                  max: 4294967295
+                  max: 4294967295,
+                  default: ""
                 },
             ]
         })
@@ -45,8 +48,8 @@ class RNG extends commando.Command {
     async run(message,args){
         var numberarray=[]
         var numbertotal=0
-        if(args.engine=='help'){
-            message.channel.send("Help for **&rng**:\nSpecify the engine you want to use and the numbers to generate between.\nExample: `Example: `&rng, 2, 0, 10` at the prompts would generate 2 numbers between 0 and 10 and show the result in the channel you sent the command in.\nThe engines used are:\nNativeMath, which has `Math.random()` under the hood and is accessible via using `nm` as the first argument.\nBrowserCrypto, which has `crypto.getRandomValues()` under the hood and is accessible via using `bc` as the first argument.\nNodeCrypto, which has `crypto.RandomBytes()` under the hood and is accessible via using `nc` as the first argument.\nMersenneTwister19937, which has a variant of the Mersenne Twister under the hood and is accessible via using `mt` as the first argument.")
+        if (args.engine=='help'){
+            message.channel.send("Help for **&rng**:\nSpecify the engine you want to use and the numbers to generate between.\nExample: `&rng nm 2 0 10` at the prompts would generate 2 numbers between 0 and 10 using the `nativeMath` engine and show the result in the channel you sent the command in.\nThe engines used are:\nNativeMath, which has `Math.random()` under the hood and is accessible via using `nm` as the first argument.\nBrowserCrypto, which has `crypto.getRandomValues()` under the hood and is accessible via using `bc` as the first argument.\nNodeCrypto, which has `crypto.RandomBytes()` under the hood and is accessible via using `nc` as the first argument.\nMersenneTwister19937, which has a variant of the Mersenne Twister under the hood and is accessible via using `mt` as the first argument.")
             return
         }
         if(args.numbers==1&&args.rangebegin==1&&message.channel.type!='dm'){

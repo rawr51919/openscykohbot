@@ -1,7 +1,7 @@
 const commando=require('discord.js-commando')
 const Random=require('random-js')
 var random=new Random.Random()
-class Hugs extends commando.Command {
+class Hugs extends commando.Command{
 	constructor(client){
 		super(client,{
 			name: 'hug',

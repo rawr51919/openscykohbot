@@ -1,7 +1,7 @@
 const commando=require('discord.js-commando')
 const Random=require('random-js')
 const random=new Random.Random()
-class RockPaperScissors extends commando.Command {
+class RockPaperScissors extends commando.Command{
 	constructor(client){
 		super(client,{
 			name: 'rps',
@@ -11,12 +11,12 @@ class RockPaperScissors extends commando.Command {
 		})
 	}
 	async run(message,args){
-        if(message.channel.type!=='dm')
-            args=message.content.split(/ +/).slice(message.guild.commandPrefix.length)
+    if(message.channel.type!=='dm')
+      args=message.content.split(/ +/).slice(message.guild.commandPrefix.length)
 		if(!args[0])
 			message.channel.send("You need to specify if you're playing Rock, Paper, Scissors, Tornado, or Hurricane.\nExample: `&rps rock`")
-		if(args[0].toLowerCase()=='rock') {
-			switch(random.die(5)){
+		if(args[0].toLowerCase()=='rock'){
+			switch(random.die(3)){
 				case 1:
 					message.channel.send(":fist::skin-tone-1: I choose rock. It's a tie.")
 					break
@@ -26,15 +26,9 @@ class RockPaperScissors extends commando.Command {
 				case 3:
 					message.channel.send(":v::skin-tone-1: I choose scissors. You win!")
 					break
-				case 4:
-					message.channel.send(":hand_splayed::skin-tone-1: I choose paper. I win!")
-					break
-				case 5:
-					message.channel.send(":fist::skin-tone-1: I choose rock. It's a tie.")
-					break
 			}
 		}else if(args[0].toLowerCase()=='paper'){
-			switch(random.die(5)){
+			switch(random.die(3)){
 				case 1:
 					message.channel.send(":fist::skin-tone-1: I choose rock. You win!")
 					break
@@ -44,15 +38,9 @@ class RockPaperScissors extends commando.Command {
 				case 3:
 					message.channel.send(":v::skin-tone-1: I choose scissors. I win!")
 					break
-				case 4:
-					message.channel.send(":hand_splayed::skin-tone-1: I choose paper. It's a tie.")
-					break
-				case 5:
-					message.channel.send(":v::skin-tone-1: I choose scissors. I win!")
-					break
 			}
 		}else if(args[0].toLowerCase()=='scissors'){
-			switch(random.die(5)){
+			switch(random.die(3)){
 				case 1:
 					message.channel.send(":fist::skin-tone-1: I choose rock. I win!")
 					break
@@ -61,12 +49,6 @@ class RockPaperScissors extends commando.Command {
 					break
 				case 3:
 					message.channel.send(":v::skin-tone-1: I choose scissors. It's a tie.")
-					break
-				case 4:
-					message.channel.send(":v::skin-tone-1: I choose scissors. It's a tie.")
-					break
-				case 5:
-					message.channel.send(":fist::skin-tone-1: I choose rock. I win!")
 					break
 			}
 		}else if(args[0].toLowerCase()=='tornado'){
@@ -79,6 +61,6 @@ class RockPaperScissors extends commando.Command {
 			message.channel.send("You need to specify if you're playing Rock, Paper, Scissors, Tornado, or Hurricane.\nExample: `&rps rock`")
 			return
 		}
-    }
+  }
 }
 module.exports=RockPaperScissors

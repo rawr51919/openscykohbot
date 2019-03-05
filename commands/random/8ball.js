@@ -1,7 +1,7 @@
 const commando=require('discord.js-commando')
 const Random=require('random-js')
 const random=new Random.Random()
-class EightBall extends commando.Command {
+class EightBall extends commando.Command{
 	constructor(client){
 		super(client,{
 			name: '8ball',
@@ -25,9 +25,9 @@ class EightBall extends commando.Command {
           'Crud, no!',
           'I would say no.',
           "Well... I wouldn't say yes... but...",
-          "Most likely.",
-          "I would prefer to say yes.",
-          "Why, no.",
+          'Most likely.',
+          'I would prefer to say yes.',
+          'Why, no.',
           "That's pretty obvious, dude.",
           'Well, if you t-- *shuts down*',
           '*cough* Erm, y-yeah?',

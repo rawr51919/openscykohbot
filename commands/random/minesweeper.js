@@ -1,6 +1,6 @@
 const commando=require('discord.js-commando')
 const Minesweeper=require('discord.js-minesweeper')
-class MinesweeperBoards extends commando.Command {
+class MinesweeperBoards extends commando.Command{
         constructor(client){
             super(client,{
                 name: 'minesweeper',

@@ -1,6 +1,6 @@
 const commando=require('discord.js-commando')
 const fetch=require('node-fetch')
-class ChangePFP extends commando.Command {
+class ChangePFP extends commando.Command{
 	constructor(client){
 		super(client,{
 			name: 'botpfp',
@@ -11,11 +11,10 @@ class ChangePFP extends commando.Command {
     }
     async run (message,args){
         const options={
-            headers: {'content-type': 'image'}
+            headers:{'content-type': 'image'}
         }
-        if(message.channel.type!=='dm'){
+        if(message.channel.type!=='dm')
             args=message.content.split(/ +/).slice(message.guild.commandPrefix.length)
-        }
         if(message.author.id!=='324661689972686849'&&message.channel.type!=='dm'){
             message.reply("you don't have permission to use this command.")
         }else if(message.author.id!=='324661689972686849'&&message.channel.type==='dm'){

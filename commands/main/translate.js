@@ -127,9 +127,9 @@ class GoogleTranslate extends commando.Command{
                 from: manual.exec(args[1])[1],
                 to: manual.exec(args[1])[2]
             }).then(text => {
-                if (text.from.text.didYouMean==true){
+                if (text.from.text.didYouMean==true&&text.from.text.autoCorrected==false){
                     message.channel.send("Did you mean `"+text.from.text.value+"`?\nTranslating from "+langs[manual.exec(args[1])[1]]+" to "+langs[manual.exec(args[1])[2]]+":\n"+text.text)
-                }else if (text.from.text.autoCorrected==true){
+                }else if (text.from.text.autoCorrected==true&&text.from.text.didYouMean==false){
                     message.channel.send("Text automatically corrected to `"+text.from.text.value+"`.\nTranslating from "+langs[manual.exec(args[1])[1]]+" to "+langs[manual.exec(args[1])[2]]+":\n"+text.text)
                 }else{
                     message.channel.send("Translating from "+langs[manual.exec(args[1])[1]]+" to "+langs[manual.exec(args[1])[2]]+":\n"+text.text)
@@ -143,9 +143,9 @@ class GoogleTranslate extends commando.Command{
                 translate(args.slice(2).join(' '), {
                     to: auto.exec(args[1])[1]
                 }).then(text => {
-                if (text.from.text.didYouMean==true){
+                if (text.from.text.didYouMean==true&text.from.text.autoCorrected==false){
                     message.channel.send("Did you mean `"+text.from.text.value+"`?\nDetected "+`${langs[text.from.language.iso]}`+" as the source language.\n"+text.text)
-                }else if (text.from.text.autoCorrected==true){
+                }else if (text.from.text.autoCorrected==true&&text.from.text.didYouMean==false){
                     message.channel.send("Text automatically corrected to `"+text.from.text.value+"`.\nDetected "+`${langs[text.from.language.iso]}`+" as the source language.\n"+text.text)
                 }else{
                     message.channel.send("Detected "+`${langs[text.from.language.iso]}`+" as the source language.\n"+text.text)
