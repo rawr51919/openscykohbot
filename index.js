@@ -19,7 +19,7 @@ bot.on('ready',()=>{
     })
 })
 bot.on('message',(message)=>{// to be cleaned up and/or added to in a future update
-	if(message.content.toLowerCase()=="bad openscykohbot"||message.content.toLowerCase()=="bad <@468615764643938314>") {
+	if(message.content.toLowerCase()=="bad openscykohbot"||message.content.toLowerCase()=="bad <@468615764643938314>"){
 	    const sadtalk=[
 	        "It's all my fault.",
 	        "It's not my fault! It's random!",
@@ -30,7 +30,7 @@ bot.on('message',(message)=>{// to be cleaned up and/or added to in a future upd
 	    ]
 	    message.channel.send(sadtalk[random.integer(0,sadtalk.length-1)])
 	}
-	if(message.content.toLowerCase()=="good openscykohbot"||message.content.toLowerCase()=="good <@468615764643938314>") {
+	if(message.content.toLowerCase()=="good openscykohbot"||message.content.toLowerCase()=="good <@468615764643938314>"){
 	    const happytalk=[
 	        "I'm always bad.",
 	        "I'm always bad. That's what bots do.",

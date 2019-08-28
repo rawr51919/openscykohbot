@@ -8,8 +8,9 @@ class PKMNMeanings extends commando.Command{
 			description: 'Shows the meaning behind a Pokémon name. Still under construction.',
 		})
 	}
-	async run(message,args){
-		switch (args){
+	async run(message){
+		let args=message.content.split(/\s/gm)
+		switch (args[1]){
 			case '1':
 				message.channel.send('**Bulbasaur**:\n*n* bulb - a type of plant\n*n* -saur - Greek suffix meaning ‘lizard’')
 				break
@@ -36,6 +37,9 @@ class PKMNMeanings extends commando.Command{
 				break
 			case '9':
 				message.channel.send('**Blastoise**:\n*n* blast - a strong gust of wind or air\n*n* tortoise - a large land reptile with a bony shell')
+				break
+			case '10':
+				message.channel.send('**Caterpie**:\n*n* caterpillar - a butterfly or moth larva\n*n* pie - a baked dish of fruit')
 				break
 			default:
                 message.channel.send('Please specify a valid Pokémon ID. Usage: `&pkmnmeaning <ID>`')

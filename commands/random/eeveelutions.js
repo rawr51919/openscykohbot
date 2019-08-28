@@ -9,7 +9,7 @@ class Eeveelutions extends commando.Command{
         })
     }
     async run(message){
-        message.channel.send("**Eeveelutions**:\nFlareon: Evolve with Fire Stone\nJolteon: Evolve with Thunder Stone\nVaporeon: Evolve with Water Stone\nEspeon: Level up with 220 or greater happiness during the day\nUmbreon: Level up with 220 or greater happiness during the night\nLeafeon: Evolve near the Mossy Rock\nGlaceon: Evolve near the Icy Rock\nSylveon: Level up knowing a Fairy-type move and have 2 affection hearts on the Eevee")
+        message.channel.send("**Eeveelutions**:\nFlareon: Evolve with Fire Stone\nJolteon: Evolve with Thunder Stone\nVaporeon: Evolve with Water Stone\nEspeon: Level up with 220 or greater happiness during the day\nUmbreon: Level up with 220 or greater happiness during the night\nLeafeon: Evolve near the Mossy Rock\nGlaceon: Evolve near the Icy Rock\nSylveon: Level up knowing a Fairy-type move and having 2 affection hearts on the Eevee")
     }
 }
 module.exports=Eeveelutions
