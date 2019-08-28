@@ -1,4 +1,7 @@
 # openscykohbot
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/coltongit/openscykohbot.svg)](https://greenkeeper.io/)
+
 An open-source, public domain bot meant for Scykoh's CrudButt server.
 
 Installation Instructions:
