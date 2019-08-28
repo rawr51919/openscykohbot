@@ -1,7 +1,7 @@
 const commando=require('discord.js-commando')
 const gtranslate=require('@vitalets/google-translate-api')
 const etranslate=require('moji-translate')
-const ytranslate=require('yandex-translate')('trnsl.1.1.20190321T202015Z.dfef3ca551e0bae4.73998dd197afebbf398f759a3fcfad493257b06c')
+const ytranslate=require('yandex-translate')('')
 const glangs={
   'auto': 'Automatic',
   'af': 'Afrikaans',
