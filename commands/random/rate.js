@@ -108,12 +108,14 @@ class Rate extends commando.Command{
             case 'pokemon or':
             case 'pokemon as':
             case 'pokemon or/as':
+	    case 'pokemon oras':
             case 'pokemon omega ruby':
             case 'pokemon alpha sapphire':
             case 'pokemon omega ruby/alpha sapphire':
             case 'pokémon or':
             case 'pokémon as':
             case 'pokémon or/as':
+	    case 'pokémon oras:
             case 'pokémon omega ruby':
             case 'pokémon alpha sapphire':
             case 'pokémon omega ruby/alpha sapphire':
