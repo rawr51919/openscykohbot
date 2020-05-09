@@ -42,7 +42,7 @@ class PKMNMeanings extends commando.Command{
 				message.channel.send('**Caterpie**:\n*n* caterpillar - a butterfly or moth larva\n*n* pie - a baked dish of fruit')
 				break
 			default:
-                message.channel.send('Please specify a valid Pokémon ID. Usage: `&pkmnmeaning <ID>`')
+                		message.channel.send('Please specify a valid Pokémon ID. Usage: `&pkmnmeaning <ID>`')
 				break
 		}
 	}
