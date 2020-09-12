@@ -19,7 +19,7 @@
     "gm": "^1.23.1",
     "libsodium-wrappers": "^0.7.5",
     "moji-translate": "github:coltongit/emoji-translate",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.1",
     "node-opus": "^0.3.2",
     "opusscript": "^0.0.7",
     "random-js": "^2.1.0",
