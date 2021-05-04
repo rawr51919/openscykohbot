@@ -17,7 +17,7 @@
     "eris": "^0.10.1",
     "erlpack": "github:discordapp/erlpack",
     "gm": "^1.23.1",
-    "libsodium-wrappers": "^0.7.5",
+    "libsodium-wrappers": "^0.7.6",
     "moji-translate": "github:coltongit/emoji-translate",
     "node-fetch": "^2.6.1",
     "node-opus": "^0.3.2",
