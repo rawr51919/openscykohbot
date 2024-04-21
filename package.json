@@ -12,13 +12,13 @@
     "discord.js": "^11.6.4",
     "discord.js-commando": "^0.10.0",
     "discord.js-minesweeper": "^1.0.6",
-    "discord.js-tools": "github:coltongit/discord.js-tools",
+    "discord.js-tools": "github:rawr51919/discord.js-tools",
     "enmap": "^5.8.5",
     "eris": "^0.11.3",
     "erlpack": "github:discordapp/erlpack",
     "gm": "^1.23.1",
     "libsodium-wrappers": "^0.7.9",
-    "moji-translate": "github:coltongit/emoji-translate",
+    "moji-translate": "github:rawr51919/emoji-translate",
     "node-fetch": "^2.6.1",
     "node-opus": "^0.3.3",
     "opusscript": "^0.0.7",
@@ -37,16 +37,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/coltongit/openscykohbot.git"
+    "url": "git+https://github.com/rawr51919/openscykohbot.git"
   },
   "keywords": [
     "openscykohbot"
   ],
-  "author": "Colton Rushton (coltonrawr#5011 on Discord)",
+  "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/coltongit/openscykohbot/issues"
+    "url": "https://github.com/rawr51919/openscykohbot/issues"
   },
-  "homepage": "https://github.com/coltongit/openscykohbot#readme",
+  "homepage": "https://github.com/rawr51919/openscykohbot#readme",
   "snyk": true
 }
