@@ -5,7 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "@discordjs/uws": "^11.149.1",
-    "@types/better-sqlite3": "^5.4.1",
+    "@types/better-sqlite3": "^7.0.0",
     "@vitalets/google-translate-api": "^4.0.0",
     "better-sqlite-pool": "github:eslachance/better-sqlite-pool",
     "bufferutil": "^4.0.3",
