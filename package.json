@@ -10,7 +10,7 @@
     "better-sqlite-pool": "github:eslachance/better-sqlite-pool",
     "bufferutil": "^4.0.3",
     "discord.js": "^14.0.0",
-    "discord.js-commando": "^0.10.0",
+    "discord.js-commando": "^0.12.0",
     "discord.js-minesweeper": "^1.0.6",
     "discord.js-tools": "github:rawr51919/discord.js-tools",
     "enmap": "^5.8.5",
