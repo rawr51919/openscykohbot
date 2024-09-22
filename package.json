@@ -14,7 +14,7 @@
     "discord.js-minesweeper": "^1.0.6",
     "discord.js-tools": "github:rawr51919/discord.js-tools",
     "enmap": "^6.0.0",
-    "eris": "^0.17.0",
+    "eris": "^0.18.0",
     "erlpack": "github:discordapp/erlpack",
     "gm": "^1.23.1",
     "libsodium-wrappers": "^0.7.9",
