@@ -1,6 +1,6 @@
 const { Client, GatewayIntentBits, Partials } = require("discord.js");
 const Random = require("random-js");
-const random = new Random();
+const random = new Random.Random();
 
 const bot = new Client({
   intents: [
