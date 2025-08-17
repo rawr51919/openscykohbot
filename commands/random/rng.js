@@ -1,88 +1,71 @@
-const commando=require('discord.js-commando')
-const Random=require('random-js')
-var random
-class RNG extends commando.Command{
-    constructor(client){
-        super(client,{
-            name: 'rng',
-            group: 'random',
-            memberName: 'rng',
-            description: 'Allows for whatever RNG algorithm you specify to generate a random number or up to 9007199254740992 random numbers between 0 and 4294967295.',
-            args: [
-                {
-                  key: 'engine',
-                  prompt: 'What engine do you want to use? `nm`, `mt`, `nc`, and `bc` are your options.\nSpecify `help` to get help with using this command.',
-                  type: 'string',
-                  mt: random=new Random.Random(Random.MersenneTwister19937.autoSeed()),
-                  nc: random=new Random.Random(Random.nodeCrypto),
-                  bc: random=new Random.Random(Random.browserCrypto),
-                  nm: random=new Random.Random(),
-                },
-                {
-                  key: 'numbers',
-                  prompt: 'How many numbers?',
-                  type: 'integer',
-                  min: 1,
-                  max: 9007199254740992,
-                  default: ""
-                },
-                {
-                  key: 'rangebegin',
-                  prompt: 'What number should the number range begin at?',
-                  type: 'integer',
-                  min: 0,
-                  max: 4294967295,
-                  default: ""
-                },
-                {
-                  key: 'rangeend',
-                  prompt: 'What number should the number range end at?',
-                  type: 'integer',
-                  min: 0,
-                  max: 4294967295,
-                  default: ""
-                },
-            ]
-        })
+const { Random } = require("random-js");
+
+module.exports = {
+  name: "rng",
+  description: "Generates random numbers using a selected RNG engine.",
+
+  async execute(message) {
+    // Parse arguments
+    const PREFIX = message.guild.commandPrefix || "&" + module.exports.name;
+    const args = message.content.slice(PREFIX.length).trim().split(/\s+/);
+    const engineArg = args[0]?.toLowerCase() || "nm";
+    const numbers = Math.min(parseInt(args[1], 10) || 1, Number.MAX_SAFE_INTEGER);
+    const rangeBegin = parseInt(args[2], 10) || 1;
+    const rangeEnd = parseInt(args[3], 10) || 6;
+
+    // Show help if requested
+    if (engineArg === "help") {
+      await message.channel.send(
+        `**Help for rng**:
+			Specify the engine and range.
+			Example: \`!rng nm 2 0 10\` generates 2 numbers between 0 and 10 using the NativeMath engine.
+
+			**Engines**:
+			- \`nm\` NativeMath (Math.random())
+			- \`mt\` MersenneTwister19937
+			- \`nc\` NodeCrypto
+			- \`bc\` BrowserCrypto`
+      );
+      return;
     }
-    async run(message,args){
-        var numberarray=[]
-        var numbertotal=0
-        if (args.engine=='help'){
-            message.channel.send("Help for **&rng**:\nSpecify the engine you want to use and the numbers to generate between.\nExample: `&rng nm 2 0 10` at the prompts would generate 2 numbers between 0 and 10 using the `nativeMath` engine and show the result in the channel you sent the command in.\nThe engines used are:\nNativeMath, which has `Math.random()` under the hood and is accessible via using `nm` as the first argument.\nBrowserCrypto, which has `crypto.getRandomValues()` under the hood and is accessible via using `bc` as the first argument.\nNodeCrypto, which has `crypto.RandomBytes()` under the hood and is accessible via using `nc` as the first argument.\nMersenneTwister19937, which has a variant of the Mersenne Twister under the hood and is accessible via using `mt` as the first argument.")
-            return
-        }
-        if(args.numbers==1&&args.rangebegin==1&&message.channel.type!='dm'){
-            message.reply("your generated number is "+random.die(args.rangeend)+".")
-        }else if(args.numbers==1&&args.rangebegin==1&&message.channel.type=='dm'){
-            message.reply("Your generated number is "+random.die(args.rangeend)+".")
-        }else if(args.numbers==1&&args.rangebegin!=1&&message.channel.type!='dm'){
-            message.reply("your generated number is "+random.integer(args.rangebegin,args.rangeend)+".")
-        }else if(args.numbers==1&&args.rangebegin!=1&&message.channel.type=='dm'){
-            message.reply("Your generated number is "+random.integer(args.rangebegin,args.rangeeend)+".")
-        }else if(args.numbers>1&&message.channel.type!='dm'){
-            for (var i=1;i<=args.numbers;i++){
-                if(args.rangebegin==1){
-                    numberarray.push(random.die(args.rangeend))
-                }else{
-                    numberarray.push(random.integer(args.rangebegin,args.rangeend))
-                }
-                message.reply('your generated number #'+i+' is '+numberarray[i-1]+'.')
-                numbertotal=numbertotal+numberarray[i-1]
-            }
-            message.reply('the sum of the generated numbers is '+numbertotal+'.')
-        }else if(args.numbers>1&&message.channel.type=='dm'){
-            for (var i=1;i<=args.numbers;i++){
-                if(args.rangebegin==1){
-                    numberarray.push(random.die(args.rangeend))
-                }else{
-                    numberarray.push(random.integer(args.rangebegin,args.rangeend))
-                }
-                message.reply('Your generated number #'+i+' is '+numberarray[i-1]+'.')
-                numbertotal=numbertotal+numberarray[i-1]
-            }
-            message.reply('The sum of the generated numbers is '+numbertotal+'.')
-        }
+
+    // Initialize selected RNG engine
+    let random;
+    switch (engineArg) {
+    case "mt":
+      random = new Random(Random.MersenneTwister19937.autoSeed());
+      break;
+    case "nc":
+      random = new Random(Random.nodeCrypto);
+      break;
+    case "bc":
+      random = new Random(Random.browserCrypto);
+      break;
+    case "nm":
+    default:
+      random = new Random();
     }
-}
-module.exports=RNG
+
+    // Generate numbers
+    const numberArray = [];
+    let total = 0;
+
+    for (let i = 0; i < numbers; i++) {
+      const value = rangeBegin === 1 ? random.die(rangeEnd) : random.integer(rangeBegin, rangeEnd);
+      numberArray.push(value);
+      total += value;
+    }
+
+    // Prepare output
+    const output = numberArray
+      .map((num, idx) => `Number #${idx + 1}: ${num}`)
+      .join("\n") + (numbers > 1 ? `\nTotal sum: ${total}` : "");
+
+    // Send output in chunks of 2000 characters
+    const CHUNK_SIZE = 2000;
+    for (let i = 0; i < output.length; i += CHUNK_SIZE) {
+      const chunk = output.slice(i, i + CHUNK_SIZE);
+      await message.channel.send(chunk);
+    }
+  },
+};

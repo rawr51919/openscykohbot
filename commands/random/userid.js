@@ -1,35 +1,37 @@
-const commando=require('discord.js-commando')
-class UserIDs extends commando.Command{
-	constructor(client){
-		super(client,{
-			name: 'userid',
-			group: 'random',
-			memberName: 'userid',
-			description: 'Make the bot find the user ID you specify in this command.',
-		})
+module.exports = {
+  name: "userid",
+  description: "Find a Discord user by their ID.",
+
+  async execute(message) {
+    const PREFIX = "!userid";
+    const args = message.content.slice(PREFIX.length).trim().split(/\s+/);
+    const userId = args[0];
+
+    if (!userId) {
+      await message.channel.send(
+        "This command will allow you to see who has what user ID.\n" +
+        "Example: `!userid 324661689972686849`\n" +
+        "To find User IDs, enable Developer Mode in Discord's user settings, then right-click any user and click `Copy ID`."
+      );
+      return;
     }
-    async run(message,args){
-        if(message.channel.type!=='dm')
-            args=message.content.split(/ +/).slice(message.guild.commandPrefix.length)
-        if(/^$/.test(args[0])){
-            message.channel.send("This command will allow you to see who has what user ID.\nExample: `&userid 324661689972686849`\nTo find User IDs, you must enable Developer Mode in Discord's user settings, then right click any user and click `Copy ID`.")
-            return
-        }else if(/^#?[\d]{19}$/i.test(args[0])&&this.client.users.has(args[0])){
-            message.channel.send('Found user: <@'+/^#?([\d]{19})$/i.exec(args[0])[1].toLowerCase()+'>.')
-            return
-        }else if(/^#?[\d]{18}$/i.test(args[0])&&this.client.users.has(args[0])){
-            message.channel.send('Found user: <@'+/^#?([\d]{18})$/i.exec(args[0])[1].toLowerCase()+'>.')
-            return
-        }else if(/^#?[\d]{17}$/i.test(args[0])&&this.client.users.has(args[0])){
-            message.channel.send('Found user: <@'+/^#?([\d]{17})$/i.exec(args[0])[1].toLowerCase()+'>.')
-            return
-        }else if(((!(/^#?[\d]{19}$/i.test(args[0]))&&!(/^#?[\d]{18}$/i.test(args[0]))&&!(/^#?[\d]{17}$/i.test(args[0])))||(!this.client.users.has(args[0])&&message.channel.type!='dm'))){
-            message.reply('you provided an invalid user ID (or you provided something else). Please try again with a valid user ID.')
-            return
-        }else{
-            message.reply('You provided an invalid user ID (or you provided something else). Please try again with a valid user ID.')
-            return
-        }
+
+    // Valid ID regex (17-19 digits)
+    const idRegex = /^\d{17,19}$/;
+    if (!idRegex.test(userId)) {
+      await message.reply("You provided an invalid user ID. Please try again with a valid one.");
+      return;
     }
-}
-module.exports=UserIDs
+
+    try {
+      const user = await message.client.users.fetch(userId);
+      if (user) {
+        await message.channel.send(`Found user: <@${user.id}> (${user.tag}).`);
+      } else {
+        await message.reply("User not found in this bot's cache or guilds.");
+      }
+    } catch (err) {
+      await message.reply("User not found or invalid ID. " + err.message);
+    }
+  },
+};

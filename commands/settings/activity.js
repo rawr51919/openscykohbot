@@ -1,83 +1,62 @@
-const commando=require('discord.js-commando')
-class ChangeActivity extends commando.Command{
-	constructor(client){
-		super(client,{
-			name: 'activity',
-			group: 'settings',
-			memberName: 'activity',
-			description: "Change the bot's Rich Presence status. Only a select few are allowed to use this command.",
-		})
+const { ActivityType } = require("discord.js");
+
+const ACTIVITY_TYPES = {
+  playing: ActivityType.Playing,
+  streaming: ActivityType.Streaming,
+  listening: ActivityType.Listening,
+  watching: ActivityType.Watching,
+  competing: ActivityType.Competing,
+};
+
+class ChangeActivity {
+  constructor(client) {
+    this.client = client;
+    this.name = "activity";
+    this.description = "Change the bot's Rich Presence status. Only a select few can use this.";
+  }
+
+  async execute(message) {
+    const allowedUserId = "324661689972686849";
+
+    if (message.author.id !== allowedUserId) {
+      return message.reply("You don't have permission to use this command.");
     }
-    async run(message,args){
-        if(message.channel.type!=='dm')
-            args=message.content.split(/ +/).slice(message.guild.commandPrefix.length)
-        if(message.author.id!=='324661689972686849'&&message.channel.type!=='dm'){
-            message.reply("you don't have permission to use this command.")
-        }else if(message.author.id!=='324661689972686849'&&message.channel.type==='dm'){
-            message.reply("You don't have permission to use this command.")
-        }
-        if(args[0].toLowerCase()=='remove'){
-            this.client.user.setPresence({
-                game:
-                    {
-                        name:null,
-                        type:null
-                    }
-                })
-            message.channel.send("I now have no status.")
-            return
-        }else if(args[0].toLowerCase()=='playing'&&args[1]){
-            this.client.user.setPresence({
-                game:
-                    {
-                        name:message.content.substr(18),
-                        type:0
-                    }
-                })
-            message.channel.send("My status is now: **Playing** "+message.content.substr(18)+".")
-        }else if(args[0].toLowerCase()=='streaming'&&args[1]){
-            this.client.user.setPresence({
-                game:
-                    {
-                        name:message.content.substr(20),
-                        type:1
-                    }
-                })
-            message.channel.send("My status is now: **Streaming** "+message.content.substr(20)+".")
-        }else if(args[0].toLowerCase()=='listening'&&args[1]){
-            this.client.user.setPresence({
-                game:
-                    {
-                        name:message.content.substr(20),
-                        type:2
-                    }
-                })
-            message.channel.send("My status is now: **Listening to** "+message.content.substr(20)+".")
-        }else if(args[0].toLowerCase()=='watching'&&args[1]){
-            this.client.user.setPresence({
-                game:
-                    {
-                        name:message.content.substr(19),
-                        type:3
-                    }
-                })
-            message.channel.send("My status is now: **Watching** "+message.content.substr(19)+".")
-        }else if(args[0].toLowerCase()=='playing'&&!args[1]){
-            message.channel.send("What am I supposed to be playing?")
-            return
-        }else if(args[0].toLowerCase()=='streaming'&&!args[1]){
-            message.channel.send("What am I supposed to be streaming?")
-            return
-        }else if(args[0].toLowerCase()=='listening'&&!args[1]){
-            message.channel.send("What am I supposed to be listening to?")
-            return
-        }else if(args[0].toLowerCase()=='watching'&&!args[1]){
-            message.channel.send("What am I supposed to be watching?")
-            return
-        }else{
-            message.channel.send('You must specify either playing, watching, listening to, or streaming.\n If this bot already has a status, you can also specify `remove` to remove the status from this bot.')
-            return
-        }
+
+    const args = message.content.split(/ +/).slice(1); // remove command itself
+    const action = args[0]?.toLowerCase();
+    const activityText = args.slice(1).join(" ");
+
+    if (action === "remove") {
+      await this.client.user.setPresence({ activities: [], status: "online" });
+      return message.channel.send("I now have no status.");
     }
+
+    if (!Object.hasOwn(ACTIVITY_TYPES, action)) {
+      return message.channel.send(
+        "You must specify `playing`, `watching`, `listening`, `streaming`, or `competing`.\n" +
+        "You can also specify `remove` to clear the current status."
+      );
+    }
+
+    if (!activityText) {
+      return message.channel.send(`What am I supposed to be ${action}?`);
+    }
+
+    await this.client.user.setPresence({
+      activities: [{ name: activityText, type: ACTIVITY_TYPES[action] }],
+      status: "online",
+    });
+
+    const labels = {
+      playing: "Playing",
+      streaming: "Streaming",
+      listening: "Listening to",
+      watching: "Watching",
+      competing: "Competing in",
+    };
+
+    await message.channel.send(`My status is now: **${labels[action]}** ${activityText}.`);
+  }
 }
-module.exports=ChangeActivity
+
+module.exports = ChangeActivity;

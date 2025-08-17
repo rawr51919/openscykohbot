@@ -1,82 +1,85 @@
-const commando=require('discord.js-commando')
-var weather=require('weather-js')
-class Weather extends commando.Command{
-	constructor(client){
-		super(client,{
-			name: 'weather',
-			group: 'random',
-			memberName: 'weather',
-			description: 'Have OpenScykohBot check the weather for your area.',
-		})
+const { EmbedBuilder } = require("discord.js");
+const weather = require("weather-js");
+
+module.exports = {
+  name: "weather",
+  description: "Check the weather for your location.",
+  async execute(message) {
+    const query = message.content.slice(message.content.indexOf(" ") + 1).trim();
+    if (!query) {
+      await message.channel.send(
+        "Please provide a location. Example: `!weather London, UK`"
+      );
+      return;
     }
-    async run(message){
-        weather.find({search:message.content.substr(9),degreeType:'F'},function(err,result){
-            if(err)console.log(err)
-            if(result===undefined||result.length===0)
-              message.channel.send('Please enter a valid location.')
-            let emoji=""
-            let weather=""
-            let windops=result[0].current.winddisplay.split(/ +/)
-            let winddirection=windops[2]
-            let windspeed=result[0].current.winddisplay.slice(0,-winddirection.length-1)
-            if(winddirection=="North"){
-                    windspeed=result[0].current.winddisplay.slice(0,-6)
-                    emoji=":arrow_up:"
-            }else if(winddirection=="East"){
-                    windspeed=result[0].current.winddisplay.slice(0,-5)
-                    emoji=":arrow_right:"
-            }else if(winddirection=="South"){
-                    windspeed=result[0].current.winddisplay.slice(0,-6)
-                    emoji=":arrow_down:"
-            }else if(winddirection=="West"){
-                    windspeed=result[0].current.winddisplay.slice(0,-5)
-                    emoji=":arrow_left:"
-            }else if(winddirection=="Northeast"){
-                    windspeed=result[0].current.winddisplay.slice(0,-9)
-                    emoji=":arrow_upper_right:"
-            }else if(winddirection=="Northwest"){
-                    windspeed=result[0].current.winddisplay.slice(0,-9)
-                    emoji=":arrow_upper_left:"
-            }else if(winddirection=="Southeast"){
-                    windspeed=result[0].current.winddisplay.slice(0,-9)
-                    emoji=":arrow_lower_right:"
-            }else if(winddirection=="Southwest"){
-                    windspeed=result[0].current.winddisplay.slice(0,-9)
-                    emoji=":arrow_lower_left:"
-            }
-            if(result[0].current.skytext=="Light Snow"){
-                    weather=":cloud_snow:"
-            }else if(result[0].current.skytext=="Clear"){
-                    weather=":sunny:"
-            }else if(result[0].current.skytext=="Rain"){
-                    weather=":cloud_rain:"
-            }else if(result[0].current.skytext=="Mostly Clear"){
-                    weather=":white_sun_small_cloud:"
-            }else if(result[0].current.skytext=="Sunny"){
-                    weather=":sunny:"
-            }else if(result[0].current.skytext=="Mostly Sunny"){
-                    weather=":white_sun_small_cloud:"
-            }else if(result[0].current.skytext=="Partly Sunny"){
-                    weather=":partly_sunny:"
-            }else if(result[0].current.skytext=="Mostly Cloudy"){
-                    weather=":white_sun_cloud:"
-            }else if(result[0].current.skytext=="Cloudy"){
-                    weather=":cloud:"
-            }else if(result[0].current.skytext=="Snow"){
-                    weather=":cloud_snow:"
-            }else if(result[0].current.skytext=="Smoke"){
-                    weather=":dash:"
-            }else if(result[0].current.skytext=="Haze"){
-                    weather=""
-            }else if(result[0].current.skytext=="Fair"){
-                    weather=":partly_sunny:"
-            }
-            var fahrenheit=parseInt(result[0].current.temperature)
-            var celsius=Math.round((fahrenheit-32)/1.8)
-            message.channel.send(`Weather for **${result[0].current.observationpoint}**:`)
-            message.channel.send(`:thermometer: __Temperature:__ **${result[0].current.temperature}**°F / **`+celsius+`**°C\n:dash: __Wind Speed:__ **`+windspeed+`**\n`+emoji+` __Wind Direction:__ **`+winddirection+`**\n`+weather+` __Weather:__ **${result[0].current.skytext}**\n:sweat_drops: __Humidity:__ **${result[0].current.humidity}%**\n:clock3: __Timezone:__ UTC${result[0].location.timezone}`)
-        })
-        return
+
+    try {
+      const results = await new Promise((resolve, reject) => {
+        weather.find({ search: query, degreeType: "F" }, (err, result) => {
+          if (err) reject(err instanceof Error ? err : new Error(String(err)));
+          else resolve(result);
+        });
+      });
+
+      if (!results || results.length === 0) {
+        await message.channel.send("Please enter a valid location.");
+        return;
+      }
+
+      const current = results[0].current;
+      const location = results[0].location;
+
+      // Determine wind direction emoji
+      const windDirMap = {
+        North: "⬆️",
+        East: "➡️",
+        South: "⬇️",
+        West: "⬅️",
+        Northeast: "↗️",
+        Northwest: "↖️",
+        Southeast: "↘️",
+        Southwest: "↙️",
+      };
+      const windDirection = current.winddisplay.split(" ")[2] || "Unknown";
+      const windSpeed = current.winddisplay.replace(windDirection, "").trim();
+      const windEmoji = windDirMap[windDirection] || "";
+
+      // Determine weather emoji
+      const weatherMap = {
+        "Light Snow": "🌨️",
+        Clear: "☀️",
+        Rain: "🌧️",
+        "Mostly Clear": "🌤️",
+        Sunny: "☀️",
+        "Mostly Sunny": "🌤️",
+        "Partly Sunny": "⛅",
+        "Mostly Cloudy": "🌥️",
+        Cloudy: "☁️",
+        Snow: "🌨️",
+        Smoke: "💨",
+        Haze: "🌫️",
+        Fair: "⛅",
+      };
+      const weatherEmoji = weatherMap[current.skytext] || "";
+
+      const fahrenheit = parseInt(current.temperature, 10);
+      const celsius = Math.round((fahrenheit - 32) / 1.8);
+
+      const embed = new EmbedBuilder()
+        .setTitle(`Weather for ${current.observationpoint}`)
+        .addFields(
+          { name: "🌡️ Temperature", value: `${fahrenheit}°F / ${celsius}°C`, inline: true },
+          { name: "💨 Wind", value: `${windSpeed} ${windEmoji} (${windDirection})`, inline: true },
+          { name: "🌦️ Conditions", value: `${weatherEmoji} ${current.skytext}`, inline: true },
+          { name: "💧 Humidity", value: `${current.humidity}%`, inline: true },
+          { name: "🕒 Timezone", value: `UTC${location.timezone}`, inline: true }
+        )
+        .setColor("Random");
+
+      await message.channel.send({ embeds: [embed] });
+    } catch (err) {
+      console.error(err);
+      await message.channel.send(`❌ Error fetching weather: ${err.message}`);
     }
-}
-module.exports=Weather
+  },
+};

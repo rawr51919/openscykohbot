@@ -1,28 +1,50 @@
-const commando=require('discord.js-commando')
-class UserPFP extends commando.Command{
-    constructor(client){
-        super(client,{
-            name: 'userpfp',
-            group: 'main',
-            memberName: 'userpfp',
-            description: 'Allows OpenScykohBot to show the avatar of either you or anyone you choose.',
-            args: [
-                {
-                    key: "member",
-                    prompt: "Who should I choose?",
-                    type: "member"
-                }
-            ]
-        })
+module.exports = {
+  name: "userpfp",
+  description: "Shows the avatar of either you or a user you mention/provide.",
+
+  async execute(message, args) {
+    let targetUser;
+
+    // Case 1: Mention
+    if (message.mentions.users.size > 0) {
+      targetUser = message.mentions.users.first();
     }
-    async run(message,args){
-        if(!args.member||args.member.user==message.author){
-            return message.reply("your avatar is: "+message.author.displayAvatarURL.replace("?size=2048", ""))
-        }else if(args.member.user==this.client.user){
-            return message.reply("my avatar is: "+this.client.user.displayAvatarURL.replace("?size=2048", ""))
-        }else{
-            return message.reply(args.member.user.username+"'s avatar is: "+args.member.user.displayAvatarURL.replace("?size=2048", ""))
-        }
+    // Case 2: ID or username in args
+    else if (args.length > 0) {
+      const search = args.join(" ").toLowerCase();
+
+      // Try ID lookup
+      targetUser =
+        message.client.users.cache.get(search) ||
+        // Try username/nickname lookup
+        message.guild?.members.cache.find(
+          m =>
+            m.user.username.toLowerCase() === search ||
+            m.displayName.toLowerCase() === search
+        )?.user;
     }
-}
-module.exports=UserPFP
+
+    // Case 3: Default to author
+    if (!targetUser) {
+      targetUser = message.author;
+    }
+
+    // Special cases
+    if (targetUser.id === message.author.id) {
+      return message.reply(
+        `Your avatar is: ${targetUser.displayAvatarURL({ size: 2048, dynamic: true })}`
+      );
+    }
+
+    if (targetUser.id === message.client.user.id) {
+      return message.reply(
+        `My avatar is: ${targetUser.displayAvatarURL({ size: 2048, dynamic: true })}`
+      );
+    }
+
+    // General case
+    return message.reply(
+      `${targetUser.username}'s avatar is: ${targetUser.displayAvatarURL({ size: 2048, dynamic: true })}`
+    );
+  },
+};

@@ -5,7 +5,6 @@
   },
   "automerge": true,
   "extends": [
-    "config:recommended",
-    ":preserveSemverRanges"
+    "config:recommended"
   ]
 }

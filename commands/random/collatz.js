@@ -1,38 +1,49 @@
-const commando=require('discord.js-commando')
-class Collatz extends commando.Command{
-    constructor(client){
-        super(client,{
-            name: 'collatz',
-            group: 'random',
-            memberName: 'collatz',
-            description: "Employs the Collatz conjecture on whatever positive number you specify. Would not recommend using on most servers, as this will likely flood them out.",
-        })
-	}
-	async run(message,args){
-		if(message.channel.type!=='dm')
-            args=message.content.split(/ +/).slice(message.guild.commandPrefix.length)
-		let numbers=[parseFloat(args[0])]
-		if((numbers[0]<0||numbers[0]%1!=0)&&message.channel.type!='dm'){
-			message.reply('please provide a valid positive number.')
-			return
-		}else if((numbers[0]<0||numbers[0]%1!=0)&&message.channel.type=='dm'){
-			message.reply('Please provide a valid positive number.')
-			return
-		}
-		while(numbers[numbers.length-1]!=1){
-			numbers.push(numbers[numbers.length-1]%2==0?numbers[numbers.length-1]/2:numbers[numbers.length-1]*3+1)
-		}
-		let messages=['']
-		for(let i=0;i<numbers.length;i++){
-			if(messages[messages.length-1].length+numbers[i].toString().length<2000){
-				messages[messages.length-1]+=numbers[i]+' '
-			}else{
-				messages.push(numbers[i]+' ')
-			}
-		}
-		for(let i of messages){
-			message.channel.send(i)
-		}
-	}
-}
-module.exports=Collatz
+const { ChannelType } = require("discord.js");
+
+module.exports = {
+  name: "collatz",
+  description: "Applies the Collatz conjecture to a positive integer. Supports servers, DMs, and group DMs.",
+
+  async execute(message) {
+    const args = message.content.trim().split(/\s+/).slice(1);
+    const num = parseInt(args[0], 10);
+
+    if (!num || num <= 0) {
+      return message.reply("Please provide a valid positive integer.");
+    }
+
+    let current = num;
+    let buffer = "";
+    const isDM = message.channel.type === ChannelType.DM || message.channel.type === ChannelType.GroupDM;
+
+    const MAX_MESSAGE_LENGTH = 1900; // safe margin for 2000 limit
+    const MAX_BATCHES = isDM ? Infinity : 50; // unlimited in DMs, limited in guild channels
+    let batchesSent = 0;
+
+    const sendBuffer = async () => {
+      if (buffer) {
+        await message.channel.send(buffer.trim());
+        buffer = "";
+        batchesSent++;
+      }
+    };
+
+    while (current !== 1) {
+      const str = current + " ";
+      if (buffer.length + str.length > MAX_MESSAGE_LENGTH) {
+        await sendBuffer();
+        if (batchesSent >= MAX_BATCHES && !isDM) {
+          await message.channel.send("⚠️ Output truncated to prevent flooding.");
+          return;
+        }
+      }
+      buffer += str;
+      current = current % 2 === 0 ? current / 2 : current * 3 + 1;
+    }
+
+    // Append final 1
+    if (buffer.length + 2 > MAX_MESSAGE_LENGTH) await sendBuffer();
+    buffer += "1";
+    await sendBuffer();
+  },
+};

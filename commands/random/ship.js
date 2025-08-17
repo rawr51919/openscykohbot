@@ -1,46 +1,68 @@
-const commando=require('discord.js-commando')
-const Random=require('random-js')
-const random=new Random.Random()
-class Ships extends commando.Command{
-	constructor(client){
-		super(client,{
-			name: 'ship',
-			group: 'random',
-			memberName: 'ship',
-			description: 'Ship whatever you want with whatever you want.',
-		})
+const { Random, MersenneTwister19937 } = require("random-js");
+const random = new Random(MersenneTwister19937.autoSeed());
+
+module.exports = {
+  name: "ship",
+  description: "Ship whatever you want with whatever you want.",
+
+  async execute(message) {
+    const PREFIX = message.guild.commandPrefix || "&" + module.exports.name;
+    const args = message.content.slice(PREFIX.length).trim().split(",");
+
+    if (!args[0]) {
+      await message.channel.send(
+        "I can't ship literally nothing with literally nothing!\nUsage: `!ship person1, person2`"
+      );
+      return;
     }
-    async run(message,args){
-		 args=message.content.split(",")
-            if(args[0]==message.guild.commandPrefix+'ship'){
-                message.channel.send("I can't ship literally nothing with literally nothing!\nUsage: `&ship person1, person2`")
-                return
-            }
-            if(!args[1]){
-                message.channel.send("I can't ship "+args[0].substr(6)+" with literally nothing!\nUsage: `&ship person1, person2`")
-                return
-            }
-            if(random.integer(0,100)===0){
-            message.channel.send(args[0].substr(6)+' x'+args[1]+'\n**'+random.integer(0,100)+'%** No match. :broken_heart:')
-            }else if(random.integer(0,100)>=1&&random.integer(0,100)<=15){
-            message.channel.send(args[0].substr(6)+' x'+args[1]+'\n**'+random.integer(0,100)+'%** Terrible... :cry:')
-            }else if(random.integer(0,100)>=16&&random.integer(0,100)<=30){
-            message.channel.send(args[0].substr(6)+' x'+args[1]+'\n**'+random.integer(0,100)+'%** Bad... :slight_frown:')
-            }else if(random.integer(0,100)>=31&&random.integer(0,100)<=40){
-            message.channel.send(args[0].substr(6)+' x'+args[1]+'\n**'+random.integer(0,100)+'%** Meh. :neutral_face:')
-            }else if(random.integer(0,100)>=41&&random.integer(0,100)<=50){
-            message.channel.send(args[0].substr(6)+' x'+args[1]+'\n**'+random.integer(0,100)+'%** Alright? :confused:')
-            }else if(random.integer(0,100)>=51&&random.integer(0,100)<=65){
-            message.channel.send(args[0].substr(6)+' x'+args[1]+'\n**'+random.integer(0,100)+'%** Good. :slight_smile:')
-            }else if(random.integer(0,100)==69){
-            message.channel.send(args[0].substr(6)+' x'+args[1]+'\n**'+random.integer(0,100)+'%** HOT. :smirk:')
-            }else if(random.integer(0,100)>=66&&random.integer(0,100)<=75){
-            message.channel.send(args[0].substr(6)+' x'+args[1]+'\n**'+random.integer(0,100)+'%** Amazing! :kissing_heart:')
-            }else if(random.integer(0,100)>=76&&random.integer(0,100)<=99){
-            message.channel.send(args[0].substr(6)+' x'+args[1]+'\n**'+random.integer(0,100)+'%** Outstanding! :heart_eyes:')
-            }else if(random.integer(0,100)==100){
-            message.channel.send(args[0].substr(6)+' x'+args[1]+'\n**'+random.integer(0,100)+'%** **I SHIP IT!** :ship:')
-            }
+
+    if (!args[1]) {
+      await message.channel.send(
+        `I can't ship ${args[0].trim()} with literally nothing!\nUsage: \`!ship person1, person2\``
+      );
+      return;
     }
-}
-module.exports=Ships
+
+    const person1 = args[0].trim();
+    const person2 = args[1].trim();
+    const chance = random.integer(0, 100);
+
+    let ratingEmoji = "";
+    let ratingText = "";
+
+    if (chance === 0) {
+      ratingText = "No match";
+      ratingEmoji = "💔";
+    } else if (chance <= 15) {
+      ratingText = "Terrible...";
+      ratingEmoji = "😢";
+    } else if (chance <= 30) {
+      ratingText = "Bad...";
+      ratingEmoji = "☹️";
+    } else if (chance <= 40) {
+      ratingText = "Meh";
+      ratingEmoji = "😐";
+    } else if (chance <= 50) {
+      ratingText = "Alright?";
+      ratingEmoji = "😕";
+    } else if (chance <= 65) {
+      ratingText = "Good";
+      ratingEmoji = "🙂";
+    } else if (chance === 69) {
+      ratingText = "HOT";
+      ratingEmoji = "😏";
+    } else if (chance <= 75) {
+      ratingText = "Amazing!";
+      ratingEmoji = "😘";
+    } else if (chance <= 99) {
+      ratingText = "Outstanding!";
+      ratingEmoji = "😍";
+    } else if (chance === 100) {
+      ratingText = "**I SHIP IT!**";
+      ratingEmoji = "🚢";
+    }
+
+    const finalPercent = random.integer(0, 100);
+    await message.channel.send(`${person1} x ${person2}\n**${finalPercent}%** ${ratingText} ${ratingEmoji}`);
+  },
+};

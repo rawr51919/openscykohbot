@@ -1,75 +1,88 @@
-const commando=require('discord.js-commando')
-const {stripIndents}=require('common-tags')
-class ServerInfo extends commando.Command{
-	constructor(client){
-		super(client,{
-			name: 'server',
-			group: 'main',
-			memberName: 'server',
-            description: 'Shows info about the current server.'
-		})
+const { stripIndents } = require("common-tags");
+const { ChannelType, PresenceUpdateStatus, ActivityType } = require("discord.js");
+
+module.exports = {
+  name: "server",
+  description: "Shows info about the current server.",
+  async execute(message) {
+    const chan = message.channel;
+
+    if (chan.type === ChannelType.DM) {
+      return message.reply("❌ You can't use this command in a DM.");
     }
-    async run(message){
-        if(message.channel.type=='dm'){
-            message.reply("You can't use this command in a DM.")
-        }else if(message.channel.type=='text'){
-            const verLevel={
-                0: "0 (Unrestricted)",
-                1: "1 (Email Verification)",
-                2: "2 (On Discord for >5 minutes)",
-                3: "3 (On server for >10 minutes)",
-                4: "4 (Phone Verification)"
-            }
-            var textChannels=message.guild.channels.filter(channels=>channels.type=='text')
-            var voiceChannels=message.guild.channels.filter(channels=>channels.type=='voice')
-            var categoryChannels=message.guild.channels.filter(channels=>channels.type=='category')
-            message.guild.fetchMembers()
-            const stats={
-                online:0,
-                idle:0,
-                offline:0,
-                dnd:0,
-                streaming:0,
-                bot:0
-            }
-            message.guild.members.forEach(member=>{
-                stats[member.presence.status]++
-                if(member.presence.game&&member.presence.game.streaming)stats.streaming++
-                if(member.user.bot)stats.bot++
-            })
-            message.say(stripIndents`
-            Server info for **${message.guild.name}**:
-            Server ID: **${message.guild.id}**
-            Server Population: **${message.guild.memberCount}**
-            Current Server Online User Population: **${stats.online}**
-            Current Server Do Not Disturb (DnD) User Population: **${stats.dnd}**
-            Current Server Idle/Away User Population: **${stats.idle}**
-            Current Server Invisible/Offline User Population: **${stats.offline}**
-            Current Server Streaming User Population: **${stats.streaming}**
-            Current Server Bot Population: **${stats.bot}**
-            Server Owner: **${message.guild.owner}**
-            Server Owner ID: **${message.guild.owner.id}**
-            Text Channel Amount: **${textChannels.size}**
-            Voice Channel Amount: **${voiceChannels.size}**
-            Category Channel Amount: **${categoryChannels.size}**
-            Total Channel Amount: **${message.guild.channels.size}**
-            Role Amount: **${message.guild.roles.size}**
-            Server Created On: **${message.guild.createdAt}**
-            Verification Level: **${verLevel[message.guild.verificationLevel]}**
-            Server Region: **${message.guild.region}**
-            Server Avatar: ${message.guild.iconURL}
-            `)
-        }else if(message.channel.type=='group'){
-            message.say(stripIndents`
-            Group DM info for **${channel.name}**:
-            Group DM ID: **${channel.id}**
-            Group DM Population: **"${channel.memberCount}"**
-            Group DM Owner: **"${channel.owner}**
-            Group DM Owner ID: **"${channel.owner.id}**
-            Group DM Created On: **${channel.createdAt}**
-            Group DM Avatar: ${channel.iconURL}
-            `)
+
+    else if (chan.type === ChannelType.GuildText && message.guild) {
+      const verLevel = {
+        0: "0 (Unrestricted)",
+        1: "1 (Email Verification)",
+        2: "2 (On Discord for >5 minutes)",
+        3: "3 (On server for >10 minutes)",
+        4: "4 (Phone Verification)",
+      };
+
+      // Count channel types
+      const textChannels = message.guild.channels.cache.filter(ch => ch.type === ChannelType.GuildText);
+      const voiceChannels = message.guild.channels.cache.filter(ch => ch.type === ChannelType.GuildVoice);
+      const categoryChannels = message.guild.channels.cache.filter(ch => ch.type === ChannelType.GuildCategory);
+
+      // Fetch members for accurate presence info
+      await message.guild.members.fetch();
+
+      const stats = { online: 0, idle: 0, dnd: 0, offline: 0, streaming: 0, bot: 0 };
+
+      message.guild.members.cache.forEach(member => {
+        const presence = member.presence;
+        if (presence) {
+          if (presence.status === PresenceUpdateStatus.Online) stats.online++;
+          if (presence.status === PresenceUpdateStatus.Idle) stats.idle++;
+          if (presence.status === PresenceUpdateStatus.Dnd) stats.dnd++;
+          if (presence.status === PresenceUpdateStatus.Offline) stats.offline++;
+
+          if (presence.activities.some(a => a.type === ActivityType.Streaming)) {
+            stats.streaming++;
+          }
+        } else {
+          stats.offline++;
         }
+
+        if (member.user.bot) stats.bot++;
+      });
+
+      const reply = stripIndents`
+        📊 Server info for **${message.guild.name}**:
+        🆔 Server ID: **${message.guild.id}**
+        👥 Members: **${message.guild.memberCount}**
+        ✅ Online: **${stats.online}**
+        🌙 Idle: **${stats.idle}**
+        ⛔ DnD: **${stats.dnd}**
+        🕶️ Offline: **${stats.offline}**
+        🎥 Streaming: **${stats.streaming}**
+        🤖 Bots: **${stats.bot}**
+        👑 Owner ID: **${message.guild.ownerId}**
+        💬 Text Channels: **${textChannels.size}**
+        🔊 Voice Channels: **${voiceChannels.size}**
+        📂 Categories: **${categoryChannels.size}**
+        📺 Total Channels: **${message.guild.channels.cache.size}**
+        🎭 Roles: **${message.guild.roles.cache.size}**
+        📅 Created On: **${message.guild.createdAt.toUTCString()}**
+        🔒 Verification Level: **${verLevel[message.guild.verificationLevel]}**
+        🌍 Region/Locale: **${message.guild.preferredLocale}**
+        🖼️ Server Icon: ${message.guild.iconURL() || "None"}
+      `;
+      await message.channel.send(reply);
     }
-}
-module.exports=ServerInfo
+
+    else if (chan.type === ChannelType.GroupDM) {
+      // Group DM info
+      const icon = chan.iconURL();
+      const reply = stripIndents`
+        👥 Group DM info for **${chan.name || "Group DM"}**:
+        🆔 ID: **${chan.id}**
+        👤 Members: **${chan.recipients?.size || "N/A"}**
+        📅 Created On: **${chan.createdAt || "Unknown"}**
+        🖼️ Icon: ${icon || "None"}
+      `;
+      await message.channel.send(reply);
+    }
+  },
+};

@@ -1,22 +1,24 @@
-const commando=require('discord.js-commando')
-class GroupDMPFP extends commando.Command{
-    constructor(client){
-        super(client,{
-            name: 'groupdmpfp',
-            group: 'main',
-            memberName: 'groupdmpfp',
-            description: "Allows OpenScykohBot to show the icon of the group DM you're currently in (note that this command doesn't have functionality yet due to Discord not supporting it)."
-        })
+const { ChannelType } = require("discord.js");
+
+module.exports = {
+  name: "groupdmpfp",
+  description: "Shows the icon of the group DM you're currently in (note: limited by Discord API).",
+  async execute(message, args) {
+    // dummy code
+    args?.valueOf();
+
+    // actual code
+    const chan = message.channel;
+
+    if (chan.type !== ChannelType.GroupDM) {
+      return message.channel.send("❌ Please use this command inside a group DM.");
     }
-    async run(message){
-        if(message.channel.type=="dm"||message.channel.type=="text"){
-            return message.channel.send("Please use this command inside of a group DM.")
-        }
-        if(channel.iconURL!=null){
-            return message.reply(channel.name+"'s icon is: "+channel.iconURL)
-        }else{
-            return message.reply("This group DM doesn't have an icon.")
-        }
+
+    const icon = chan.iconURL();
+    if (icon) {
+      return message.reply(`${chan.name || "This group DM"}'s icon is: ${icon}`);
+    } else {
+      return message.reply("ℹ️ This group DM doesn't have an icon.");
     }
-}
-module.exports=GroupDMPFP
+  },
+};

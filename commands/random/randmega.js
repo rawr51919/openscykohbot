@@ -1,67 +1,40 @@
-const commando=require('discord.js-commando')
-const Random=require('random-js')
-const random=new Random.Random()
-class RandomMegaPokémon extends commando.Command{
-    constructor(client){
-        super(client,{
-            name: 'randmega',
-            group: 'random',
-            memberName: 'randmega',
-            description: 'Displays a random Mega Pokémon.',
-        })
+const { Random } = require("random-js");
+const fetch = require("node-fetch");
+
+const random = new Random();
+
+module.exports = {
+  name: "randmega",
+  description: "Displays a random Mega Pokémon.",
+
+  async execute(message) {
+    try {
+      // Fetch all Pokémon species (limit high to get everything)
+      const speciesRes = await fetch("https://pokeapi.co/api/v2/pokemon?offset=0&limit=9999");
+      const speciesData = await speciesRes.json();
+
+      // Filter Pokémon whose names include 'mega'
+      const megaPokemonList = speciesData.results
+        .map(p => p.name)
+        .filter(name => name.toLowerCase().includes("mega"))
+        .map(name =>
+          // Format nicely, e.g., "charizard-mega-x" -> "Charizard-Mega-X"
+          name
+            .split("-")
+            .map(part => part.charAt(0).toUpperCase() + part.slice(1))
+            .join("-")
+        );
+
+      if (megaPokemonList.length === 0) {
+        message.channel.send("❌ Could not find any Mega Pokémon.");
+        return;
+      }
+
+      const chosen = megaPokemonList[random.integer(0, megaPokemonList.length - 1)];
+      message.channel.send(`You got **${chosen}**!`);
+    } catch (err) {
+      console.error(err);
+      message.channel.send(`❌ Error fetching Mega Pokémon: ${err.message}`);
     }
-    async run(message){
-        const megas=[
-            'Venusaur-Mega',
-            'Charizard-Mega-X',
-            'Charizard-Mega-Y',
-            'Blastoise-Mega',
-            'Beedrill-Mega',
-            'Pidgeot-Mega',
-            'Alakazam-Mega',
-            'Slowbro-Mega',
-            'Gengar-Mega',
-            'Kangaskhan-Mega',
-            'Pinsir-Mega',
-            'Gyarados-Mega',
-            'Aerodactyl-Mega',
-            'Mewtwo-Mega-X',
-            'Mewtwo-Mega-Y',
-            'Ampharos-Mega',
-            'Steelix-Mega',
-            'Scizor-Mega',
-            'Heracross-Mega',
-            'Houndoom-Mega',
-            'Tyranitar-Mega',
-            'Sceptile-Mega',
-            'Blaziken-Mega',
-            'Swampert-Mega',
-            'Gardevoir-Mega',
-            'Sableye-Mega',
-            'Mawile-Mega',
-            'Aggron-Mega',
-            'Medicham-Mega',
-            'Manectric-Mega',
-            'Sharpedo-Mega',
-            'Camerupt-Mega',
-            'Altaria-Mega',
-            'Banette-Mega',
-            'Absol-Mega',
-            'Glalie-Mega',
-            'Salamence-Mega',
-            'Metagross-Mega',
-            'Latias-Mega',
-            'Latios-Mega',
-            'Rayquaza-Mega',
-            'Lopunny-Mega',
-            'Garchomp-Mega',
-            'Lucario-Mega',
-            'Abomasnow-Mega',
-            'Gallade-Mega',
-            'Audino-Mega',
-            'Diancie-Mega',
-        ]
-        message.channel.send('You got '+megas[random.integer(0,megas.length-1)]+'!')
-    }
-}
-module.exports=RandomMegaPokémon
+  },
+};

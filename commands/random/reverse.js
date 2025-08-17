@@ -1,15 +1,25 @@
-const commando=require('discord.js-commando')
-class ReverseStrings extends commando.Command{
-	constructor(client){
-		super(client,{
-			name: 'reverse',
-			group: 'random',
-			memberName: 'reverse',
-			description: 'Reverses any text you input into this command.',
-		})
+module.exports = {
+  name: "reverse",
+  description: "Reverses any text you input into this command.",
+
+  async execute(message) {
+    // Determine the dynamic prefix slice
+    const PREFIX = message.guild.commandPrefix || "&" + module.exports.name;
+    const args = message.content.slice(PREFIX.length).trim();
+
+    if (!args) {
+      await message.channel.send("Please provide some text to reverse!");
+      return;
     }
-    async run(message){
-        message.channel.send(String(message.content.substr(9)).split("").reverse().join(""))
+
+    // Reverse the string
+    const reversed = args.split("").reverse().join("");
+
+    // Discord message limit is 2000 characters
+    const CHUNK_SIZE = 2000;
+    for (let i = 0; i < reversed.length; i += CHUNK_SIZE) {
+      const chunk = reversed.slice(i, i + CHUNK_SIZE);
+      await message.channel.send(chunk);
     }
-}
-module.exports=ReverseStrings
+  },
+};

@@ -1,37 +1,53 @@
-const commando=require('discord.js-commando')
-class ChangeOnlineStatus extends commando.Command{
-	constructor(client){
-		super(client,{
-			name: 'onlinestatus',
-			group: 'settings',
-			memberName: 'onlinestatus',
-			description: "Change the bot's online status. Only a select few are allowed to use this command.",
-		})
+class ChangeOnlineStatus {
+  constructor(client) {
+    this.client = client;
+    this.name = "onlinestatus";
+    this.description = "Change the bot's online status. Only a select few can use this command.";
+  }
+
+  async execute(message) {
+    const allowedUserId = "324661689972686849";
+    const args = message.content.split(/ +/).slice(1); // remove command itself
+    const statusArg = args[0]?.toLowerCase();
+
+    if (!statusArg) {
+      return message.channel.send("You must specify a status: online, away/idle, invisible/offline, or dnd.");
     }
-    async run(message,args){
-        if(message.channel.type!=='dm')
-            args=message.content.split(/ +/).slice(message.guild.commandPrefix.length)
-        if(message.author.id!=='324661689972686849'&&message.channel.type!=='dm'){
-            message.reply("you don't have permission to use this command.")
-        }else if(message.author.id!=='324661689972686849'&&message.channel.type==='dm'){
-            message.reply("You don't have permission to use this command.")
-        }
-        if(args[0].toLowerCase()=='dnd'){
-            this.client.user.setStatus('dnd')
-            message.channel.send("My online status is now: **Do Not Disturb**.")
-        }else if(args[0].toLowerCase()=='away'||args[0].toLowerCase()=='idle'){
-            this.client.user.setStatus('idle')
-            message.channel.send("My online status is now: **Away/Idle**.")
-        }else if(args[0].toLowerCase()=='invisible'||args[0].toLowerCase()=='offline'){
-            this.client.user.setStatus('invisible')
-            message.channel.send("My online status is now: **Invisible/Offline**.")
-        }else if(args[0].toLowerCase()=='online'){
-            this.client.user.setStatus('online')
-            message.channel.send("My online status is now: **Online**.")
-        }else{
-            message.channel.send(`You must specify either online, away/idle, invisible, or dnd (do not disturb).`)
-            return
-        }
+
+    if (message.author.id !== allowedUserId) {
+      return message.reply("You don't have permission to use this command.");
     }
+
+    const statusMap = {
+      online: "online",
+      idle: "idle",
+      away: "idle",
+      dnd: "dnd",
+      invisible: "invisible",
+      offline: "invisible",
+    };
+
+    const displayMap = {
+      online: "Online",
+      idle: "Away/Idle",
+      dnd: "Do Not Disturb",
+      invisible: "Invisible/Offline",
+    };
+
+    const newStatus = statusMap[statusArg];
+
+    if (!newStatus) {
+      return message.channel.send("You must specify either online, away/idle, invisible/offline, or dnd (Do Not Disturb).");
+    }
+
+    try {
+      await this.client.user.setStatus(newStatus);
+      await message.channel.send(`My online status is now: **${displayMap[newStatus]}**.`);
+    } catch (err) {
+      console.error(err);
+      message.channel.send(`Error setting status: ${err.message}`);
+    }
+  }
 }
-module.exports=ChangeOnlineStatus
+
+module.exports = ChangeOnlineStatus;

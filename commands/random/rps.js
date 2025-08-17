@@ -1,66 +1,58 @@
-const commando=require('discord.js-commando')
-const Random=require('random-js')
-const random=new Random.Random()
-class RockPaperScissors extends commando.Command{
-	constructor(client){
-		super(client,{
-			name: 'rps',
-			group: 'random',
-			memberName: 'rps',
-			description: 'Play a game of Rock, Paper, Scissors with OpenScykohBot.',
-		})
-	}
-	async run(message,args){
-    if(message.channel.type!=='dm')
-      args=message.content.split(/ +/).slice(message.guild.commandPrefix.length)
-		if(!args[0])
-			message.channel.send("You need to specify if you're playing Rock, Paper, Scissors, Tornado, or Hurricane.\nExample: `&rps rock`")
-		if(args[0].toLowerCase()=='rock'){
-			switch(random.die(3)){
-				case 1:
-					message.channel.send(":fist::skin-tone-1: I choose rock. It's a tie.")
-					break
-				case 2:
-					message.channel.send(":hand_splayed::skin-tone-1: I choose paper. I win!")
-					break
-				case 3:
-					message.channel.send(":v::skin-tone-1: I choose scissors. You win!")
-					break
-			}
-		}else if(args[0].toLowerCase()=='paper'){
-			switch(random.die(3)){
-				case 1:
-					message.channel.send(":fist::skin-tone-1: I choose rock. You win!")
-					break
-				case 2:
-					message.channel.send(":hand_splayed::skin-tone-1: I choose paper. It's a tie.")
-					break
-				case 3:
-					message.channel.send(":v::skin-tone-1: I choose scissors. I win!")
-					break
-			}
-		}else if(args[0].toLowerCase()=='scissors'){
-			switch(random.die(3)){
-				case 1:
-					message.channel.send(":fist::skin-tone-1: I choose rock. I win!")
-					break
-				case 2:
-					message.channel.send(":hand_splayed::skin-tone-1: I choose paper. You win!")
-					break
-				case 3:
-					message.channel.send(":v::skin-tone-1: I choose scissors. It's a tie.")
-					break
-			}
-		}else if(args[0].toLowerCase()=='tornado'){
-			message.channel.send(":dash: I choose hurricane!")
-			return
-		}else if(args[0].toLowerCase()=='hurricane'){
-			message.channel.send(":cloud_tornado: I choose tornado!")
-			return
-		}else{
-			message.channel.send("You need to specify if you're playing Rock, Paper, Scissors, Tornado, or Hurricane.\nExample: `&rps rock`")
-			return
-		}
-  }
-}
-module.exports=RockPaperScissors
+const { Random } = require("random-js");
+const random = new Random();
+
+module.exports = {
+  name: "rps",
+  description: "Play Rock, Paper, Scissors (plus Tornado & Hurricane) with the bot.",
+
+  async execute(message) {
+    const PREFIX = "!rps";
+    const args = message.content.slice(PREFIX.length).trim().split(/\s+/);
+    const choice = args[0]?.toLowerCase();
+
+    const validChoices = ["rock", "paper", "scissors", "tornado", "hurricane"];
+    if (!choice || !validChoices.includes(choice)) {
+      await message.channel.send(
+        "You need to specify Rock, Paper, Scissors, Tornado, or Hurricane.\n" +
+        "Example: `!rps rock`"
+      );
+      return;
+    }
+
+    // Special cases for Tornado/Hurricane
+    if (choice === "tornado") {
+      await message.channel.send(":dash: I choose hurricane!");
+      return;
+    }
+    if (choice === "hurricane") {
+      await message.channel.send(":cloud_tornado: I choose tornado!");
+      return;
+    }
+
+    // Rock, Paper, Scissors logic
+    const outcomes = ["rock", "paper", "scissors"];
+    const botChoice = outcomes[random.integer(0, outcomes.length - 1)];
+
+    let resultMessage = `I choose ${botChoice}. `;
+    if (choice === botChoice) {
+      resultMessage += "It's a tie!";
+    } else if (
+      (choice === "rock" && botChoice === "scissors") ||
+      (choice === "paper" && botChoice === "rock") ||
+      (choice === "scissors" && botChoice === "paper")
+    ) {
+      resultMessage += "You win!";
+    } else {
+      resultMessage += "I win!";
+    }
+
+    // Emoji mapping
+    const emojiMap = {
+      rock: ":fist::skin-tone-1:",
+      paper: ":hand_splayed::skin-tone-1:",
+      scissors: ":v::skin-tone-1:",
+    };
+
+    await message.channel.send(`${emojiMap[botChoice]} ${resultMessage}`);
+  },
+};

@@ -1,34 +1,35 @@
-const commando=require('discord.js-commando')
-class StringLength extends commando.Command{
-    constructor(client){
-        super(client,{
-            name: 'length',
-            group: 'random',
-            memberName: 'length',
-            description: 'Computes the length of whatever you specify.',
-        })
+module.exports = {
+  name: "length",
+  description: "Computes the length of whatever you specify.",
+
+  async execute(message, args) {
+    // If args are empty, split content (for prefix commands in guilds)
+    if (!args || args.length === 0) {
+      if (message.channel.type !== "dm") {
+        const prefix = message.guild.commandPrefix || "&";
+        args = message.content.slice(prefix.length).trim().split(/ +/).slice(1);
+      }
     }
-    async run(message,args){
-        if(message.channel.type!=='dm')
-            args=message.content.split(/ +/).slice(message.guild.commandPrefix.length)
-        var arglength=0
-        if(!args[0]){
-            message.reply('You need to specify a string to get the length of. Example: `&length <string>`')
-        }else if(args[0]&&args.length==1&&args[0].length==1){
-            message.channel.send(args[0]+' contains '+args[0].length+' character.')
-        }else if(args[0]&&args.length==1&&args[0].length>1){
-            message.channel.send(args[0]+' contains '+args[0].length+' characters.')
-        }else if(args.length>=2){
-            for (var i=0;i<=args.length-1;i++){
-                if(args[i].length==1){
-                    message.channel.send(args[i]+' contains '+args[i].length+' character.')
-                }else{
-                    message.channel.send(args[i]+' contains '+args[i].length+' characters.')
-                }
-                arglength=arglength+args[i].length
-            }
-            message.channel.send('The combined length of those strings is '+arglength+' characters.')
-        }
+
+    if (!args || args.length === 0) {
+      return message.reply(
+        "You need to specify a string to get the length of. Example: `&length <string>`"
+      );
     }
-}
-module.exports=StringLength
+
+    let totalLength = 0;
+    const individualLengths = args.map((arg) => {
+      totalLength += arg.length;
+      return `${arg} contains ${arg.length} character${arg.length === 1 ? "" : "s"}.`;
+    });
+
+    // Combine individual messages and total length
+    const combinedMessage = individualLengths.join("\n") + `\n\nThe combined length of those strings is ${totalLength} character${totalLength === 1 ? "" : "s"}.`;
+
+    // Split into chunks if over 2000 characters
+    const CHUNK_SIZE = 2000;
+    for (let i = 0; i < combinedMessage.length; i += CHUNK_SIZE) {
+      await message.channel.send(combinedMessage.slice(i, i + CHUNK_SIZE));
+    }
+  },
+};

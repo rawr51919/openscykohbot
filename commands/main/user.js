@@ -1,48 +1,79 @@
-const commando=require('discord.js-commando')
-const {stripIndents}=require('common-tags')
-class UserInfo extends commando.Command{
-    constructor(client){
-        super(client,{
-            name: 'user',
-            group: 'main',
-            memberName: 'user',
-            description: "Check a particular Discord user's stats.",
-            args: [
-                {
-                    key: "user",
-                    prompt: "Who should I choose?",
-                    type: "user",
-                    default: ""
-                },
-            ]
-        })
+const { stripIndents } = require("common-tags");
+const { ChannelType } = require("discord.js");
+
+module.exports = {
+  name: "user",
+  description: "Shows information about a user.",
+
+  async execute(message, args) {
+    const chan = message.channel;
+    let targetUser;
+
+    // Case 1: Mention
+    if (message.mentions.users.size > 0) {
+      targetUser = message.mentions.users.first();
     }
-    async run(message,args){
-        const user=(!args.user)?message.author:args.user
-        if(message.channel.type=='text'||message.channel.type=='group'){
-            return message.say(stripIndents`
-            User info for **${user.tag}** ${user.bot ? "(BOT)" : "(USER)"} in **${message.guild.name}**:
-            User ID: **${user.id}**
-            User Profile: ${user}
-            Current Status: **${user.presence.status.toUpperCase()}**
-            Server Nickname: **${message.guild.members.get(user.id).displayName}**
-            Account Created On: **${user.createdAt}**
-            Account Joined Server On: **${message.guild.members.get(user.id).joinedAt}**
-            Account's Last Server Message ID: **${user.lastMessageID}**
-            Account Avatar: ${user.displayAvatarURL.replace("?size=2048","")}
-            `)
-        }else if(message.channel.type=='dm'){
-            message.say(stripIndents`
-            User info for **${user.tag}**:
-            User ID: **${user.id}**
-            User Profile: ${user}
-            Current Status: **${user.presence.status.toUpperCase()}**
-            User Name: **${user.username}**
-            Account Created On: **${user.createdAt}**
-            Account's Last DM Message ID: **${user.lastMessageID}**
-            Account Avatar: ${user.displayAvatarURL.replace("?size=2048","")}
-            `)
-        }
+    // Case 2: ID or username in args
+    else if (args.length > 0) {
+      const search = args.join(" ").toLowerCase();
+      targetUser =
+        message.client.users.cache.get(search) ||
+        message.guild?.members.cache.find(
+          m =>
+            m.user.username.toLowerCase() === search ||
+            m.displayName.toLowerCase() === search
+        )?.user;
     }
-}
-module.exports=UserInfo
+    // Case 3: Default to author
+    if (!targetUser) {
+      targetUser = message.author;
+    }
+
+    // --- Guild Text Channel ---
+    if (chan.type === ChannelType.GuildText && message.guild) {
+      const member = await message.guild.members.fetch(targetUser.id).catch(() => null);
+      const presence = targetUser.presence || member?.presence;
+
+      const reply = stripIndents`
+        👤 User info for **${targetUser.tag}** ${targetUser.bot ? "(BOT)" : "(USER)"} in **${message.guild.name}**:
+        🆔 User ID: **${targetUser.id}**
+        🔗 Profile: ${targetUser}
+        📡 Status: **${presence?.status?.toUpperCase() || "UNKNOWN"}**
+        🎭 Nickname: **${member?.displayName || "None"}**
+        📅 Account Created: **${targetUser.createdAt.toUTCString()}**
+        📅 Joined Server: **${member?.joinedAt?.toUTCString() || "N/A"}**
+        🖼️ Avatar: ${targetUser.displayAvatarURL({ size: 2048, dynamic: true })}
+      `;
+      return message.channel.send(reply);
+    }
+
+    // --- Direct Message ---
+    else if (chan.type === ChannelType.DM) {
+      const presence = targetUser.presence;
+
+      const reply = stripIndents`
+        👤 User info for **${targetUser.tag}**:
+        🆔 User ID: **${targetUser.id}**
+        🔗 Profile: ${targetUser}
+        📡 Status: **${presence?.status?.toUpperCase() || "UNKNOWN"}**
+        👤 Username: **${targetUser.username}**
+        📅 Account Created: **${targetUser.createdAt.toUTCString()}**
+        🖼️ Avatar: ${targetUser.displayAvatarURL({ size: 2048, dynamic: true })}
+      `;
+      return message.channel.send(reply);
+    }
+
+    // --- Group DM ---
+    else if (chan.type === ChannelType.GroupDM) {
+      const reply = stripIndents`
+        👤 User info for **${targetUser.tag}**:
+        🆔 User ID: **${targetUser.id}**
+        🔗 Profile: ${targetUser}
+        📡 Status: **${targetUser.presence?.status?.toUpperCase() || "UNKNOWN"}**
+        📅 Account Created: **${targetUser.createdAt.toUTCString()}**
+        🖼️ Avatar: ${targetUser.displayAvatarURL({ size: 2048, dynamic: true })}
+      `;
+      return message.channel.send(reply);
+    }
+  },
+};
