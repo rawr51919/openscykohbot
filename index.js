@@ -1,3 +1,4 @@
+require("dotenv").config();
 const { Client, GatewayIntentBits, Partials } = require("discord.js");
 const Random = require("random-js");
 const random = new Random.Random();
