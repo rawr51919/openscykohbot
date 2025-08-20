@@ -10,6 +10,6 @@ An open-source, public domain bot meant for Scykoh's CrudButt server.
 4. `node index.js` when everything's been done.
 5. Congrats, you deployed a full copy of this bot!
 
-Original bot this was based on courtesy of @xenrelle
+Original bot this was based on courtesy of @xenona
 
 Public instance deployed at <https://openscykohbot.rawr51919.workers.dev>
