@@ -12,7 +12,7 @@
     "discord.js-tools": "github:rawr51919/discord.js-tools",
     "dotenv": "^17.2.1",
     "eslint": "^9.33.0",
-    "globals": "^16.3.0",
+    "globals": "^17.0.0",
     "jest": "^30.0.5",
     "moji-translate": "^1.0.8",
     "node-fetch": "^2.7.0",
